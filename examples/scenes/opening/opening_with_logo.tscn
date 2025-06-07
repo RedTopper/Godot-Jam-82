@@ -1,12 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://ce8cs4qxfjh2p"]
+[gd_scene load_steps=8 format=3 uid="uid://ce8cs4qxfjh2p"]
 
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/opening/opening.tscn" id="1_n16wr"]
-[ext_resource type="Script" path="res://examples/scenes/opening/opening.gd" id="2_lnbef"]
-[ext_resource type="Texture2D" path="res://examples/assets/images/GWJ-Full-Logo-tag-Orange2.svg" id="3_14blj"]
-[ext_resource type="Texture2D" path="res://examples/assets/images/ThemeBanner.png" id="4_8p0xn"]
-[ext_resource type="Texture2D" path="res://examples/assets/images/WildcardsBanner.png" id="5_bipsk"]
+[ext_resource type="PackedScene" uid="uid://sikc02ddepyt" path="res://addons/maaacks_game_template/base/scenes/opening/opening.tscn" id="1_n16wr"]
+[ext_resource type="Script" uid="uid://r0r6fqotpmq3" path="res://examples/scenes/opening/opening.gd" id="2_lnbef"]
+[ext_resource type="Texture2D" uid="uid://cbdgxejb3kca8" path="res://examples/assets/images/GWJ-Full-Logo-tag-Orange2.svg" id="3_14blj"]
+[ext_resource type="Texture2D" uid="uid://crloxpsjhwww2" path="res://examples/assets/images/ThemeBanner.png" id="4_8p0xn"]
+[ext_resource type="Texture2D" uid="uid://1c4ccjmrmppd" path="res://examples/assets/images/WildcardsBanner.png" id="5_bipsk"]
+
+[sub_resource type="Gradient" id="Gradient_n16wr"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lnbef"]
+gradient = SubResource("Gradient_n16wr")
 
 [node name="Opening" instance=ExtResource("1_n16wr")]
 script = ExtResource("2_lnbef")
 next_scene = "res://examples/scenes/menus/main_menu/main_menu_with_animations.tscn"
 images = Array[Texture2D]([ExtResource("3_14blj"), ExtResource("4_8p0xn"), ExtResource("5_bipsk")])
+
+[node name="TextureRect" type="TextureRect" parent="." index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_lnbef")
+
+[node name="BackgroundMusicPlayer" parent="." index="1"]
+bus = &"Master"
