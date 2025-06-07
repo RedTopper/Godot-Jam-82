@@ -11,6 +11,31 @@ config_version=5
 [application]
 
 config/name="Godot Jam 82"
-run/main_scene="uid://dqb5yrrxmt5o0"
+run/main_scene="uid://dm2wge58qfkid"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+AppConfig="*res://addons/maaacks_game_template/base/scenes/autoloads/app_config.tscn"
+SceneLoader="*res://addons/maaacks_game_template/base/scenes/autoloads/scene_loader.tscn"
+ProjectMusicController="*res://addons/maaacks_game_template/base/scenes/autoloads/project_music_controller.tscn"
+ProjectUISoundController="*res://addons/maaacks_game_template/base/scenes/autoloads/project_ui_sound_controller.tscn"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gwj_accessibility_scripts/plugin.cfg", "res://addons/maaacks_game_template/plugin.cfg")
+
+[gui]
+
+theme/custom="res://examples/resources/themes/expedition.tres"
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://addons/maaacks_game_template/base/translations/menus_translations.en.translation", "res://addons/maaacks_game_template/base/translations/menus_translations.fr.translation")
+
+[maaacks_game_template]
+
+disable_update_check=false
+disable_install_wizard=true
+copy_path="res://examples"

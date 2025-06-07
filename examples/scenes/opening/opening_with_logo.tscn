@@ -1,0 +1,12 @@
+[gd_scene load_steps=6 format=3 uid="uid://ce8cs4qxfjh2p"]
+
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/opening/opening.tscn" id="1_n16wr"]
+[ext_resource type="Script" path="res://examples/scenes/opening/opening.gd" id="2_lnbef"]
+[ext_resource type="Texture2D" path="res://examples/assets/images/GWJ-Full-Logo-tag-Orange2.svg" id="3_14blj"]
+[ext_resource type="Texture2D" path="res://examples/assets/images/ThemeBanner.png" id="4_8p0xn"]
+[ext_resource type="Texture2D" path="res://examples/assets/images/WildcardsBanner.png" id="5_bipsk"]
+
+[node name="Opening" instance=ExtResource("1_n16wr")]
+script = ExtResource("2_lnbef")
+next_scene = "res://examples/scenes/menus/main_menu/main_menu_with_animations.tscn"
+images = Array[Texture2D]([ExtResource("3_14blj"), ExtResource("4_8p0xn"), ExtResource("5_bipsk")])
