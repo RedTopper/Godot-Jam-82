@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://ce8cs4qxfjh2p"]
+
+[ext_resource type="PackedScene" uid="uid://sikc02ddepyt" path="res://addons/maaacks_game_template/base/scenes/opening/opening.tscn" id="1_w60c0"]
+[ext_resource type="Script" uid="uid://5y0bbmtyvn1w" path="res://scenes/opening/opening.gd" id="2_ynkyy"]
+[ext_resource type="Texture2D" uid="uid://cbdgxejb3kca8" path="res://examples/assets/images/GWJ-Full-Logo-tag-Orange2.svg" id="3_kt5v3"]
+[ext_resource type="Texture2D" uid="uid://d2b3iu8721bl4" path="res://scenes/opening/studio.png" id="3_ynkyy"]
+[ext_resource type="Texture2D" uid="uid://cc8k0f1lcuyj7" path="res://scenes/opening/theme.png" id="4_u58oj"]
+[ext_resource type="Texture2D" uid="uid://bdemkt8xagir7" path="res://scenes/opening/wildcards.png" id="5_qie0p"]
+
+[node name="Opening" instance=ExtResource("1_w60c0")]
+script = ExtResource("2_ynkyy")
+time_between_frames = 0.6
+next_scene = "uid://dm2wge58qfkid"
+images = Array[Texture2D]([ExtResource("3_ynkyy"), ExtResource("3_kt5v3"), ExtResource("4_u58oj"), ExtResource("5_qie0p")])
+fade_in_time = 0.0
+fade_out_time = 0.6
+visible_time = 1.5
+
+[node name="ColorRect" type="ColorRect" parent="." index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BackgroundMusicPlayer" parent="." index="1"]
+bus = &"Master"
+
+[node name="ImagesContainer" parent="." index="2"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
