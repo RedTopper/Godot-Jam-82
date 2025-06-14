@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b853bmlpxupcc"]
+[gd_scene load_steps=6 format=3 uid="uid://b853bmlpxupcc"]
 
 [ext_resource type="Script" uid="uid://bqgjc624tirso" path="res://objects/player/player.gd" id="1_cqmt1"]
 [ext_resource type="Script" uid="uid://crmhwp8uy4e7" path="res://objects/player/states/player_state.gd" id="2_g7ett"]
 [ext_resource type="Script" uid="uid://dts0yd0wq63yu" path="res://objects/player/states/idle_state.gd" id="3_ssrue"]
 [ext_resource type="Script" uid="uid://bhn32bhjv3x8m" path="res://objects/player/states/move_state.gd" id="4_jnjyq"]
+[ext_resource type="Texture2D" uid="uid://b7ptiyvhtnnhr" path="res://icon.svg" id="5_gnkmh"]
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_cqmt1")
@@ -18,3 +19,8 @@ move_state = NodePath("../Move")
 [node name="Move" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("idle_state")]
 script = ExtResource("4_jnjyq")
 idle_state = NodePath("../Idle")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("5_gnkmh")
