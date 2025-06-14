@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://5yw4rhabtfqb"]
 
 [ext_resource type="Script" uid="uid://4gi7pyxr862w" path="res://objects/monster/monster.gd" id="1_8r01v"]
-[ext_resource type="Script" uid="uid://djkv0whppn6p6" path="res://objects/monster/states/monster_state.gd" id="2_70b43"]
+[ext_resource type="Script" uid="uid://jihwj7nslsfl" path="res://objects/state_machine.gd" id="2_70b43"]
 
 [node name="Monster" type="CharacterBody2D"]
 script = ExtResource("1_8r01v")
 
-[node name="MonsterStateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_70b43")
