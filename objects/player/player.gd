@@ -4,7 +4,7 @@ class_name Player extends CharacterBody2D
 const SPEED = 300.0
 const ROTATION_SPEED = PI / 2
 
-func _init():
+func _ready():
 	$AudioListener2D.make_current()
 
 func _process(delta):
@@ -18,5 +18,5 @@ func _process(delta):
 	if Input.is_action_pressed("ui_up"):
 		velocity = Vector2.UP.rotated(rotation) * SPEED
 	elif Input.is_action_pressed("ui_down"):
-		velocity = Vector2.DOWN.rotated(-rotation) * SPEED
+		velocity = Vector2.DOWN.rotated(rotation) * SPEED
 	position += velocity * delta
