@@ -24,13 +24,11 @@ func _ready() -> void:
 	AudioServer.add_bus_effect(busID, panning_effect)
 	sound.set_bus(audio_bus_name)
 	sound.set_stream(stream)
-	pass
 
 func _process(delta: float) -> void:
 	var angle_to_sound = player_vector.angle_to_point(position)
 	var heard_angle = player_facing - angle_to_sound
-	panning_effect.set_pan(sin(heard_angle))
-	pass
+	panning_effect.set_pan(cos(heard_angle))
 
 func _exit_tree() -> void:
 	AudioBusManager.remove_bus(audio_bus_name)
