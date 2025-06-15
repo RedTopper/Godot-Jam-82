@@ -9,9 +9,7 @@ func enter() -> void:
 	var name = self.get_path().get_name(path_index-2)
 	print(name + "_Idle")
 	
-	animation_name = "idle_down"
-	
-	get_movement_input()
+	animation_name = "idle_" + Utilities.get_direction_name(Globals.player_direction)
 	
 	super()
 	
@@ -19,7 +17,7 @@ func enter() -> void:
 
 func process_input(event: InputEvent) -> State:
 	# look for user input
-	if get_movement_input():
+	if get_input_forward_movement() or get_input_rotation():
 		return move_state
 	
 	return null

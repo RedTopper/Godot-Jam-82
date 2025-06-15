@@ -3,7 +3,8 @@ extends State
 #TODO: @export states that this state can transition to
 @export var idle_state: State
 
-var input_vector : Vector2
+var tank_motion: float
+var tank_rotation: float
 
 func enter() -> void:
 	# debug
@@ -11,41 +12,35 @@ func enter() -> void:
 	var name = self.get_path().get_name(path_index-2)
 	print(name + "_Move")
 	
-	input_vector = get_movement_input()
-	animation_name = "move" + get_movement_direction(input_vector)
+	animation_name = "move_" + Utilities.get_direction_name(Globals.player_direction)
+	
+	tank_motion = get_input_forward_movement()
+	tank_rotation = get_input_rotation()
 	
 	super()
 	
 
 func process_input(event: InputEvent) -> State:
-	input_vector = get_movement_input()
-	animation_name = "move" + get_movement_direction(input_vector)
-	
-	animations.play(animation_name)
+	tank_motion = get_input_forward_movement()
+	tank_rotation = get_input_rotation()
 	
 	# look for user input
-	if input_vector:
+	if tank_motion or tank_rotation:
 		return null
 	else:
 		return idle_state
 
 func process_physics(delta: float) -> State:
+	parent.velocity = Vector2.RIGHT.rotated(Globals.player_direction) * -tank_motion * Globals.player_linear_rate
+	Globals.player_direction += (tank_rotation * Globals.player_rotation_rate * delta)
 	
-	var movement = input_vector * move_speed
-	parent.velocity = movement
+	Globals.player_direction = fmod(Globals.player_direction, TAU)
+	if Globals.player_direction < 0.0:
+		Globals.player_direction += TAU
+	
+	animation_name = "move_" + Utilities.get_direction_name(Globals.player_direction)
+	animations.play(animation_name)
 	
 	parent.move_and_slide()
 	
 	return null
-
-func get_movement_direction(movement_vector: Vector2) -> String:
-	var input_direction = movement_vector.snapped(Vector2.ONE)
-	
-	if input_direction == Vector2.UP:
-		return "_up"
-	elif input_direction == Vector2.DOWN:
-		return "_down"
-	elif input_direction == Vector2.LEFT:
-		return "_left"
-	else: #input_direction == Vector2.RIGHT:
-		return "_right"
