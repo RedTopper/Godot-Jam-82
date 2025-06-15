@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b6j6qmlniowk6"
+path="res://.godot/imported/Wine Glasses.wav-d600671cf3b76e56c2f6156edb1cdf63.sample"
+
+[deps]
+
+source_file="res://examples/assets/Sounds/Wine Glasses.wav"
+dest_files=["res://.godot/imported/Wine Glasses.wav-d600671cf3b76e56c2f6156edb1cdf63.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
