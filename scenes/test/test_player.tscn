@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b853bmlpxupcc" path="res://objects/player/player.tscn" id="1_eru6m"]
 
-[node name="Node" type="Node"]
+[node name="TestPlayer" type="Node"]
 
 [node name="Player" parent="." instance=ExtResource("1_eru6m")]
 position = Vector2(167, 198)

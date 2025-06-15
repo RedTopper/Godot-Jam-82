@@ -104,8 +104,6 @@ metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
 script = ExtResource("3_ssrue")
 move_state = NodePath("../Move")
 animation_name = null
-move_speed = null
-rotation_speed = null
 metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
 
 [node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
