@@ -1,0 +1,17 @@
+extends Node2D
+
+@onready var player = $"Player"
+@onready var sound = $"SpatialAudioNode"
+
+@export var playerRef : Player
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	player.position = Vector2(500, 0)
+	sound.position = Vector2(500, 500)
+	sound.play_sound()
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	sound.set_player_position(player.position)
+	sound.set_player_facing(player.rotation)
