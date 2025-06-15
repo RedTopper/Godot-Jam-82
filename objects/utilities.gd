@@ -10,4 +10,4 @@ func get_direction_name(angle: float) -> String:
 	elif angle_deg >= 135.0 and angle_deg < 225.0:
 		return "west"
 	else: #angle_deg >= 225.0 and angle_deg < 315.0
-		return "nordth"
+		return "north"

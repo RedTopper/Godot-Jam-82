@@ -2,7 +2,6 @@ class_name State
 extends Node
 
 @export var animation_name: String
-@export var move_speed : float = 400.0
 
 var parent: CharacterBody2D
 var animations: AnimatedSprite2D
@@ -26,5 +25,11 @@ func process_frame(delta: float) -> State:
 func process_physics(delta: float) -> State:
 	return null
 
-func get_movement_input() -> Vector2:
-	return move_component.get_movement_direction()
+func get_input_vector_movement() -> Vector2:
+	return move_component.get_input_vector_movement()
+
+func get_input_forward_movement() -> float:
+	return move_component.get_input_forward_movement()
+
+func get_input_rotation() -> float:
+	return move_component.get_input_rotation()
