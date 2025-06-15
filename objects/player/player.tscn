@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://bhn32bhjv3x8m" path="res://objects/player/states/move_state.gd" id="4_jnjyq"]
 [ext_resource type="Texture2D" uid="uid://cvvpxenxhqqxv" path="res://objects/player/idle/right.png" id="4_psowp"]
 [ext_resource type="Texture2D" uid="uid://k7xyopuk1er7" path="res://objects/player/idle/up.png" id="5_45urx"]
-[ext_resource type="Script" path="res://objects/player/player_move_component.gd" id="5_gnkmh"]
+[ext_resource type="Script" uid="uid://d1185wkd5nu2" path="res://objects/player/player_move_component.gd" id="5_gnkmh"]
 [ext_resource type="Texture2D" uid="uid://b8lop7t3n8x23" path="res://objects/player/move/left.png" id="7_c34wb"]
 [ext_resource type="Texture2D" uid="uid://b1if8ytkxgdh6" path="res://objects/player/move/right.png" id="8_45rsp"]
 [ext_resource type="Texture2D" uid="uid://4h2s4bocw7dq" path="res://objects/player/move/up.png" id="9_ylcck"]
@@ -21,26 +21,10 @@ size = Vector2(41, 121)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_m4kly")
-}],
-"loop": true,
-"name": &"idle_down",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_bi5m7")
-}],
-"loop": true,
-"name": &"idle_left",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": ExtResource("4_psowp")
 }],
 "loop": true,
-"name": &"idle_right",
+"name": &"idle_east",
 "speed": 5.0
 }, {
 "frames": [{
@@ -48,23 +32,23 @@ animations = [{
 "texture": ExtResource("5_45urx")
 }],
 "loop": true,
-"name": &"idle_up",
+"name": &"idle_north",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ow0dq")
+"texture": ExtResource("3_m4kly")
 }],
 "loop": true,
-"name": &"move_down",
+"name": &"idle_south",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_c34wb")
+"texture": ExtResource("3_bi5m7")
 }],
 "loop": true,
-"name": &"move_left",
+"name": &"idle_west",
 "speed": 5.0
 }, {
 "frames": [{
@@ -72,7 +56,7 @@ animations = [{
 "texture": ExtResource("8_45rsp")
 }],
 "loop": true,
-"name": &"move_right",
+"name": &"move_east",
 "speed": 5.0
 }, {
 "frames": [{
@@ -80,7 +64,23 @@ animations = [{
 "texture": ExtResource("9_ylcck")
 }],
 "loop": true,
-"name": &"move_up",
+"name": &"move_north",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ow0dq")
+}],
+"loop": true,
+"name": &"move_south",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_c34wb")
+}],
+"loop": true,
+"name": &"move_west",
 "speed": 5.0
 }]
 
@@ -93,7 +93,7 @@ shape = SubResource("RectangleShape2D_jnjyq")
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jnjyq")
-animation = &"idle_up"
+animation = &"move_north"
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("2_jnjyq")
@@ -103,6 +103,9 @@ metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state")]
 script = ExtResource("3_ssrue")
 move_state = NodePath("../Move")
+animation_name = null
+move_speed = null
+rotation_speed = null
 metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
 
 [node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
