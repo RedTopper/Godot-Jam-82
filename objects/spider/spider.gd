@@ -1,5 +1,20 @@
 extends CharacterBody2D
 
+@onready var state_machine = $StateMachine
+@onready var animations: AnimatedSprite2D = $Animations
+@onready var move_component = $MoveComponent
+
+var default_font: Font
+var default_font_size: int
+
+@onready var floor_anchors = $Floor/Anchors
+@onready var core = $Core
+@onready var floor = $Floor
+
+var spider_angle : float = 0.0
+
+@export var debug: bool = true
+
 @export var leg_forward_prediction_offset: float
 @export var leg_update_rate: float
 @export var leg_tween_time: float
@@ -25,6 +40,13 @@ extends CharacterBody2D
 var update_order: Array[int] = [0, 2, 4, 1, 3]
 var update_index: int = 0
 
+func _draw() -> void:
+	if debug:
+		var end_point = Vector2.ZERO + Vector2.from_angle(spider_angle) * 100
+		draw_line(Vector2.ZERO, end_point, Color.GREEN)
+		draw_string(default_font, end_point, str(round(rad_to_deg(spider_angle))),0, -1, 12, Color.GREEN)
+		draw_circle($Floor/Anchors.position, 10.0, Color.RED)
+
 func _update_legs() -> void:
 	update_index = update_index + 1
 	if update_index == update_order.size():
@@ -38,28 +60,21 @@ func _update_legs() -> void:
 	get_tree().create_timer(leg_update_rate).timeout.connect(_update_legs) 
 
 func _ready() -> void:
+	default_font = ThemeDB.fallback_font
+	default_font_size = ThemeDB.fallback_font_size
+	
+	state_machine.init(self, animations, move_component)
 	_update_legs()
 	for node in ik_targets:
 		node.top_level = true
 
-func _process(delta: float) -> void:
-	pass
-
 func _physics_process(delta: float) -> void:
-	var input_vector = Input.get_vector("left","right","up","down")
-	
-	var rotate = input_vector.x * delta * rotation_speed
-	$Core.rotation += rotate
-	$Floor.rotation += rotate
-	
-	var speed = -input_vector.y * movement_speed
-	velocity = Vector2(0.0, speed).rotated($Core.rotation)
-	
-	if speed > 0.0:
-		$Floor/Anchors.position.y = leg_forward_prediction_offset
-	elif speed < 0.0:
-		$Floor/Anchors.position.y = -leg_forward_prediction_offset
-	else:
-		$Floor/Anchors.position.y = 0
-	
-	move_and_slide()
+	state_machine.process_physics(delta)
+
+func _unhandled_input(event: InputEvent) -> void:
+	state_machine.process_input(event)
+
+func _process(delta: float) -> void:
+	if debug:
+		queue_redraw()
+	state_machine.process_frame(delta)

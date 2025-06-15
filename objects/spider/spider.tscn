@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bwo1h0dai4hi2"]
+[gd_scene load_steps=24 format=3 uid="uid://bwo1h0dai4hi2"]
 
 [ext_resource type="Script" uid="uid://crlmeipo4b1bf" path="res://objects/spider/spider.gd" id="1_nn63r"]
 [ext_resource type="Texture2D" uid="uid://dqs17pkyo8qo2" path="res://objects/spider/body/leg_a.png" id="2_bo2gt"]
@@ -6,12 +6,15 @@
 [ext_resource type="Texture2D" uid="uid://bb5cfgavhnpiw" path="res://objects/spider/body/leg_b.png" id="3_dc06g"]
 [ext_resource type="Texture2D" uid="uid://cxhppv6wcpokg" path="res://objects/spider/body/d.png" id="4_i5f4s"]
 [ext_resource type="Texture2D" uid="uid://begiyx8cbelol" path="res://objects/spider/body/r.png" id="4_mlanb"]
-[ext_resource type="Script" uid="uid://dm7u7ya5i2fkj" path="res://objects/spider/body.gd" id="5_bo2gt"]
 [ext_resource type="Texture2D" uid="uid://fewwjooba4n8" path="res://objects/spider/body/ur.png" id="5_tw7xf"]
 [ext_resource type="Texture2D" uid="uid://chfo7txxab7b1" path="res://objects/spider/body/u.png" id="6_qaxsg"]
 [ext_resource type="Texture2D" uid="uid://bjyw2upqmxd1o" path="res://objects/spider/body/ul.png" id="7_ob8v4"]
 [ext_resource type="Texture2D" uid="uid://clkihnfwufx14" path="res://objects/spider/body/l.png" id="8_8716e"]
 [ext_resource type="Texture2D" uid="uid://dk3r1f48pfwjb" path="res://objects/spider/body/dl.png" id="9_8owol"]
+[ext_resource type="Script" uid="uid://duesftkc012jb" path="res://objects/spider/spider_move_component.gd" id="13_ob8v4"]
+[ext_resource type="Script" uid="uid://jihwj7nslsfl" path="res://objects/state_machine.gd" id="13_qaxsg"]
+[ext_resource type="Script" uid="uid://dk2tyvtmwtg3y" path="res://objects/spider/states/idle.gd" id="14_ob8v4"]
+[ext_resource type="Script" uid="uid://cd3syv04h3k15" path="res://objects/spider/states/move.gd" id="15_8716e"]
 
 [sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_i5f4s"]
 target_nodepath = NodePath("../../Floor/Targets/Leg1Target")
@@ -75,10 +78,77 @@ modifications/4 = SubResource("SkeletonModification2DFABRIK_nn63r")
 [sub_resource type="CircleShape2D" id="CircleShape2D_nn63r"]
 radius = 113.49
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_8owol"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_mlanb")
+}],
+"loop": true,
+"name": &"east",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_qaxsg")
+}],
+"loop": true,
+"name": &"north",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_tw7xf")
+}],
+"loop": true,
+"name": &"north_east",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_ob8v4")
+}],
+"loop": true,
+"name": &"north_west",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_i5f4s")
+}],
+"loop": true,
+"name": &"south",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_auvm0")
+}],
+"loop": true,
+"name": &"south_east",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_8owol")
+}],
+"loop": true,
+"name": &"south_west",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_8716e")
+}],
+"loop": true,
+"name": &"west",
+"speed": 5.0
+}]
+
 [node name="Spider" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_nn63r")
-leg_forward_prediction_offset = 60.0
+leg_forward_prediction_offset = 100.0
 leg_update_rate = 0.02
 leg_tween_time = 0.05
 rotation_speed = 5.0
@@ -105,12 +175,14 @@ offset = Vector2(50.8895, -1.12513)
 [node name="Leg2" type="Sprite2D" parent="Core/Legs"]
 position = Vector2(26, -21)
 rotation = -0.475762
+scale = Vector2(0.999999, 0.999999)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(46.381, 0.738304)
 
 [node name="Leg2End" type="Sprite2D" parent="Core/Legs"]
 position = Vector2(105.688, -58.253)
 rotation = 1.61841
+scale = Vector2(1, 1)
 texture = ExtResource("3_dc06g")
 offset = Vector2(48.3324, -0.384361)
 
@@ -122,8 +194,8 @@ texture = ExtResource("2_bo2gt")
 offset = Vector2(47.0226, 1.55007)
 
 [node name="Leg3End" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-9.62449, -121.362)
-rotation = 1.64749
+position = Vector2(-9.62467, -121.362)
+rotation = 1.64748
 scale = Vector2(1, 1)
 texture = ExtResource("3_dc06g")
 offset = Vector2(49.075, -1.42671)
@@ -144,7 +216,6 @@ offset = Vector2(48.2565, -1.70259)
 [node name="Leg5" type="Sprite2D" parent="Core/Legs"]
 position = Vector2(-24, 14)
 rotation = 2.51104
-scale = Vector2(1, 1)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(46.8127, 2.33227)
 
@@ -339,12 +410,27 @@ position = Vector2(-106, -27)
 [node name="Leg5Anchor" type="Node2D" parent="Floor/Anchors"]
 position = Vector2(-72, 80)
 
-[node name="Body" type="Sprite2D" parent="." node_paths=PackedStringArray("rotation_source")]
-position = Vector2(0, -70)
-texture = ExtResource("4_i5f4s")
-script = ExtResource("5_bo2gt")
-rotation_images = Array[Texture2D]([ExtResource("4_i5f4s"), ExtResource("9_8owol"), ExtResource("8_8716e"), ExtResource("7_ob8v4"), ExtResource("6_qaxsg"), ExtResource("5_tw7xf"), ExtResource("4_mlanb"), ExtResource("3_auvm0")])
-rotation_source = NodePath("../Core")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_nn63r")
+
+[node name="MoveComponent" type="Node" parent="."]
+script = ExtResource("13_ob8v4")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("13_qaxsg")
+starting_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state")]
+script = ExtResource("14_ob8v4")
+move_state = NodePath("../Move")
+metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
+
+[node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("15_8716e")
+idle_state = NodePath("../Idle")
+metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -70)
+sprite_frames = SubResource("SpriteFrames_8owol")
+animation = &"east"

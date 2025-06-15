@@ -10,11 +10,13 @@ extends CharacterBody2D
 var default_font: Font
 var default_font_size: int
 
+var player_direction: float = 0.0
+
 func _draw() -> void:
 	if debug:
-		var end_point = Vector2.ZERO + Vector2.from_angle(Globals.player_direction) * 100
+		var end_point = Vector2.ZERO + Vector2.from_angle(player_direction) * 100
 		draw_line(Vector2.ZERO, end_point, Color.GREEN)
-		draw_string(default_font, end_point, str(round(rad_to_deg(Globals.player_direction))),0, -1, 12, Color.GREEN)
+		draw_string(default_font, end_point, str(round(rad_to_deg(player_direction))),0, -1, 12, Color.GREEN)
 
 func _ready() -> void:
 	default_font = ThemeDB.fallback_font
