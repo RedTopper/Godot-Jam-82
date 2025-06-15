@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://o8qaxb0atmfh"]
+
+[ext_resource type="PackedScene" uid="uid://bwo1h0dai4hi2" path="res://objects/spider/spider.tscn" id="1_7185a"]
+
+[node name="TestMonster" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Spider" parent="." instance=ExtResource("1_7185a")]
+scale = Vector2(0.5, 0.5)
+rotation_speed = 6.0

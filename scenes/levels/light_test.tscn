@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bn1ras1dnu1uc"]
+
+[node name="LightTest" type="Node2D"]
