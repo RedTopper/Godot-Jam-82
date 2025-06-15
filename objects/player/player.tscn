@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://bhn32bhjv3x8m" path="res://objects/player/states/move_state.gd" id="4_jnjyq"]
 [ext_resource type="Texture2D" uid="uid://cvvpxenxhqqxv" path="res://objects/player/idle/right.png" id="4_psowp"]
 [ext_resource type="Texture2D" uid="uid://k7xyopuk1er7" path="res://objects/player/idle/up.png" id="5_45urx"]
-[ext_resource type="Script" uid="uid://d1185wkd5nu2" path="res://objects/player/player_move_component.gd" id="5_gnkmh"]
+[ext_resource type="Script" path="res://objects/player/player_move_component.gd" id="5_gnkmh"]
 [ext_resource type="Texture2D" uid="uid://b8lop7t3n8x23" path="res://objects/player/move/left.png" id="7_c34wb"]
 [ext_resource type="Texture2D" uid="uid://b1if8ytkxgdh6" path="res://objects/player/move/right.png" id="8_45rsp"]
 [ext_resource type="Texture2D" uid="uid://4h2s4bocw7dq" path="res://objects/player/move/up.png" id="9_ylcck"]
@@ -112,3 +112,5 @@ metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
 
 [node name="MoveComponent" type="Node" parent="."]
 script = ExtResource("5_gnkmh")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
