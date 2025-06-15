@@ -10,6 +10,7 @@ const SPEED = 300.0
 func _ready() -> void:
 	#initialize state machine
 	state_machine.init(self, animations, move_component)
+	$AudioListener2D.make_current()
 
 func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)
