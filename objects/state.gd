@@ -8,7 +8,6 @@ var animations: AnimatedSprite2D
 var move_component
 
 func enter() -> void:
-	#animations.stop()
 	animations.play(animation_name)
 
 func exit() -> void:

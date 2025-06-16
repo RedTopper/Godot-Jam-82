@@ -1,47 +1,41 @@
 extends State
 
 @export var move_state: State
+@export var bob_speed : float = 2.0
+@export var bob_amplitude : float = 5.0
 
-var time : float = 0.0
-var bob_speed : float = 2.0
-var bob_amplitude : float = 5.0
-
-var start_position: Vector2
+var _spider: Spider
+var _time : float = 0.0
+var _start_position: Vector2
 
 func enter() -> void:
-	# debug
-	var path_index = self.get_path().get_name_count() - 1
-	var dbg_name = self.get_path().get_name(path_index-2)
-	print(dbg_name + "_Idle")
+	_spider = parent
 	
-	animation_name = Utilities.get_direction_name(parent.spider_angle)
+	animation_name = Utilities.get_direction_name_deg(_spider.get_angle())
 	
-	parent.floor_anchors.position = Vector2.ZERO
-	
-	start_position = parent.core.position
+	_start_position = %Core.position
+	_spider.velocity = Vector2.ZERO
+	%Targets.position = Vector2.ZERO
 	
 	super()
-	
-	parent.velocity = Vector2.ZERO
-
 
 func process_input(event: InputEvent) -> State:
-	# look for user input
 	if get_input_forward_movement() or get_input_rotation():
 		return move_state
 	
 	return null
 
 func process_physics(delta: float) -> State:
-	parent.core.position = idle_bob(delta)
-	animations.position = parent.core.position
+	%Core.position = idle_bob(delta)
+	animations.position = %Core.position
+	
 	return null
 
 func exit() -> void:
-	parent.core.position = start_position
+	%Core.position = _start_position
 
 func idle_bob(delta: float) -> Vector2:
-	var offset = sin(time * bob_speed) * bob_amplitude
-	time += delta
-	time = fmod(time, PI)
-	return Vector2(start_position.x, start_position.y + offset)
+	var offset = sin(_time * bob_speed) * bob_amplitude
+	_time += delta
+	_time = fmod(_time, PI)
+	return Vector2(_start_position.x, _start_position.y + offset)
