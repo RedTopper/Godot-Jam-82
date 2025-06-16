@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bwo1h0dai4hi2"]
+[gd_scene load_steps=28 format=3 uid="uid://bwo1h0dai4hi2"]
 
 [ext_resource type="Script" uid="uid://crlmeipo4b1bf" path="res://objects/spider/spider.gd" id="1_nn63r"]
 [ext_resource type="Texture2D" uid="uid://dw8aa5fpg86xt" path="res://objects/spider/body/leg_a.png" id="2_bo2gt"]
@@ -8,10 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://vsav4flawcl8" path="res://objects/spider/body/000.png" id="4_mlanb"]
 [ext_resource type="Texture2D" uid="uid://qkvhua645bdq" path="res://objects/spider/body/315.png" id="5_tw7xf"]
 [ext_resource type="Texture2D" uid="uid://bo5bmf3ggegfq" path="res://objects/spider/body/270.png" id="6_qaxsg"]
+[ext_resource type="Script" uid="uid://b7wusafqlq13d" path="res://objects/spider/states/idle_shimmy.gd" id="7_8716e"]
 [ext_resource type="Texture2D" uid="uid://cwkfaik3h1ftw" path="res://objects/spider/body/235.png" id="7_ob8v4"]
 [ext_resource type="Texture2D" uid="uid://d0j34138gniqm" path="res://objects/spider/body/180.png" id="8_8716e"]
-[ext_resource type="Texture2D" uid="uid://xyiy0m2qutuy" path="res://objects/spider/body/135.png" id="9_8owol"]
 [ext_resource type="AudioStream" uid="uid://ua3r53w1tyol" path="res://assets/sounds/creature_walking.mp3" id="8_ob8v4"]
+[ext_resource type="Texture2D" uid="uid://xyiy0m2qutuy" path="res://objects/spider/body/135.png" id="9_8owol"]
 [ext_resource type="Script" uid="uid://duesftkc012jb" path="res://objects/spider/spider_move_component.gd" id="13_ob8v4"]
 [ext_resource type="Script" uid="uid://jihwj7nslsfl" path="res://objects/state_machine.gd" id="13_qaxsg"]
 [ext_resource type="Script" uid="uid://dk2tyvtmwtg3y" path="res://objects/spider/states/idle.gd" id="14_ob8v4"]
@@ -146,6 +147,26 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_8owol"]
+resource_name = "shimmy"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Core:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bgy4a"]
+_data = {
+&"shimmy": SubResource("Animation_8owol")
+}
+
 [node name="Spider" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_nn63r")
@@ -158,72 +179,72 @@ rotation = 1.5708
 [node name="Legs" type="Node2D" parent="Core"]
 
 [node name="LegFrontLeft" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(16, -29.1915)
-rotation = -0.955404
-scale = Vector2(0.999995, 0.999995)
+position = Vector2(16, -29.0181)
+rotation = -0.956217
+scale = Vector2(0.999991, 0.999991)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(46.811, 0.149733)
 
 [node name="LegFrontLeftTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(67.4909, -99.7724)
-rotation = 0.381739
-scale = Vector2(1.00006, 1.00006)
+position = Vector2(67.4333, -99.6405)
+rotation = 0.380126
+scale = Vector2(0.999994, 0.999994)
 texture = ExtResource("3_dc06g")
 offset = Vector2(50.8895, -1.12513)
 
 [node name="LegRearLeft" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-21, -25)
+position = Vector2(-21, -25.0002)
 rotation = -2.05039
-scale = Vector2(0.999999, 0.999999)
+scale = Vector2(0.999996, 0.999996)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(46.381, 0.738304)
 
 [node name="LegRearLeftTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-58.7978, -103.621)
-rotation = 0.0211961
-scale = Vector2(0.999999, 0.999999)
+position = Vector2(-58.7976, -103.621)
+rotation = 0.0211959
+scale = Vector2(0.999997, 0.999997)
 texture = ExtResource("3_dc06g")
 offset = Vector2(48.3324, -0.384361)
 
 [node name="LegRear" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-34, -1)
+position = Vector2(-34, -0.99992)
 rotation = 2.93839
-scale = Vector2(0.999998, 0.999998)
+scale = Vector2(0.999994, 0.999994)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(47.0226, 1.55007)
 
 [node name="LegRearTip" type="Sprite2D" parent="Core/Legs"]
 position = Vector2(-121.49, 12.7652)
-rotation = 0.0270057
-scale = Vector2(0.999998, 0.999998)
+rotation = 0.0270064
+scale = Vector2(0.999995, 0.999995)
 texture = ExtResource("3_dc06g")
 offset = Vector2(49.075, -1.42671)
 
 [node name="LegRearRight" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-19, 26)
+position = Vector2(-18.9996, 26)
 rotation = 1.94869
-scale = Vector2(0.999999, 0.999999)
+scale = Vector2(0.999995, 0.999995)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(45.6698, 0.856277)
 
 [node name="LegRearRightTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-53.0052, 105.998)
-rotation = 0.00908518
-scale = Vector2(0.999999, 0.999999)
+position = Vector2(-53.0049, 105.997)
+rotation = 0.00908929
+scale = Vector2(0.999996, 0.999996)
 texture = ExtResource("3_dc06g")
 offset = Vector2(48.2565, -1.70259)
 
 [node name="LegFrontRight" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(16, 23.8085)
-rotation = 0.949264
+position = Vector2(15.9996, 23.9817)
+rotation = 0.948509
 scale = Vector2(0.999995, 0.999995)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(46.8127, 2.33227)
 
 [node name="LegFrontRightTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(64.9768, 96.8988)
-rotation = -0.287954
-scale = Vector2(0.999993, 0.999993)
+position = Vector2(65.0316, 97.0351)
+rotation = -0.289603
+scale = Vector2(0.999989, 0.999989)
 texture = ExtResource("3_dc06g")
 offset = Vector2(48.0453, -1.18069)
 
@@ -236,6 +257,10 @@ rest = Transform2D(0.0215946, -0.999767, 0.999767, 0.0215946, 0, 0)
 auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Core/Skeleton2D/Body"]
+remote_path = NodePath("../../../../Animations")
+update_rotation = false
 
 [node name="LegFrontLeft" type="Bone2D" parent="Core/Skeleton2D"]
 position = Vector2(16, -29)
@@ -363,7 +388,6 @@ remote_path = NodePath("../../../Legs/LegFrontRight")
 [node name="LegFrontRightTip" type="Bone2D" parent="Core/Skeleton2D/LegFrontRight"]
 position = Vector2(-77.9987, 40.7088)
 rotation = 0.130197
-scale = Vector2(1, 1)
 rest = Transform2D(0.991536, 0.129829, -0.129829, 0.991536, -77.9987, 40.7088)
 metadata/_local_pose_override_enabled_ = true
 
@@ -445,6 +469,10 @@ script = ExtResource("14_ob8v4")
 move_state = NodePath("../Move")
 metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
 
+[node name="Shimmy" type="Node" parent="StateMachine"]
+script = ExtResource("7_8716e")
+metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
+
 [node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_sound_stream")]
 script = ExtResource("15_8716e")
 idle_state = NodePath("../Idle")
@@ -459,3 +487,8 @@ animation = &"090_deg"
 [node name="MoveAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_ob8v4")
 volume_db = -6.0
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_bgy4a")
+}
