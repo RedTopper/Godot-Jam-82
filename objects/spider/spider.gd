@@ -1,80 +1,92 @@
 extends CharacterBody2D
-
-@onready var state_machine = $StateMachine
-@onready var animations: AnimatedSprite2D = $Animations
-@onready var move_component = $MoveComponent
-
-var default_font: Font
-var default_font_size: int
-
-@onready var floor_anchors = $Floor/Anchors
-@onready var core = $Core
-@onready var floor = $Floor
-
-var spider_angle : float = 0.0
+class_name Spider
 
 @export var debug: bool = true
+@export var leg_update_rate: float = 0.02
+@export var leg_tween_time: float = 0.05
 
-@export var leg_forward_prediction_offset: float
-@export var leg_update_rate: float
-@export var leg_tween_time: float
-@export var rotation_speed: float
-@export var movement_speed: float
+@onready var _state_machine = $StateMachine
 
-@onready var ik_targets: Array[Node2D] = [
-	$Floor/Targets/Leg1Target,
-	$Floor/Targets/Leg2Target,
-	$Floor/Targets/Leg3Target,
-	$Floor/Targets/Leg4Target,
-	$Floor/Targets/Leg5Target,
+@onready var _ik_targets: Array[Node2D] = [
+	%LegFrontLeftIK,
+	%LegRearLeftIK,
+	%LegRearIK,
+	%LegRearRightIK,
+	%LegFrontRightIK,
 ]
 
-@onready var anchors: Array[Node2D] = [
-	$Floor/Anchors/Leg1Anchor,
-	$Floor/Anchors/Leg2Anchor,
-	$Floor/Anchors/Leg3Anchor,
-	$Floor/Anchors/Leg4Anchor,
-	$Floor/Anchors/Leg5Anchor,
+@onready var _move_targets: Array[Node2D] = [
+	%LegFrontLeftTarget,
+	%LegRearLeftTarget,
+	%LegRearTarget,
+	%LegRearRightTarget,
+	%LegFrontRightTarget,
 ]
 
-var update_order: Array[int] = [0, 2, 4, 1, 3]
-var update_index: int = 0
+var _default_font: Font
+var _default_font_size: int
+
+var _update_index: int = 0
+var _update_order: Array[int] = [0, 2, 4, 1, 3]
+
+var _angle : float = 90.0
+
+func get_angle() -> float:
+	return _angle
+	
+func set_angle(angle: float) -> void:
+	$Floor.rotation_degrees = angle
+	$Core.rotation_degrees = angle
+	
+	# Clamp
+	if angle < 0.0: angle += 360.0
+	angle = fmod(angle, 360.0)
+	
+	_angle = angle
 
 func _draw() -> void:
-	if debug:
-		var end_point = Vector2.ZERO + Vector2.from_angle(spider_angle) * 100
-		draw_line(Vector2.ZERO, end_point, Color.GREEN)
-		draw_string(default_font, end_point, str(round(rad_to_deg(spider_angle))),0, -1, 12, Color.GREEN)
-		draw_circle($Floor/Anchors.position, 10.0, Color.RED)
+	if not debug: return
+	
+	var end_point = Vector2.ZERO + Vector2.from_angle(deg_to_rad(_angle)) * 100
+	draw_line(Vector2.ZERO, end_point, Color.GREEN)
+	draw_string(_default_font, end_point, str(round(_angle)),0, -1, 12, Color.GREEN)
+	for node in _move_targets:
+		draw_circle(node.global_position - global_position, 10.0, Color.RED)
+	for node in _ik_targets:
+		draw_circle(node.global_position - global_position, 10.0, Color.BLUE)
 
 func _update_legs() -> void:
-	update_index = update_index + 1
-	if update_index == update_order.size():
-		update_index = 0
+	_update_index = _update_index + 1
+	if _update_index == _update_order.size():
+		_update_index = 0
 	
-	var leg = update_order[update_index]
+	var leg = _update_order[_update_index]
 	var tween = create_tween()
-	tween.tween_property(ik_targets[leg], "global_position", anchors[leg].global_position, leg_tween_time)
+	tween.tween_property(_ik_targets[leg], "global_position", _move_targets[leg].global_position, leg_tween_time)
 	await tween.finished
 	
 	get_tree().create_timer(leg_update_rate).timeout.connect(_update_legs) 
 
 func _ready() -> void:
-	default_font = ThemeDB.fallback_font
-	default_font_size = ThemeDB.fallback_font_size
+	_default_font = ThemeDB.fallback_font
+	_default_font_size = ThemeDB.fallback_font_size
 	
-	state_machine.init(self, animations, move_component)
+	_state_machine.init(self, $Animations, $MoveComponent)
 	_update_legs()
-	for node in ik_targets:
+	
+	var index = 0
+	for node in _ik_targets:
 		node.top_level = true
+		node.global_position = _move_targets[index].global_position
+		index += 1
 
 func _physics_process(delta: float) -> void:
-	state_machine.process_physics(delta)
+	_state_machine.process_physics(delta)
 
 func _unhandled_input(event: InputEvent) -> void:
-	state_machine.process_input(event)
+	_state_machine.process_input(event)
 
 func _process(delta: float) -> void:
 	if debug:
 		queue_redraw()
-	state_machine.process_frame(delta)
+	_state_machine.process_frame(delta)

@@ -15,6 +15,10 @@ func init(parent: CharacterBody2D, animations: AnimatedSprite2D, move_component)
 
 #change to the new state
 func change_state(new_state: State) -> void:
+	# don't change to a null state
+	if not new_state:
+		return
+	
 	if current_state:
 		current_state.exit()
 	
@@ -24,16 +28,10 @@ func change_state(new_state: State) -> void:
 # pass through functions
 # handling state changes as needed
 func process_input(event: InputEvent) -> void:
-	var new_state = current_state.process_input(event)
-	if new_state:
-		change_state(new_state)
+	change_state(current_state.process_input(event))
 
 func process_physics(delta: float) -> void:
-	var new_state = current_state.process_physics(delta)
-	if new_state:
-		change_state(new_state)
+	change_state(current_state.process_physics(delta))
 
 func process_frame(delta: float) -> void:
-	var new_state = current_state.process_frame(delta)
-	if new_state:
-		change_state(new_state)
+	change_state(current_state.process_frame(delta))

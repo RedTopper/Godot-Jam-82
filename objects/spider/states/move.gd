@@ -1,63 +1,55 @@
 extends State
 
 @export var idle_state: State
+@export var player_linear_rate: float = 400.0
+@export var player_rotation_rate: float = 200.0
+@export var leg_forward_prediction_offset: float = 60.0
 
-# Called when the node enters the scene tree for the first time.
+var _spider: Spider
+var _tank_motion: float
+var _tank_rotation: float
+
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
-var tank_motion: float
-var tank_rotation: float
-
 func enter() -> void:
-	# debug
-	var path_index = self.get_path().get_name_count() - 1
-	var dbg_name = self.get_path().get_name(path_index-2)
-	print(dbg_name + "_Move")
+	_spider = parent
 	
-	animation_name = Utilities.get_direction_name(parent.spider_angle)
+	animation_name = Utilities.get_direction_name_deg(_spider.get_angle())
 	
-	tank_motion = get_input_forward_movement()
-	tank_rotation = get_input_rotation()
+	_tank_motion = get_input_forward_movement()
+	_tank_rotation = get_input_rotation()
 	
 	super()
-	
 
 func process_input(event: InputEvent) -> State:
-	tank_motion = get_input_forward_movement()
-	tank_rotation = get_input_rotation()
+	_tank_motion = get_input_forward_movement()
+	_tank_rotation = get_input_rotation()
 	
 	# look for user input
-	if tank_motion or tank_rotation:
+	if _tank_motion or _tank_rotation:
 		return null
-	else:
-		return idle_state
+	
+	return idle_state
 
 func process_physics(delta: float) -> State:
-	parent.velocity = Vector2.RIGHT.rotated(parent.spider_angle) * -tank_motion * Globals.player_linear_rate
-	parent.spider_angle += (tank_rotation * Globals.player_rotation_rate * delta)
+	var angle = _spider.get_angle()
+	_spider.velocity = Vector2.RIGHT.rotated(deg_to_rad(angle)) * -_tank_motion * player_linear_rate * _spider.scale.x
+	_spider.set_angle(angle + _tank_rotation * player_rotation_rate * delta)
 	
-	parent.spider_angle = fmod(parent.spider_angle, TAU)
-	if parent.spider_angle < 0.0:
-		parent.spider_angle += TAU
-	
-	animation_name = Utilities.get_direction_name(parent.spider_angle)
+	animation_name = Utilities.get_direction_name_deg(_spider.get_angle())
 	animations.play(animation_name)
 	
 	# leg movement ahead of spider
-	if tank_motion:
-		parent.floor_anchors.position = -parent.leg_forward_prediction_offset * parent.velocity.normalized()#.rotated(parent.spider_angle)
+	if _tank_motion > 0:
+		%Targets.position.x = -leg_forward_prediction_offset
+	elif _tank_motion < 0:
+		%Targets.position.x = leg_forward_prediction_offset
 	else:
-		parent.floor_anchors.position = Vector2.ZERO
-	
-		
-	parent.core.rotation = parent.spider_angle
-	parent.floor.rotation = parent.spider_angle
+		%Targets.position = Vector2.ZERO
 	
 	parent.move_and_slide()
 	
