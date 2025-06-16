@@ -4,6 +4,7 @@ extends State
 @export var player_linear_rate: float = 400.0
 @export var player_rotation_rate: float = 200.0
 @export var leg_forward_prediction_offset: float = 60.0
+@export var move_sound_stream: AudioStreamPlayer
 
 var _spider: Spider
 var _tank_motion: float
@@ -11,6 +12,7 @@ var _tank_rotation: float
 
 func _ready() -> void:
 	pass
+
 
 func _process(delta: float) -> void:
 	pass
@@ -23,6 +25,11 @@ func enter() -> void:
 	_tank_motion = get_input_forward_movement()
 	_tank_rotation = get_input_rotation()
 	
+	move_sound_stream.play()
+	super()
+
+func exit() -> void:
+	move_sound_stream.stop()
 	super()
 
 func process_input(event: InputEvent) -> State:
