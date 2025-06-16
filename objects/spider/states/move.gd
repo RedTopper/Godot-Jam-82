@@ -1,11 +1,10 @@
 extends State
 
 @export var idle_state: State
-
+@export var move_sound_stream: AudioStreamPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -24,9 +23,12 @@ func enter() -> void:
 	
 	tank_motion = get_input_forward_movement()
 	tank_rotation = get_input_rotation()
-	
+	move_sound_stream.play()
 	super()
-	
+
+func exit() -> void:
+	move_sound_stream.stop()
+	super()
 
 func process_input(event: InputEvent) -> State:
 	tank_motion = get_input_forward_movement()

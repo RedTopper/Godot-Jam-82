@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bwo1h0dai4hi2"]
+[gd_scene load_steps=25 format=3 uid="uid://bwo1h0dai4hi2"]
 
 [ext_resource type="Script" uid="uid://crlmeipo4b1bf" path="res://objects/spider/spider.gd" id="1_nn63r"]
 [ext_resource type="Texture2D" uid="uid://dqs17pkyo8qo2" path="res://objects/spider/body/leg_a.png" id="2_bo2gt"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://chfo7txxab7b1" path="res://objects/spider/body/u.png" id="6_qaxsg"]
 [ext_resource type="Texture2D" uid="uid://bjyw2upqmxd1o" path="res://objects/spider/body/ul.png" id="7_ob8v4"]
 [ext_resource type="Texture2D" uid="uid://clkihnfwufx14" path="res://objects/spider/body/l.png" id="8_8716e"]
+[ext_resource type="AudioStream" uid="uid://ua3r53w1tyol" path="res://assets/sounds/creature_walking.mp3" id="8_ob8v4"]
 [ext_resource type="Texture2D" uid="uid://dk3r1f48pfwjb" path="res://objects/spider/body/dl.png" id="9_8owol"]
 [ext_resource type="Script" uid="uid://duesftkc012jb" path="res://objects/spider/spider_move_component.gd" id="13_ob8v4"]
 [ext_resource type="Script" uid="uid://jihwj7nslsfl" path="res://objects/state_machine.gd" id="13_qaxsg"]
@@ -425,12 +426,17 @@ script = ExtResource("14_ob8v4")
 move_state = NodePath("../Move")
 metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
 
-[node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+[node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_sound_stream")]
 script = ExtResource("15_8716e")
 idle_state = NodePath("../Idle")
+move_sound_stream = NodePath("../../MoveAudioStreamPlayer")
 metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -70)
 sprite_frames = SubResource("SpriteFrames_8owol")
 animation = &"east"
+
+[node name="MoveAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_ob8v4")
+volume_db = -6.0
