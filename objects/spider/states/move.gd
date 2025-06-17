@@ -1,6 +1,7 @@
 extends State
 
 @export var idle_state: State
+
 @export var player_linear_rate: float = 400.0
 @export var player_rotation_rate: float = 200.0
 @export var leg_forward_prediction_offset: float = 60.0
