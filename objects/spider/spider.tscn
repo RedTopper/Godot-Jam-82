@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bwo1h0dai4hi2"]
+[gd_scene load_steps=32 format=3 uid="uid://bwo1h0dai4hi2"]
 
 [ext_resource type="Script" uid="uid://crlmeipo4b1bf" path="res://objects/spider/spider.gd" id="1_nn63r"]
 [ext_resource type="Texture2D" uid="uid://dw8aa5fpg86xt" path="res://objects/spider/body/leg_a.png" id="2_bo2gt"]
@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://vsav4flawcl8" path="res://objects/spider/body/000.png" id="4_mlanb"]
 [ext_resource type="Texture2D" uid="uid://qkvhua645bdq" path="res://objects/spider/body/315.png" id="5_tw7xf"]
 [ext_resource type="Texture2D" uid="uid://bo5bmf3ggegfq" path="res://objects/spider/body/270.png" id="6_qaxsg"]
-[ext_resource type="Script" uid="uid://b7wusafqlq13d" path="res://objects/spider/states/idle_shimmy.gd" id="7_8716e"]
+[ext_resource type="Script" uid="uid://b7wusafqlq13d" path="res://objects/spider/states/stickbug.gd" id="7_8716e"]
 [ext_resource type="Texture2D" uid="uid://cwkfaik3h1ftw" path="res://objects/spider/body/235.png" id="7_ob8v4"]
 [ext_resource type="Texture2D" uid="uid://d0j34138gniqm" path="res://objects/spider/body/180.png" id="8_8716e"]
 [ext_resource type="AudioStream" uid="uid://ua3r53w1tyol" path="res://assets/sounds/creature_walking.mp3" id="8_ob8v4"]
@@ -148,7 +148,7 @@ animations = [{
 }]
 
 [sub_resource type="Animation" id="Animation_8owol"]
-resource_name = "shimmy"
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -156,15 +156,97 @@ tracks/0/path = NodePath("Core:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": []
+"values": [Vector2(0, -70)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Core/Skeleton2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8716e"]
+resource_name = "bob"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Core:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 0.9),
+"update": 0,
+"values": [Vector2(0, -70), Vector2(0, -50)]
+}
+
+[sub_resource type="Animation" id="Animation_bgy4a"]
+resource_name = "enter_stickbug"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Core/Skeleton2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.2, 0.2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -50)]
+}
+
+[sub_resource type="Animation" id="Animation_i5sae"]
+resource_name = "exit_stickbug"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Core/Skeleton2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.2, 0.2),
+"update": 0,
+"values": [Vector2(0, -50), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_d8ynp"]
+resource_name = "stickbug"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Core/Skeleton2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.2, 0.2),
+"update": 0,
+"values": [Vector2(0, -50), Vector2(0, 50)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bgy4a"]
 _data = {
-&"shimmy": SubResource("Animation_8owol")
+&"RESET": SubResource("Animation_8owol"),
+&"bob": SubResource("Animation_8716e"),
+&"enter_stickbug": SubResource("Animation_bgy4a"),
+&"exit_stickbug": SubResource("Animation_i5sae"),
+&"stickbug": SubResource("Animation_d8ynp")
 }
 
 [node name="Spider" type="CharacterBody2D"]
@@ -179,72 +261,72 @@ rotation = 1.5708
 [node name="Legs" type="Node2D" parent="Core"]
 
 [node name="LegFrontLeft" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(16, -29.0181)
-rotation = -0.956217
-scale = Vector2(0.999991, 0.999991)
+position = Vector2(16, -29.0091)
+rotation = -0.95627
+scale = Vector2(0.999995, 0.999995)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(46.811, 0.149733)
 
 [node name="LegFrontLeftTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(67.4333, -99.6405)
-rotation = 0.380126
-scale = Vector2(0.999994, 0.999994)
+position = Vector2(67.4298, -99.6345)
+rotation = 0.380048
+scale = Vector2(0.999997, 0.999997)
 texture = ExtResource("3_dc06g")
 offset = Vector2(50.8895, -1.12513)
 
 [node name="LegRearLeft" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-21, -25.0002)
+position = Vector2(-21, -25)
 rotation = -2.05039
-scale = Vector2(0.999996, 0.999996)
+scale = Vector2(0.999999, 0.999999)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(46.381, 0.738304)
 
 [node name="LegRearLeftTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-58.7976, -103.621)
-rotation = 0.0211959
-scale = Vector2(0.999997, 0.999997)
+position = Vector2(-58.7978, -103.621)
+rotation = 0.0211961
+scale = Vector2(0.999999, 0.999999)
 texture = ExtResource("3_dc06g")
 offset = Vector2(48.3324, -0.384361)
 
 [node name="LegRear" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-34, -0.99992)
+position = Vector2(-34, -1)
 rotation = 2.93839
-scale = Vector2(0.999994, 0.999994)
+scale = Vector2(0.999998, 0.999998)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(47.0226, 1.55007)
 
 [node name="LegRearTip" type="Sprite2D" parent="Core/Legs"]
 position = Vector2(-121.49, 12.7652)
-rotation = 0.0270064
-scale = Vector2(0.999995, 0.999995)
+rotation = 0.0270058
+scale = Vector2(0.999998, 0.999998)
 texture = ExtResource("3_dc06g")
 offset = Vector2(49.075, -1.42671)
 
 [node name="LegRearRight" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-18.9996, 26)
+position = Vector2(-19, 26)
 rotation = 1.94869
-scale = Vector2(0.999995, 0.999995)
+scale = Vector2(0.999999, 0.999999)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(45.6698, 0.856277)
 
 [node name="LegRearRightTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-53.0049, 105.997)
-rotation = 0.00908929
-scale = Vector2(0.999996, 0.999996)
+position = Vector2(-53.0052, 105.998)
+rotation = 0.00908554
+scale = Vector2(0.999999, 0.999999)
 texture = ExtResource("3_dc06g")
 offset = Vector2(48.2565, -1.70259)
 
 [node name="LegFrontRight" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(15.9996, 23.9817)
-rotation = 0.948509
+position = Vector2(16, 23.9909)
+rotation = 0.948481
 scale = Vector2(0.999995, 0.999995)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(46.8127, 2.33227)
 
 [node name="LegFrontRightTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(65.0316, 97.0351)
-rotation = -0.289603
-scale = Vector2(0.999989, 0.999989)
+position = Vector2(65.0341, 97.0429)
+rotation = -0.289696
+scale = Vector2(0.999993, 0.999993)
 texture = ExtResource("3_dc06g")
 offset = Vector2(48.0453, -1.18069)
 
@@ -464,13 +546,16 @@ script = ExtResource("13_ob8v4")
 script = ExtResource("13_qaxsg")
 starting_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state", "stickbug_state")]
 script = ExtResource("14_ob8v4")
 move_state = NodePath("../Move")
+stickbug_state = NodePath("../Stickbug")
 metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
 
-[node name="Shimmy" type="Node" parent="StateMachine"]
+[node name="Stickbug" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state", "idle_state")]
 script = ExtResource("7_8716e")
+move_state = NodePath("../Move")
+idle_state = NodePath("../Idle")
 metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
 
 [node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_sound_stream")]
@@ -488,7 +573,8 @@ animation = &"090_deg"
 stream = ExtResource("8_ob8v4")
 volume_db = -6.0
 
-[node name="Animation" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_bgy4a")
 }
