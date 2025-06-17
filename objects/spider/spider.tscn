@@ -1,23 +1,25 @@
-[gd_scene load_steps=34 format=3 uid="uid://bwo1h0dai4hi2"]
+[gd_scene load_steps=36 format=3 uid="uid://bwo1h0dai4hi2"]
 
 [ext_resource type="Script" uid="uid://crlmeipo4b1bf" path="res://objects/spider/spider.gd" id="1_nn63r"]
 [ext_resource type="Texture2D" uid="uid://dw8aa5fpg86xt" path="res://objects/spider/body/leg_a.png" id="2_bo2gt"]
 [ext_resource type="Texture2D" uid="uid://bsmv04d1l7qjh" path="res://objects/spider/body/045.png" id="3_auvm0"]
 [ext_resource type="Texture2D" uid="uid://dtmerks4mgw66" path="res://objects/spider/body/leg_b.png" id="3_dc06g"]
+[ext_resource type="Texture2D" uid="uid://buvm24vqur3sr" path="res://scenes/test/assets/flashlight_alpha.png" id="4_8owol"]
 [ext_resource type="Texture2D" uid="uid://6qhilj5ix2q4" path="res://objects/spider/body/090.png" id="4_i5f4s"]
 [ext_resource type="Texture2D" uid="uid://vsav4flawcl8" path="res://objects/spider/body/000.png" id="4_mlanb"]
 [ext_resource type="Texture2D" uid="uid://qkvhua645bdq" path="res://objects/spider/body/315.png" id="5_tw7xf"]
 [ext_resource type="Texture2D" uid="uid://bo5bmf3ggegfq" path="res://objects/spider/body/270.png" id="6_qaxsg"]
-[ext_resource type="Script" uid="uid://b7wusafqlq13d" path="res://objects/spider/states/stickbug.gd" id="7_8716e"]
+[ext_resource type="Script" path="res://objects/spider/states/stickbug.gd" id="7_8716e"]
 [ext_resource type="Texture2D" uid="uid://cwkfaik3h1ftw" path="res://objects/spider/body/235.png" id="7_ob8v4"]
 [ext_resource type="Texture2D" uid="uid://d0j34138gniqm" path="res://objects/spider/body/180.png" id="8_8716e"]
 [ext_resource type="AudioStream" uid="uid://ua3r53w1tyol" path="res://assets/sounds/creature_walking.mp3" id="8_ob8v4"]
 [ext_resource type="Texture2D" uid="uid://xyiy0m2qutuy" path="res://objects/spider/body/135.png" id="9_8owol"]
-[ext_resource type="Script" uid="uid://bocxaq4w6ugux" path="res://objects/spider/states/hide.gd" id="9_bgy4a"]
+[ext_resource type="Script" path="res://objects/spider/states/hide.gd" id="9_bgy4a"]
 [ext_resource type="Script" uid="uid://duesftkc012jb" path="res://objects/spider/spider_move_component.gd" id="13_ob8v4"]
 [ext_resource type="Script" uid="uid://jihwj7nslsfl" path="res://objects/state_machine.gd" id="13_qaxsg"]
 [ext_resource type="Script" uid="uid://dk2tyvtmwtg3y" path="res://objects/spider/states/idle.gd" id="14_ob8v4"]
 [ext_resource type="Script" uid="uid://cd3syv04h3k15" path="res://objects/spider/states/move.gd" id="15_8716e"]
+[ext_resource type="Texture2D" uid="uid://dlvbpwfl1saos" path="res://scenes/test/assets/near_alpha.png" id="17_bgy4a"]
 
 [sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_i5f4s"]
 target_nodepath = NodePath("../../Floor/IK/LegFrontLeftIK")
@@ -149,6 +151,7 @@ animations = [{
 }]
 
 [sub_resource type="Animation" id="Animation_8owol"]
+resource_name = "shimmy"
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -248,23 +251,6 @@ tracks/0/keys = {
 "values": [Vector2(0, -50), Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_d8ynp"]
-resource_name = "stickbug"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Core/Skeleton2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(0.2, 0.2),
-"update": 0,
-"values": [Vector2(0, -50), Vector2(0, 50)]
-}
-
 [sub_resource type="Animation" id="Animation_o5kt5"]
 resource_name = "hide"
 tracks/0/type = "value"
@@ -304,6 +290,23 @@ tracks/2/keys = {
 "values": [Vector2(1, 1), Vector2(0.5, 0.5)]
 }
 
+[sub_resource type="Animation" id="Animation_d8ynp"]
+resource_name = "stickbug"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Core/Skeleton2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.2, 0.2),
+"update": 0,
+"values": [Vector2(0, -50), Vector2(0, 50)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bgy4a"]
 _data = {
 &"RESET": SubResource("Animation_8owol"),
@@ -326,72 +329,72 @@ rotation = 1.5708
 [node name="Legs" type="Node2D" parent="Core"]
 
 [node name="LegFrontLeft" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(15.9999, -29.1756)
-rotation = -0.955484
-scale = Vector2(0.999991, 0.999991)
+position = Vector2(16, -29.0005)
+rotation = -0.956314
+scale = Vector2(0.999997, 0.999997)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(46.811, 0.149733)
 
 [node name="LegFrontLeftTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(67.485, -99.7603)
-rotation = 0.381588
-scale = Vector2(1.00006, 1.00006)
+position = Vector2(67.4267, -99.6283)
+rotation = 0.379971
+scale = Vector2(0.999996, 0.999996)
 texture = ExtResource("3_dc06g")
 offset = Vector2(50.8895, -1.12513)
 
 [node name="LegRearLeft" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-21.0002, -25.0001)
+position = Vector2(-21, -25)
 rotation = -2.05039
-scale = Vector2(0.999996, 0.999996)
+scale = Vector2(0.999999, 0.999999)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(46.381, 0.738304)
 
 [node name="LegRearLeftTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-58.7975, -103.622)
-rotation = 0.0211974
-scale = Vector2(0.999995, 0.999995)
+position = Vector2(-58.7979, -103.621)
+rotation = 0.0211961
+scale = Vector2(0.999999, 0.999999)
 texture = ExtResource("3_dc06g")
 offset = Vector2(48.3324, -0.384361)
 
 [node name="LegRear" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-33.9996, -1)
-rotation = 2.93837
-scale = Vector2(0.999905, 0.999905)
+position = Vector2(-34, -1)
+rotation = 2.93839
+scale = Vector2(0.999998, 0.999998)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(47.0226, 1.55007)
 
 [node name="LegRearTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-121.481, 12.7652)
-rotation = 0.0270058
-scale = Vector2(0.999889, 0.999889)
+position = Vector2(-121.49, 12.7652)
+rotation = 0.0270057
+scale = Vector2(0.999998, 0.999998)
 texture = ExtResource("3_dc06g")
 offset = Vector2(49.075, -1.42671)
 
 [node name="LegRearRight" type="Sprite2D" parent="Core/Legs"]
 position = Vector2(-19, 26)
 rotation = 1.94869
-scale = Vector2(0.999993, 0.999993)
+scale = Vector2(0.999999, 0.999999)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(45.6698, 0.856277)
 
 [node name="LegRearRightTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-53.005, 105.997)
-rotation = 0.00909018
-scale = Vector2(0.999997, 0.999997)
+position = Vector2(-53.0052, 105.998)
+rotation = 0.0090856
+scale = Vector2(0.999999, 0.999999)
 texture = ExtResource("3_dc06g")
 offset = Vector2(48.2565, -1.70259)
 
 [node name="LegFrontRight" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(16.0001, 23.8244)
-rotation = 0.949188
-scale = Vector2(0.999992, 0.999992)
+position = Vector2(16, 23.9995)
+rotation = 0.948451
+scale = Vector2(0.999997, 0.999997)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(46.8127, 2.33227)
 
 [node name="LegFrontRightTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(64.9823, 96.9108)
-rotation = -0.288101
-scale = Vector2(0.999987, 0.999987)
+position = Vector2(65.0364, 97.0502)
+rotation = -0.289782
+scale = Vector2(0.999999, 0.999999)
 texture = ExtResource("3_dc06g")
 offset = Vector2(48.0453, -1.18069)
 
@@ -550,8 +553,20 @@ length = 16.0
 bone_angle = 0.0
 
 [node name="Polygon2D" type="Polygon2D" parent="Core/Skeleton2D"]
+visible = false
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(70, -5, 90, 0, 70, 5)
+
+[node name="LightVision" type="PointLight2D" parent="Core"]
+position = Vector2(-4.76837e-06, -1)
+energy = 0.75
+blend_mode = 2
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 0.5
+texture = ExtResource("4_8owol")
+offset = Vector2(700, 0)
+texture_scale = 1.5
 
 [node name="Floor" type="Node2D" parent="."]
 rotation = 1.5708
@@ -640,6 +655,15 @@ metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
 position = Vector2(0, -70)
 sprite_frames = SubResource("SpriteFrames_8owol")
 animation = &"090_deg"
+
+[node name="LightRadial" type="PointLight2D" parent="Animations"]
+energy = 0.75
+blend_mode = 2
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 5.0
+texture = ExtResource("17_bgy4a")
+texture_scale = 0.75
 
 [node name="MoveAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_ob8v4")
