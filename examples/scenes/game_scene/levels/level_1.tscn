@@ -1,10 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://di2ny5r8d8eed"]
+[gd_scene load_steps=13 format=4 uid="uid://di2ny5r8d8eed"]
 
-[ext_resource type="Script" path="res://examples/scenes/game_scene/levels/level.gd" id="1_eia3f"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="2_yrssv"]
-[ext_resource type="Script" path="res://examples/scenes/game_scene/input_display_label.gd" id="3_e6pkc"]
-[ext_resource type="Script" path="res://examples/scenes/game_scene/tutorial_manager.gd" id="4_ddlhs"]
-[ext_resource type="PackedScene" path="res://examples/scenes/game_scene/tutorials/tutorial_1.tscn" id="5_4a35e"]
+[ext_resource type="Script" uid="uid://dascyfbydab0c" path="res://examples/scenes/game_scene/levels/level.gd" id="1_eia3f"]
+[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="2_yrssv"]
+[ext_resource type="Script" uid="uid://6bu4v2s6dpp1" path="res://examples/scenes/game_scene/input_display_label.gd" id="3_e6pkc"]
+[ext_resource type="Script" uid="uid://co3812qmd0t8j" path="res://examples/scenes/game_scene/tutorial_manager.gd" id="4_ddlhs"]
+[ext_resource type="PackedScene" uid="uid://mqh576jhpbbl" path="res://examples/scenes/game_scene/tutorials/tutorial_1.tscn" id="5_4a35e"]
+[ext_resource type="Texture2D" uid="uid://dlaeu5dl2vd77" path="res://assets/spritesheets/FloorSpriteSheet1.png" id="6_e6pkc"]
+[ext_resource type="Script" uid="uid://dgyxei3u5tunv" path="res://examples/scenes/game_scene/levels/character_body_2d.gd" id="7_ddlhs"]
+[ext_resource type="Texture2D" uid="uid://cc6db3ve7h2or" path="res://objects/player/idle/down.png" id="8_4a35e"]
+[ext_resource type="Texture2D" uid="uid://c4ducup4x7y51" path="res://assets/spritesheets/FloorSheet1.png" id="9_4a35e"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uw2yv"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uw2yv"]
+texture = ExtResource("9_4a35e")
+texture_region_size = Vector2i(64, 64)
+6:6/0 = 0
+7:6/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_lmcuh"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_uw2yv")
 
 [node name="Level1" type="Control"]
 layout_mode = 3
@@ -25,8 +43,36 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
+[node name="TutorialManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_ddlhs")
+tutorial_scenes = Array[PackedScene]([ExtResource("5_4a35e")])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(264, 169)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("6_e6pkc")
+region_enabled = true
+region_rect = Rect2(0, 0, 512, 512)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+z_index = 1
+position = Vector2(262, 145)
+script = ExtResource("7_ddlhs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CapsuleShape2D_uw2yv")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+scale = Vector2(1.136, 1)
+texture = ExtResource("8_4a35e")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+position_smoothing_enabled = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -37,54 +83,56 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 32
 script = ExtResource("2_yrssv")
 
-[node name="LoseButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="LoseButton" type="Button" parent="UI/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "Lose"
 
-[node name="WinButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="WinButton" type="Button" parent="UI/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 0
+size_flags_vertical = 0
 text = "Win"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="TutorialButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="TutorialButton" type="Button" parent="UI/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "Tutorial"
 
-[node name="InputDisplayLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="InputDisplayLabel" type="Label" parent="UI/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 horizontal_alignment = 1
 script = ExtResource("3_e6pkc")
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="UI/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "Change Level State: "
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="ColorPickerButton" type="ColorPickerButton" parent="UI/MarginContainer/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Change Color"
 
-[node name="TutorialManager" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("4_ddlhs")
-tutorial_scenes = Array[PackedScene]([ExtResource("5_4a35e")])
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(-1, 1)
+tile_map_data = PackedByteArray("AAD+////AAAGAAYAAAD+/wAAAAAGAAcAAAD/////AAAHAAYAAAD//wAAAAAHAAcAAAAAAP//AAAGAAYAAAAAAAAAAAAGAAcAAAABAP//AAAHAAYAAAABAAAAAAAHAAcAAAAAAAEAAAAGAAYAAAAAAAIAAAAGAAcAAAABAAEAAAAHAAYAAAABAAIAAAAHAAcAAAACAP//AAAGAAYAAAACAAAAAAAGAAcAAAADAP//AAAHAAYAAAADAAAAAAAHAAcAAAD+/wEAAAAGAAYAAAD+/wIAAAAGAAcAAAD//wEAAAAHAAYAAAD//wIAAAAHAAcAAAD+/wMAAAAGAAYAAAD+/wQAAAAGAAcAAAD//wMAAAAHAAYAAAD//wQAAAAHAAcAAAD8/wMAAAAGAAYAAAD8/wQAAAAGAAcAAAD9/wMAAAAHAAYAAAD9/wQAAAAHAAcAAAD8/wEAAAAGAAYAAAD8/wIAAAAGAAcAAAD9/wEAAAAHAAYAAAD9/wIAAAAHAAcAAAAAAAMAAAAGAAYAAAAAAAQAAAAGAAcAAAABAAMAAAAHAAYAAAABAAQAAAAHAAcAAAACAAMAAAAGAAYAAAACAAQAAAAGAAcAAAADAAMAAAAHAAYAAAADAAQAAAAHAAcAAAACAAEAAAAGAAYAAAACAAIAAAAGAAcAAAADAAEAAAAHAAYAAAADAAIAAAAHAAcAAAAEAAEAAAAGAAYAAAAEAAIAAAAGAAcAAAAFAAEAAAAHAAYAAAAFAAIAAAAHAAcAAAAEAP//AAAGAAYAAAAEAAAAAAAGAAcAAAAFAP//AAAHAAYAAAAFAAAAAAAHAAcAAAAGAP//AAAGAAYAAAAGAAAAAAAGAAcAAAAHAP//AAAHAAYAAAAHAAAAAAAHAAcAAAAGAAEAAAAGAAYAAAAGAAIAAAAGAAcAAAAHAAEAAAAHAAYAAAAHAAIAAAAHAAcAAAAGAAMAAAAGAAYAAAAGAAQAAAAGAAcAAAAHAAMAAAAHAAYAAAAHAAQAAAAHAAcAAAAEAAMAAAAGAAYAAAAEAAQAAAAGAAcAAAAFAAMAAAAHAAYAAAAFAAQAAAAHAAcAAAA=")
+tile_set = SubResource("TileSet_lmcuh")
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton" to="." method="_on_lose_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/WinButton" to="." method="_on_win_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/TutorialButton" to="." method="_on_tutorial_button_pressed"]
-[connection signal="color_changed" from="MarginContainer/VBoxContainer/HBoxContainer2/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="pressed" from="UI/MarginContainer/VBoxContainer/HBoxContainer/LoseButton" to="." method="_on_lose_button_pressed"]
+[connection signal="pressed" from="UI/MarginContainer/VBoxContainer/HBoxContainer/WinButton" to="." method="_on_win_button_pressed"]
+[connection signal="pressed" from="UI/MarginContainer/VBoxContainer/HBoxContainer2/TutorialButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="color_changed" from="UI/MarginContainer/VBoxContainer/HBoxContainer2/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]

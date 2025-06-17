@@ -9,7 +9,7 @@ func enter() -> void:
 	var name = self.get_path().get_name(path_index-2)
 	print(name + "_Idle")
 	
-	animation_name = "idle_" + Utilities.get_direction_name(parent.player_direction)
+	animation_name = "idle_" + Utilities.get_direction_name_deg(parent.player_direction)
 	
 	super()
 	

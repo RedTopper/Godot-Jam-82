@@ -12,7 +12,7 @@ func enter() -> void:
 	var name = self.get_path().get_name(path_index-2)
 	print(name + "_Move")
 	
-	animation_name = "move_" + Utilities.get_direction_name(parent.player_direction)
+	animation_name = "move_" + Utilities.get_direction_name_deg(parent.player_direction)
 	
 	tank_motion = get_input_forward_movement()
 	tank_rotation = get_input_rotation()
@@ -38,7 +38,7 @@ func process_physics(delta: float) -> State:
 	if parent.player_direction < 0.0:
 		parent.player_direction += TAU
 	
-	animation_name = "move_" + Utilities.get_direction_name(parent.player_direction)
+	animation_name = "move_" + Utilities.get_direction_name_deg(parent.player_direction)
 	animations.play(animation_name)
 	
 	parent.move_and_slide()

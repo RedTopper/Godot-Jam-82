@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1fpwlo038om3"]
+
+[ext_resource type="Texture2D" uid="uid://dlaeu5dl2vd77" path="res://assets/spritesheets/FloorSpriteSheet1.png" id="1_1pwbc"]
+
+[node name="Level1" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(233, 203)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_1pwbc")
+region_enabled = true
+region_rect = Rect2(0, 0, 512, 512)
