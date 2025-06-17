@@ -2,9 +2,7 @@ extends State
 
 @export var move_state: State
 @export var stickbug_state: State
-
-@export var bob_speed : float = 2.0
-@export var bob_amplitude : float = 5.0
+@export var hide_state: State
 
 @export var stickbug_time : float = 20.0
 
@@ -36,9 +34,9 @@ func process_input(event: InputEvent) -> State:
 	if _timer.is_stopped():
 		return stickbug_state
 	
-	return null
-
-func process_physics(delta: float) -> State:
+	if get_input_hide():
+		return hide_state
+	
 	return null
 
 func exit() -> void:

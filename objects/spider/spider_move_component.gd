@@ -13,3 +13,7 @@ func get_input_forward_movement() -> float:
 #tank rotation
 func get_input_rotation() -> float:
 	return Input.get_axis("left","right")
+
+#toggle hiding
+func get_input_hide() -> bool:
+	return Input.is_action_just_pressed("toggle_hide")

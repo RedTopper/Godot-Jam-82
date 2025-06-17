@@ -32,3 +32,6 @@ func get_input_forward_movement() -> float:
 
 func get_input_rotation() -> float:
 	return move_component.get_input_rotation()
+	
+func get_input_hide() -> bool:
+	return move_component.get_input_hide()

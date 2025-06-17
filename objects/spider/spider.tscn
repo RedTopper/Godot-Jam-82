@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bwo1h0dai4hi2"]
+[gd_scene load_steps=34 format=3 uid="uid://bwo1h0dai4hi2"]
 
 [ext_resource type="Script" uid="uid://crlmeipo4b1bf" path="res://objects/spider/spider.gd" id="1_nn63r"]
 [ext_resource type="Texture2D" uid="uid://dw8aa5fpg86xt" path="res://objects/spider/body/leg_a.png" id="2_bo2gt"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://d0j34138gniqm" path="res://objects/spider/body/180.png" id="8_8716e"]
 [ext_resource type="AudioStream" uid="uid://ua3r53w1tyol" path="res://assets/sounds/creature_walking.mp3" id="8_ob8v4"]
 [ext_resource type="Texture2D" uid="uid://xyiy0m2qutuy" path="res://objects/spider/body/135.png" id="9_8owol"]
+[ext_resource type="Script" uid="uid://bocxaq4w6ugux" path="res://objects/spider/states/hide.gd" id="9_bgy4a"]
 [ext_resource type="Script" uid="uid://duesftkc012jb" path="res://objects/spider/spider_move_component.gd" id="13_ob8v4"]
 [ext_resource type="Script" uid="uid://jihwj7nslsfl" path="res://objects/state_machine.gd" id="13_qaxsg"]
 [ext_resource type="Script" uid="uid://dk2tyvtmwtg3y" path="res://objects/spider/states/idle.gd" id="14_ob8v4"]
@@ -173,6 +174,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Floor/Targets:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SpiderCollisionShape:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_8716e"]
 resource_name = "bob"
@@ -240,12 +265,52 @@ tracks/0/keys = {
 "values": [Vector2(0, -50), Vector2(0, 50)]
 }
 
+[sub_resource type="Animation" id="Animation_o5kt5"]
+resource_name = "hide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Core:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -70), Vector2(0, -20)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Floor/Targets:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.25, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.5, 0.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpiderCollisionShape:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.25, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.5, 0.5)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bgy4a"]
 _data = {
 &"RESET": SubResource("Animation_8owol"),
 &"bob": SubResource("Animation_8716e"),
 &"enter_stickbug": SubResource("Animation_bgy4a"),
 &"exit_stickbug": SubResource("Animation_i5sae"),
+&"hide": SubResource("Animation_o5kt5"),
 &"stickbug": SubResource("Animation_d8ynp")
 }
 
@@ -261,72 +326,72 @@ rotation = 1.5708
 [node name="Legs" type="Node2D" parent="Core"]
 
 [node name="LegFrontLeft" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(16, -29.0091)
-rotation = -0.95627
-scale = Vector2(0.999995, 0.999995)
+position = Vector2(15.9999, -29.1756)
+rotation = -0.955484
+scale = Vector2(0.999991, 0.999991)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(46.811, 0.149733)
 
 [node name="LegFrontLeftTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(67.4298, -99.6345)
-rotation = 0.380048
-scale = Vector2(0.999997, 0.999997)
+position = Vector2(67.485, -99.7603)
+rotation = 0.381588
+scale = Vector2(1.00006, 1.00006)
 texture = ExtResource("3_dc06g")
 offset = Vector2(50.8895, -1.12513)
 
 [node name="LegRearLeft" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-21, -25)
+position = Vector2(-21.0002, -25.0001)
 rotation = -2.05039
-scale = Vector2(0.999999, 0.999999)
+scale = Vector2(0.999996, 0.999996)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(46.381, 0.738304)
 
 [node name="LegRearLeftTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-58.7978, -103.621)
-rotation = 0.0211961
-scale = Vector2(0.999999, 0.999999)
+position = Vector2(-58.7975, -103.622)
+rotation = 0.0211974
+scale = Vector2(0.999995, 0.999995)
 texture = ExtResource("3_dc06g")
 offset = Vector2(48.3324, -0.384361)
 
 [node name="LegRear" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-34, -1)
-rotation = 2.93839
-scale = Vector2(0.999998, 0.999998)
+position = Vector2(-33.9996, -1)
+rotation = 2.93837
+scale = Vector2(0.999905, 0.999905)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(47.0226, 1.55007)
 
 [node name="LegRearTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-121.49, 12.7652)
+position = Vector2(-121.481, 12.7652)
 rotation = 0.0270058
-scale = Vector2(0.999998, 0.999998)
+scale = Vector2(0.999889, 0.999889)
 texture = ExtResource("3_dc06g")
 offset = Vector2(49.075, -1.42671)
 
 [node name="LegRearRight" type="Sprite2D" parent="Core/Legs"]
 position = Vector2(-19, 26)
 rotation = 1.94869
-scale = Vector2(0.999999, 0.999999)
+scale = Vector2(0.999993, 0.999993)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(45.6698, 0.856277)
 
 [node name="LegRearRightTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-53.0052, 105.998)
-rotation = 0.00908554
-scale = Vector2(0.999999, 0.999999)
+position = Vector2(-53.005, 105.997)
+rotation = 0.00909018
+scale = Vector2(0.999997, 0.999997)
 texture = ExtResource("3_dc06g")
 offset = Vector2(48.2565, -1.70259)
 
 [node name="LegFrontRight" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(16, 23.9909)
-rotation = 0.948481
-scale = Vector2(0.999995, 0.999995)
+position = Vector2(16.0001, 23.8244)
+rotation = 0.949188
+scale = Vector2(0.999992, 0.999992)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(46.8127, 2.33227)
 
 [node name="LegFrontRightTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(65.0341, 97.0429)
-rotation = -0.289696
-scale = Vector2(0.999993, 0.999993)
+position = Vector2(64.9823, 96.9108)
+rotation = -0.288101
+scale = Vector2(0.999987, 0.999987)
 texture = ExtResource("3_dc06g")
 offset = Vector2(48.0453, -1.18069)
 
@@ -536,7 +601,8 @@ position = Vector2(-27, 106)
 unique_name_in_owner = true
 position = Vector2(80, 72)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="SpiderCollisionShape" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
 shape = SubResource("CircleShape2D_nn63r")
 
 [node name="MoveComponent" type="Node" parent="."]
@@ -546,10 +612,11 @@ script = ExtResource("13_ob8v4")
 script = ExtResource("13_qaxsg")
 starting_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state", "stickbug_state")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state", "stickbug_state", "hide_state")]
 script = ExtResource("14_ob8v4")
 move_state = NodePath("../Move")
 stickbug_state = NodePath("../Stickbug")
+hide_state = NodePath("../Hide")
 metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
 
 [node name="Stickbug" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state", "idle_state")]
@@ -562,6 +629,11 @@ metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
 script = ExtResource("15_8716e")
 idle_state = NodePath("../Idle")
 move_sound_stream = NodePath("../../MoveAudioStreamPlayer")
+metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
+
+[node name="Hide" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("9_bgy4a")
+idle_state = NodePath("../Idle")
 metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
