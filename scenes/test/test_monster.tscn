@@ -82,53 +82,67 @@ texture_region_size = Vector2i(32, 32)
 6:3/0 = 0
 7:3/0 = 0
 0:4/0 = 0
+0:4/0/z_index = 1
 0:4/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_6vl8e")
-0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 4, 16, 4, 16, 16, -16, 16)
 1:4/0 = 0
+1:4/0/z_index = 1
 1:4/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_fd1vx")
 1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 2:4/0 = 0
+2:4/0/z_index = 1
 2:4/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_oevpf")
-2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 4, 16, 4, 16, 16, -16, 16)
 3:4/0 = 0
+3:4/0/z_index = 1
 3:4/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_8ji8b")
-3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 4, 16, 4, 16, 16, -16, 16)
 4:4/0 = 0
+4:4/0/z_index = 1
 4:4/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_kgrk2")
-4:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+4:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 4, 16, 4, 16, 16, -16, 16)
 5:4/0 = 0
 6:4/0 = 0
 7:4/0 = 0
 0:5/0 = 0
+0:5/0/z_index = 1
 0:5/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_8kf6j")
 0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 1:5/0 = 0
+1:5/0/z_index = 1
 1:5/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_qqrwg")
 1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 2:5/0 = 0
+2:5/0/z_index = 1
 2:5/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_w6hyg")
 2:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 3:5/0 = 0
+3:5/0/z_index = 1
 3:5/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_b5r4k")
 3:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 4:5/0 = 0
+4:5/0/z_index = 1
 4:5/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_1je7n")
 4:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 5:5/0 = 0
 6:5/0 = 0
 7:5/0 = 0
 0:6/0 = 0
+0:6/0/z_index = 1
 0:6/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_tryba")
 0:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 1:6/0 = 0
+1:6/0/z_index = 1
 1:6/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_1cjsu")
-1:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 4, 16, 4, 16, 16, -16, 16)
 2:6/0 = 0
+2:6/0/z_index = 1
 2:6/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_k0ban")
-2:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 4, 16, 4, 16, 16, -16, 16)
 3:6/0 = 0
+3:6/0/z_index = 1
 3:6/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_e3fyb")
-3:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 4, 16, 4, 16, 16, -16, 16)
 4:6/0 = 0
 5:6/0 = 0
 6:6/0 = 0
@@ -156,6 +170,7 @@ sources/0 = SubResource("TileSetAtlasSource_8kf6j")
 [node name="TestMonster" type="Node2D"]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+y_sort_enabled = true
 color = Color(0, 0, 0, 1)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -166,6 +181,7 @@ tile_set = SubResource("TileSet_tryba")
 
 [node name="Spider" parent="." instance=ExtResource("1_7185a")]
 scale = Vector2(0.5, 0.5)
+debug = false
 
 [node name="Camera2D" type="Camera2D" parent="Spider"]
 position_smoothing_enabled = true
