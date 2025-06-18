@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=4 uid="uid://o8qaxb0atmfh"]
+[gd_scene load_steps=20 format=4 uid="uid://o8qaxb0atmfh"]
 
 [ext_resource type="Texture2D" uid="uid://c3nglbetfyopj" path="res://scenes/test/assets/tilemap.png" id="1_6vl8e"]
 [ext_resource type="PackedScene" uid="uid://bwo1h0dai4hi2" path="res://objects/spider/spider.tscn" id="1_7185a"]
+[ext_resource type="Texture2D" uid="uid://dlvbpwfl1saos" path="res://scenes/test/assets/near_alpha.png" id="3_8kf6j"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_6vl8e"]
 polygon = PackedVector2Array(-4, 0, 4, 0, 4, 16, -4, 16)
@@ -185,3 +186,11 @@ debug = false
 
 [node name="Camera2D" type="Camera2D" parent="Spider"]
 position_smoothing_enabled = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(298, -540)
+blend_mode = 2
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 1.8
+texture = ExtResource("3_8kf6j")

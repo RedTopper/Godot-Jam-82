@@ -329,15 +329,15 @@ rotation = 1.5708
 [node name="Legs" type="Node2D" parent="Core"]
 
 [node name="LegFrontLeft" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(16, -29.0002)
-rotation = -0.956316
-scale = Vector2(0.999997, 0.999997)
+position = Vector2(16, -29.0031)
+rotation = -0.9563
+scale = Vector2(0.999995, 0.999995)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(46.811, 0.149733)
 
 [node name="LegFrontLeftTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(67.4266, -99.6281)
-rotation = 0.379969
+position = Vector2(67.4276, -99.6301)
+rotation = 0.379993
 scale = Vector2(0.999997, 0.999997)
 texture = ExtResource("3_dc06g")
 offset = Vector2(50.8895, -1.12513)
@@ -350,7 +350,7 @@ texture = ExtResource("2_bo2gt")
 offset = Vector2(46.381, 0.738304)
 
 [node name="LegRearLeftTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-58.7979, -103.621)
+position = Vector2(-58.7978, -103.621)
 rotation = 0.0211961
 scale = Vector2(0.999999, 0.999999)
 texture = ExtResource("3_dc06g")
@@ -365,7 +365,7 @@ offset = Vector2(47.0226, 1.55007)
 
 [node name="LegRearTip" type="Sprite2D" parent="Core/Legs"]
 position = Vector2(-121.49, 12.7652)
-rotation = 0.0270057
+rotation = 0.0270058
 scale = Vector2(0.999998, 0.999998)
 texture = ExtResource("3_dc06g")
 offset = Vector2(49.075, -1.42671)
@@ -379,22 +379,22 @@ offset = Vector2(45.6698, 0.856277)
 
 [node name="LegRearRightTip" type="Sprite2D" parent="Core/Legs"]
 position = Vector2(-53.0052, 105.998)
-rotation = 0.0090856
+rotation = 0.00908554
 scale = Vector2(0.999999, 0.999999)
 texture = ExtResource("3_dc06g")
 offset = Vector2(48.2565, -1.70259)
 
 [node name="LegFrontRight" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(16, 23.9998)
-rotation = 0.948451
-scale = Vector2(0.999998, 0.999998)
+position = Vector2(16, 23.9969)
+rotation = 0.948455
+scale = Vector2(0.999995, 0.999995)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(46.8127, 2.33227)
 
 [node name="LegFrontRightTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(65.0364, 97.0505)
-rotation = -0.289786
-scale = Vector2(1, 1)
+position = Vector2(65.0359, 97.0476)
+rotation = -0.289753
+scale = Vector2(0.999994, 0.999994)
 texture = ExtResource("3_dc06g")
 offset = Vector2(48.0453, -1.18069)
 
@@ -559,8 +559,7 @@ polygon = PackedVector2Array(70, -5, 90, 0, 70, 5)
 
 [node name="LightVision" type="PointLight2D" parent="Core"]
 position = Vector2(-4.76837e-06, -1)
-energy = 0.75
-blend_mode = 2
+energy = 1.4
 shadow_enabled = true
 shadow_filter = 2
 shadow_filter_smooth = 0.5
@@ -657,8 +656,6 @@ sprite_frames = SubResource("SpriteFrames_8owol")
 animation = &"090_deg"
 
 [node name="LightRadial" type="PointLight2D" parent="Animations"]
-energy = 0.75
-blend_mode = 2
 shadow_enabled = true
 shadow_filter = 1
 shadow_filter_smooth = 5.0
