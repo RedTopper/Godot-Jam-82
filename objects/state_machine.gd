@@ -4,11 +4,12 @@ extends Node
 
 var current_state: State
 
-func init(parent: CharacterBody2D, animations: AnimatedSprite2D, move_component) -> void:
+func init(parent: CharacterBody2D, animations: AnimatedSprite2D, move_component, animation_tree: AnimationTree) -> void:
 	for child in get_children():
 		child.parent = parent
 		child.animations = animations
 		child.move_component = move_component
+		child.animation_tree = animation_tree
 		
 		#initialize default state
 		change_state(starting_state)

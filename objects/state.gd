@@ -6,6 +6,7 @@ extends Node
 var parent: CharacterBody2D
 var animations: AnimatedSprite2D
 var move_component
+var animation_tree: AnimationTree
 
 func enter() -> void:
 	animations.play(animation_name)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bwo1h0dai4hi2"]
+[gd_scene load_steps=61 format=3 uid="uid://bwo1h0dai4hi2"]
 
 [ext_resource type="Script" uid="uid://crlmeipo4b1bf" path="res://objects/spider/spider.gd" id="1_nn63r"]
 [ext_resource type="Texture2D" uid="uid://dw8aa5fpg86xt" path="res://objects/spider/body/leg_a.png" id="2_bo2gt"]
@@ -9,12 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://vsav4flawcl8" path="res://objects/spider/body/000.png" id="4_mlanb"]
 [ext_resource type="Texture2D" uid="uid://qkvhua645bdq" path="res://objects/spider/body/315.png" id="5_tw7xf"]
 [ext_resource type="Texture2D" uid="uid://bo5bmf3ggegfq" path="res://objects/spider/body/270.png" id="6_qaxsg"]
-[ext_resource type="Script" path="res://objects/spider/states/stickbug.gd" id="7_8716e"]
+[ext_resource type="Script" uid="uid://b7wusafqlq13d" path="res://objects/spider/states/stickbug.gd" id="7_8716e"]
 [ext_resource type="Texture2D" uid="uid://cwkfaik3h1ftw" path="res://objects/spider/body/235.png" id="7_ob8v4"]
 [ext_resource type="Texture2D" uid="uid://d0j34138gniqm" path="res://objects/spider/body/180.png" id="8_8716e"]
 [ext_resource type="AudioStream" uid="uid://ua3r53w1tyol" path="res://assets/sounds/creature_walking.mp3" id="8_ob8v4"]
 [ext_resource type="Texture2D" uid="uid://xyiy0m2qutuy" path="res://objects/spider/body/135.png" id="9_8owol"]
-[ext_resource type="Script" path="res://objects/spider/states/hide.gd" id="9_bgy4a"]
+[ext_resource type="Script" uid="uid://bocxaq4w6ugux" path="res://objects/spider/states/hide.gd" id="9_bgy4a"]
 [ext_resource type="Script" uid="uid://duesftkc012jb" path="res://objects/spider/spider_move_component.gd" id="13_ob8v4"]
 [ext_resource type="Script" uid="uid://jihwj7nslsfl" path="res://objects/state_machine.gd" id="13_qaxsg"]
 [ext_resource type="Script" uid="uid://dk2tyvtmwtg3y" path="res://objects/spider/states/idle.gd" id="14_ob8v4"]
@@ -253,6 +253,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_o5kt5"]
 resource_name = "hide"
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -275,7 +276,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0.25, 0.75),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(0.5, 0.5)]
+"values": [Vector2(1, 1), Vector2(0.6, 0.6)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -287,7 +288,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0.25, 0.75),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(0.5, 0.5)]
+"values": [Vector2(1, 1), Vector2(0.6, 0.6)]
 }
 
 [sub_resource type="Animation" id="Animation_d8ynp"]
@@ -307,15 +308,170 @@ tracks/0/keys = {
 "values": [Vector2(0, -50), Vector2(0, 50)]
 }
 
+[sub_resource type="Animation" id="Animation_ktoqi"]
+resource_name = "move"
+
+[sub_resource type="Animation" id="Animation_j6vtf"]
+resource_name = "exit_hide"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Core:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -20), Vector2(0, -70)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Floor/Targets:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.6, 0.6), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpiderCollisionShape:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.6, 0.6), Vector2(1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bgy4a"]
 _data = {
 &"RESET": SubResource("Animation_8owol"),
 &"bob": SubResource("Animation_8716e"),
 &"enter_stickbug": SubResource("Animation_bgy4a"),
+&"exit_hide": SubResource("Animation_j6vtf"),
 &"exit_stickbug": SubResource("Animation_i5sae"),
 &"hide": SubResource("Animation_o5kt5"),
+&"move": SubResource("Animation_ktoqi"),
 &"stickbug": SubResource("Animation_d8ynp")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ktoqi"]
+animation = &"bob"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pnw8s"]
+animation = &"enter_stickbug"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i5sae"]
+animation = &"exit_hide"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d8ynp"]
+animation = &"exit_hide"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rbnge"]
+animation = &"exit_stickbug"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pam55"]
+animation = &"exit_stickbug"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7xv0h"]
+animation = &"hide"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qd6n0"]
+animation = &"move"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c7t4s"]
+animation = &"stickbug"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qd6n0"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mn8o7"]
+switch_mode = 1
+advance_mode = 2
+advance_condition = &"stickbug"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ysllp"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x51vd"]
+switch_mode = 1
+advance_mode = 2
+advance_condition = &"move"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_voc20"]
+switch_mode = 1
+advance_mode = 2
+advance_condition = &"hide"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0nc0h"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7m6dh"]
+switch_mode = 1
+advance_mode = 2
+advance_condition = &"hide"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o5kt5"]
+switch_mode = 1
+advance_mode = 2
+advance_condition = &"move"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j6vtf"]
+switch_mode = 1
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ktoqi"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_efl2a"]
+switch_mode = 1
+advance_mode = 2
+advance_condition = &"move"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vf3ad"]
+switch_mode = 1
+advance_mode = 2
+advance_condition = &"move"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_khqd0"]
+switch_mode = 1
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vf3ad"]
+states/End/position = Vector2(979, 274)
+states/Start/position = Vector2(279, 274)
+states/bob/node = SubResource("AnimationNodeAnimation_ktoqi")
+states/bob/position = Vector2(593, 213)
+states/enter_stickbug/node = SubResource("AnimationNodeAnimation_pnw8s")
+states/enter_stickbug/position = Vector2(432, 406)
+states/exit_hide/node = SubResource("AnimationNodeAnimation_i5sae")
+states/exit_hide/position = Vector2(704, 150)
+states/exit_hide2/node = SubResource("AnimationNodeAnimation_d8ynp")
+states/exit_hide2/position = Vector2(792, 74)
+states/exit_stickbug/node = SubResource("AnimationNodeAnimation_pam55")
+states/exit_stickbug/position = Vector2(746, 406)
+"states/exit_stickbug 2/node" = SubResource("AnimationNodeAnimation_rbnge")
+"states/exit_stickbug 2/position" = Vector2(682, 306)
+states/hide/node = SubResource("AnimationNodeAnimation_7xv0h")
+states/hide/position = Vector2(593, 70)
+states/move/node = SubResource("AnimationNodeAnimation_qd6n0")
+states/move/position = Vector2(840, 235)
+states/stickbug/node = SubResource("AnimationNodeAnimation_c7t4s")
+states/stickbug/position = Vector2(593, 406)
+transitions = ["Start", "bob", SubResource("AnimationNodeStateMachineTransition_qd6n0"), "bob", "enter_stickbug", SubResource("AnimationNodeStateMachineTransition_mn8o7"), "enter_stickbug", "stickbug", SubResource("AnimationNodeStateMachineTransition_ysllp"), "stickbug", "exit_stickbug", SubResource("AnimationNodeStateMachineTransition_x51vd"), "stickbug", "exit_stickbug 2", SubResource("AnimationNodeStateMachineTransition_voc20"), "exit_stickbug 2", "bob", SubResource("AnimationNodeStateMachineTransition_0nc0h"), "bob", "hide", SubResource("AnimationNodeStateMachineTransition_7m6dh"), "hide", "exit_hide2", SubResource("AnimationNodeStateMachineTransition_o5kt5"), "hide", "exit_hide", SubResource("AnimationNodeStateMachineTransition_j6vtf"), "exit_hide", "bob", SubResource("AnimationNodeStateMachineTransition_ktoqi"), "exit_hide2", "move", SubResource("AnimationNodeStateMachineTransition_efl2a"), "exit_stickbug", "move", SubResource("AnimationNodeStateMachineTransition_vf3ad"), "move", "bob", SubResource("AnimationNodeStateMachineTransition_khqd0")]
 
 [node name="Spider" type="CharacterBody2D"]
 motion_mode = 1
@@ -329,72 +485,72 @@ rotation = 1.5708
 [node name="Legs" type="Node2D" parent="Core"]
 
 [node name="LegFrontLeft" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(16, -29.0031)
-rotation = -0.9563
-scale = Vector2(0.999995, 0.999995)
+position = Vector2(15.9973, -29.0017)
+rotation = -1.06373
+scale = Vector2(0.999956, 0.999956)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(46.811, 0.149733)
 
 [node name="LegFrontLeftTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(67.4276, -99.6301)
-rotation = 0.379993
-scale = Vector2(0.999997, 0.999997)
+position = Vector2(59.5538, -104.733)
+rotation = 0.433283
+scale = Vector2(0.999958, 0.999958)
 texture = ExtResource("3_dc06g")
 offset = Vector2(50.8895, -1.12513)
 
 [node name="LegRearLeft" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-21, -25)
-rotation = -2.05039
-scale = Vector2(0.999999, 0.999999)
+position = Vector2(-21.0027, -25.0006)
+rotation = -2.14917
+scale = Vector2(0.999959, 0.999959)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(46.381, 0.738304)
 
 [node name="LegRearLeftTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-58.7978, -103.621)
-rotation = 0.0211961
-scale = Vector2(0.999999, 0.999999)
+position = Vector2(-66.3678, -99.5083)
+rotation = -0.020793
+scale = Vector2(0.999961, 0.999961)
 texture = ExtResource("3_dc06g")
 offset = Vector2(48.3324, -0.384361)
 
 [node name="LegRear" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-34, -1)
-rotation = 2.93839
-scale = Vector2(0.999998, 0.999998)
+position = Vector2(-33.9913, -1)
+rotation = 2.97056
+scale = Vector2(0.999992, 0.999992)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(47.0226, 1.55007)
 
 [node name="LegRearTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-121.49, 12.7652)
-rotation = 0.0270058
-scale = Vector2(0.999998, 0.999998)
+position = Vector2(-121.878, 9.94411)
+rotation = 0.0661021
+scale = Vector2(0.999995, 0.999995)
 texture = ExtResource("3_dc06g")
 offset = Vector2(49.075, -1.42671)
 
 [node name="LegRearRight" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-19, 26)
-rotation = 1.94869
-scale = Vector2(0.999999, 0.999999)
+position = Vector2(-19.0027, 26.0003)
+rotation = 2.04432
+scale = Vector2(0.999958, 0.999958)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(45.6698, 0.856277)
 
 [node name="LegRearRightTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-53.0052, 105.998)
-rotation = 0.00908554
-scale = Vector2(0.999999, 0.999999)
+position = Vector2(-60.4896, 102.382)
+rotation = 0.0470027
+scale = Vector2(0.99996, 0.99996)
 texture = ExtResource("3_dc06g")
 offset = Vector2(48.2565, -1.70259)
 
 [node name="LegFrontRight" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(16, 23.9969)
-rotation = 0.948455
-scale = Vector2(0.999995, 0.999995)
+position = Vector2(16, 23.9983)
+rotation = 1.05259
+scale = Vector2(0.999961, 0.999961)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(46.8127, 2.33227)
 
 [node name="LegFrontRightTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(65.0359, 97.0476)
-rotation = -0.289753
-scale = Vector2(0.999994, 0.999994)
+position = Vector2(57.1755, 101.748)
+rotation = -0.341048
+scale = Vector2(0.999959, 0.999959)
 texture = ExtResource("3_dc06g")
 offset = Vector2(48.0453, -1.18069)
 
@@ -645,13 +801,14 @@ idle_state = NodePath("../Idle")
 move_sound_stream = NodePath("../../MoveAudioStreamPlayer")
 metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
 
-[node name="Hide" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+[node name="Hide" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_state")]
 script = ExtResource("9_bgy4a")
 idle_state = NodePath("../Idle")
+move_state = NodePath("../Move")
 metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -70)
+position = Vector2(0, -61.3078)
 sprite_frames = SubResource("SpriteFrames_8owol")
 animation = &"090_deg"
 
@@ -671,3 +828,11 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_bgy4a")
 }
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_vf3ad")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/hide = false
+parameters/conditions/idle = false
+parameters/conditions/move = false
+parameters/conditions/stickbug = false

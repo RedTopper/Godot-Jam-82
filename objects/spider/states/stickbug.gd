@@ -20,14 +20,11 @@ func enter() -> void:
 	_spider.velocity = Vector2.ZERO
 	%Targets.position = Vector2.ZERO
 	
-	%AnimationPlayer.play("enter_stickbug")
-	%AnimationPlayer.get_animation("stickbug").loop_mode = Animation.LoopMode.LOOP_LINEAR
-	%AnimationPlayer.queue("stickbug")
-	
 	super()
 
 func process_input(event: InputEvent) -> State:
 	if get_input_forward_movement() or get_input_rotation():
+		animation_tree["parameters/conditions/move"] = true
 		return move_state
 	
 	return null
@@ -38,5 +35,4 @@ func process_physics(delta: float) -> State:
 	return null
 
 func exit() -> void:
-	%AnimationPlayer.queue("exit_stickbug")
-	%AnimationPlayer.get_animation("stickbug").loop_mode = Animation.LoopMode.LOOP_NONE
+	animation_tree["parameters/conditions/stickbug"] = false

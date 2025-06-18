@@ -71,7 +71,9 @@ func _ready() -> void:
 	_default_font = ThemeDB.fallback_font
 	_default_font_size = ThemeDB.fallback_font_size
 	
-	_state_machine.init(self, $Animations, $MoveComponent)
+	$AnimationTree.active = true
+	
+	_state_machine.init(self, $Animations, $MoveComponent, $AnimationTree)
 	_update_legs()
 	
 	var index = 0

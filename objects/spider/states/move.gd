@@ -11,13 +11,6 @@ var _spider: Spider
 var _tank_motion: float
 var _tank_rotation: float
 
-func _ready() -> void:
-	pass
-
-
-func _process(delta: float) -> void:
-	pass
-
 func enter() -> void:
 	_spider = parent
 	
@@ -29,10 +22,6 @@ func enter() -> void:
 	move_sound_stream.play()
 	super()
 
-func exit() -> void:
-	move_sound_stream.stop()
-	super()
-
 func process_input(event: InputEvent) -> State:
 	_tank_motion = get_input_forward_movement()
 	_tank_rotation = get_input_rotation()
@@ -40,6 +29,8 @@ func process_input(event: InputEvent) -> State:
 	# look for user input
 	if _tank_motion or _tank_rotation:
 		return null
+	
+	animation_tree["parameters/conditions/idle"] = true
 	
 	return idle_state
 
@@ -62,3 +53,7 @@ func process_physics(delta: float) -> State:
 	parent.move_and_slide()
 	
 	return null
+
+func exit() -> void:
+	move_sound_stream.stop()
+	animation_tree["parameters/conditions/move"] = false
