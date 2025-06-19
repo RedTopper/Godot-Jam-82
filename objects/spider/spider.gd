@@ -23,8 +23,8 @@ class_name Spider
 	%LegFrontRightTarget,
 ]
 
-var _default_font: Font
-var _default_font_size: int
+var _debug_font: Font
+var _debug_font_size: int
 
 var _update_index: int = 0
 var _update_order: Array[int] = [0, 2, 4, 1, 3]
@@ -49,7 +49,7 @@ func _draw() -> void:
 	
 	var end_point = Vector2.ZERO + Vector2.from_angle(deg_to_rad(_angle)) * 100
 	draw_line(Vector2.ZERO, end_point, Color.GREEN)
-	draw_string(_default_font, end_point, str(round(_angle)),HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color.GREEN)
+	draw_string(_debug_font, end_point, str(round(_angle)),HORIZONTAL_ALIGNMENT_LEFT, -1, _debug_font_size, Color.GREEN)
 	for node in _move_targets:
 		draw_circle(node.global_position - global_position, 10.0, Color.RED)
 	for node in _ik_targets:
@@ -68,8 +68,8 @@ func _update_legs() -> void:
 	get_tree().create_timer(leg_update_rate).timeout.connect(_update_legs) 
 
 func _ready() -> void:
-	_default_font = ThemeDB.fallback_font
-	_default_font_size = ThemeDB.fallback_font_size
+	_debug_font = ThemeDB.fallback_font
+	_debug_font_size = ThemeDB.fallback_font_size
 	
 	$AnimationTree.active = true
 	

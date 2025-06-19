@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfwfypkqip12f"
-path="res://.godot/imported/left.png-744924159044da9df57a37829c74e46b.ctex"
+uid="uid://b6cfafxxxiths"
+path="res://.godot/imported/270.png-7b2dc7c2cb1e233aa361243eb3dcdfed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://objects/monster/move/left.png"
-dest_files=["res://.godot/imported/left.png-744924159044da9df57a37829c74e46b.ctex"]
+source_file="res://objects/guard/idle/270.png"
+dest_files=["res://.godot/imported/270.png-7b2dc7c2cb1e233aa361243eb3dcdfed.ctex"]
 
 [params]
 
