@@ -22,7 +22,7 @@ func enter() -> void:
 	move_sound_stream.play()
 	super()
 
-func process_input(event: InputEvent) -> State:
+func process_input(_event: InputEvent) -> State:
 	_tank_motion = get_input_forward_movement()
 	_tank_rotation = get_input_rotation()
 	

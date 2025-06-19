@@ -15,7 +15,7 @@ func enter() -> void:
 	
 	super()
 
-func process_input(event: InputEvent) -> State:	
+func process_input(_event: InputEvent) -> State:	
 	if get_input_hide():
 		animation_tree["parameters/conditions/idle"] = true
 		return idle_state

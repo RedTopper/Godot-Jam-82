@@ -5,7 +5,6 @@ extends State
 @export var hide_state: State
 
 var _spider: Spider
-var _time : float = 0.0
 var _start_position: Vector2
 
 var _timer: Timer
@@ -23,7 +22,7 @@ func enter() -> void:
 	
 	super()
 
-func process_input(event: InputEvent) -> State:
+func process_input(_event: InputEvent) -> State:
 	if get_input_forward_movement() or get_input_rotation():
 		animation_tree["parameters/conditions/move"] = true
 		return move_state
@@ -34,7 +33,7 @@ func process_input(event: InputEvent) -> State:
 	
 	return null
 
-func process_physics(delta: float) -> State:
+func process_physics(_delta: float) -> State:
 	animations.position = %Core.position
 	
 	return null

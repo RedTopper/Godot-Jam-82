@@ -30,7 +30,7 @@ func enter() -> void:
 	
 	super()
 
-func process_input(event: InputEvent) -> State:
+func process_input(_event: InputEvent) -> State:
 	if get_input_forward_movement() or get_input_rotation():
 		animation_tree["parameters/conditions/move"] = true
 		return move_state

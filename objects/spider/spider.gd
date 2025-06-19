@@ -49,7 +49,7 @@ func _draw() -> void:
 	
 	var end_point = Vector2.ZERO + Vector2.from_angle(deg_to_rad(_angle)) * 100
 	draw_line(Vector2.ZERO, end_point, Color.GREEN)
-	draw_string(_default_font, end_point, str(round(_angle)),0, -1, 12, Color.GREEN)
+	draw_string(_default_font, end_point, str(round(_angle)),HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color.GREEN)
 	for node in _move_targets:
 		draw_circle(node.global_position - global_position, 10.0, Color.RED)
 	for node in _ik_targets:
