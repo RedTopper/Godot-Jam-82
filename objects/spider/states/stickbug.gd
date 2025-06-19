@@ -2,6 +2,7 @@ extends State
 
 @export var move_state: State
 @export var idle_state: State
+@export var hide_state: State
 
 var _spider: Spider
 var _time : float = 0.0
@@ -26,6 +27,10 @@ func process_input(event: InputEvent) -> State:
 	if get_input_forward_movement() or get_input_rotation():
 		animation_tree["parameters/conditions/move"] = true
 		return move_state
+	
+	if get_input_hide():
+		animation_tree["parameters/conditions/hide"] = true
+		return hide_state
 	
 	return null
 

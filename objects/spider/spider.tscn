@@ -394,6 +394,7 @@ animation = &"stickbug"
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mn8o7"]
+xfade_time = 0.5
 switch_mode = 1
 advance_mode = 2
 advance_condition = &"stickbug"
@@ -403,6 +404,7 @@ switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x51vd"]
+xfade_time = 0.5
 switch_mode = 1
 advance_mode = 2
 advance_condition = &"move"
@@ -417,11 +419,13 @@ switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7m6dh"]
+xfade_time = 0.4
 switch_mode = 1
 advance_mode = 2
 advance_condition = &"hide"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o5kt5"]
+xfade_time = 0.5
 switch_mode = 1
 advance_mode = 2
 advance_condition = &"move"
@@ -441,6 +445,7 @@ advance_mode = 2
 advance_condition = &"move"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vf3ad"]
+xfade_time = 0.5
 switch_mode = 1
 advance_mode = 2
 advance_condition = &"move"
@@ -485,72 +490,72 @@ rotation = 1.5708
 [node name="Legs" type="Node2D" parent="Core"]
 
 [node name="LegFrontLeft" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(15.9973, -29.0017)
-rotation = -1.06373
-scale = Vector2(0.999956, 0.999956)
+position = Vector2(16, -29.0102)
+rotation = -0.956264
+scale = Vector2(0.999995, 0.999995)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(46.811, 0.149733)
 
 [node name="LegFrontLeftTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(59.5538, -104.733)
-rotation = 0.433283
-scale = Vector2(0.999958, 0.999958)
+position = Vector2(67.4302, -99.6353)
+rotation = 0.380058
+scale = Vector2(0.999997, 0.999997)
 texture = ExtResource("3_dc06g")
 offset = Vector2(50.8895, -1.12513)
 
 [node name="LegRearLeft" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-21.0027, -25.0006)
-rotation = -2.14917
-scale = Vector2(0.999959, 0.999959)
+position = Vector2(-21, -25)
+rotation = -2.05039
+scale = Vector2(0.999999, 0.999999)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(46.381, 0.738304)
 
 [node name="LegRearLeftTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-66.3678, -99.5083)
-rotation = -0.020793
-scale = Vector2(0.999961, 0.999961)
+position = Vector2(-58.7978, -103.621)
+rotation = 0.0211961
+scale = Vector2(0.999999, 0.999999)
 texture = ExtResource("3_dc06g")
 offset = Vector2(48.3324, -0.384361)
 
 [node name="LegRear" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-33.9913, -1)
-rotation = 2.97056
-scale = Vector2(0.999992, 0.999992)
+position = Vector2(-34, -1)
+rotation = 2.93839
+scale = Vector2(0.99999, 0.99999)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(47.0226, 1.55007)
 
 [node name="LegRearTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-121.878, 9.94411)
-rotation = 0.0661021
-scale = Vector2(0.999995, 0.999995)
+position = Vector2(-121.489, 12.7652)
+rotation = 0.0270059
+scale = Vector2(0.99999, 0.99999)
 texture = ExtResource("3_dc06g")
 offset = Vector2(49.075, -1.42671)
 
 [node name="LegRearRight" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-19.0027, 26.0003)
-rotation = 2.04432
-scale = Vector2(0.999958, 0.999958)
+position = Vector2(-19, 26)
+rotation = 1.94869
+scale = Vector2(0.999999, 0.999999)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(45.6698, 0.856277)
 
 [node name="LegRearRightTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-60.4896, 102.382)
-rotation = 0.0470027
-scale = Vector2(0.99996, 0.99996)
+position = Vector2(-53.0052, 105.998)
+rotation = 0.00908557
+scale = Vector2(0.999999, 0.999999)
 texture = ExtResource("3_dc06g")
 offset = Vector2(48.2565, -1.70259)
 
 [node name="LegFrontRight" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(16, 23.9983)
-rotation = 1.05259
-scale = Vector2(0.999961, 0.999961)
+position = Vector2(16, 23.9898)
+rotation = 0.948489
+scale = Vector2(0.999995, 0.999995)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(46.8127, 2.33227)
 
 [node name="LegFrontRightTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(57.1755, 101.748)
-rotation = -0.341048
-scale = Vector2(0.999959, 0.999959)
+position = Vector2(65.0334, 97.0422)
+rotation = -0.289686
+scale = Vector2(0.999997, 0.999997)
 texture = ExtResource("3_dc06g")
 offset = Vector2(48.0453, -1.18069)
 
@@ -789,10 +794,11 @@ stickbug_state = NodePath("../Stickbug")
 hide_state = NodePath("../Hide")
 metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
 
-[node name="Stickbug" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state", "idle_state")]
+[node name="Stickbug" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state", "idle_state", "hide_state")]
 script = ExtResource("7_8716e")
 move_state = NodePath("../Move")
 idle_state = NodePath("../Idle")
+hide_state = NodePath("../Hide")
 metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
 
 [node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_sound_stream")]
@@ -808,7 +814,7 @@ move_state = NodePath("../Move")
 metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -61.3078)
+position = Vector2(0, -70)
 sprite_frames = SubResource("SpriteFrames_8owol")
 animation = &"090_deg"
 
