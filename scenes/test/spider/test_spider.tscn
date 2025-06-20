@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://o8qaxb0atmfh"]
+[gd_scene load_steps=19 format=3 uid="uid://o8qaxb0atmfh"]
 
 [ext_resource type="Shader" uid="uid://bnqk8jccq8t1y" path="res://scenes/test/spider/shaders/shadows.gdshader" id="1_7j0c4"]
 [ext_resource type="PackedScene" uid="uid://cx41sr3oafqr5" path="res://scenes/test/spider/tilemaplayer.tscn" id="2_lf0m3"]
 [ext_resource type="PackedScene" uid="uid://bwo1h0dai4hi2" path="res://objects/spider/spider.tscn" id="3_cou3d"]
 [ext_resource type="Script" uid="uid://cuuvercaqi5rk" path="res://scenes/test/spider/screen_resize.gd" id="4_ojdk4"]
 [ext_resource type="Shader" uid="uid://bgsdtddvqhq1s" path="res://scenes/test/spider/shaders/white.gdshader" id="5_cjkt5"]
+[ext_resource type="PackedScene" uid="uid://b0m64u3t060k0" path="res://objects/security_camera/security_camera.tscn" id="6_un8jk"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_tryba"]
 viewport_path = NodePath("SubViewportMask")
@@ -124,3 +125,39 @@ shadow_enabled = true
 shadow_filter = 1
 shadow_filter_smooth = 0.9
 texture = SubResource("GradientTexture2D_fd1vx")
+
+[node name="SecurityCamera1" parent="." instance=ExtResource("6_un8jk")]
+position = Vector2(-560, -650)
+rotation = 0.785398
+min_angle_deg = 10.0
+max_angle_deg = 80.0
+
+[node name="SecurityCamera2" parent="." instance=ExtResource("6_un8jk")]
+position = Vector2(1027, 696)
+rotation = 3.92699
+min_angle_deg = 190.0
+max_angle_deg = 260.0
+
+[node name="SecurityCamera3" parent="." instance=ExtResource("6_un8jk")]
+position = Vector2(476, 310)
+rotation = 4.71239
+min_angle_deg = 225.0
+max_angle_deg = 315.0
+
+[node name="SecurityCamer5" parent="." instance=ExtResource("6_un8jk")]
+position = Vector2(-561, 685)
+rotation = 5.49779
+min_angle_deg = 280.0
+max_angle_deg = 350.0
+
+[node name="SecurityCamera4" parent="." instance=ExtResource("6_un8jk")]
+position = Vector2(556, -649)
+rotation = 2.35619
+min_angle_deg = 100.0
+max_angle_deg = 170.0
+
+[node name="SecurityCamera" parent="." instance=ExtResource("6_un8jk")]
+position = Vector2(692, 27)
+rotation = 0.785398
+min_angle_deg = 10.0
+max_angle_deg = 80.0

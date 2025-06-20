@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://b0m64u3t060k0"]
+
+[ext_resource type="Script" uid="uid://cek00g3ocb08l" path="res://objects/security_camera/security_camera.gd" id="1_40vjy"]
+[ext_resource type="Script" uid="uid://jihwj7nslsfl" path="res://objects/state_machine.gd" id="2_1lh6r"]
+[ext_resource type="Script" uid="uid://bmvj16oyqhgrr" path="res://objects/security_camera/states/scanning.gd" id="3_i2mjy"]
+[ext_resource type="Texture2D" uid="uid://bv5hj60ptke7n" path="res://objects/security_camera/assets/security_camera.png" id="4_i2mjy"]
+[ext_resource type="Script" uid="uid://ddtxrfls1b6uo" path="res://objects/security_camera/states/alarming.gd" id="4_vkaxs"]
+[ext_resource type="Texture2D" uid="uid://buvm24vqur3sr" path="res://scenes/test/spider/textures/flashlight.png" id="7_i2mjy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i2mjy"]
+radius = 14.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m8unw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_i2mjy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="SecurityCamera" type="CharacterBody2D"]
+script = ExtResource("1_40vjy")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_i2mjy")
+
+[node name="Images" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_m8unw")
+
+[node name="VisionBox" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionBox"]
+polygon = PackedVector2Array(0, 0, 250, 80, 250, -80)
+
+[node name="VisionLight" type="PointLight2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(130, 0)
+energy = 1.4
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 0.5
+texture = ExtResource("7_i2mjy")
+texture_scale = 0.25
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("2_1lh6r")
+starting_state = NodePath("Scanning")
+
+[node name="Scanning" type="Node" parent="StateMachine" node_paths=PackedStringArray("alarm_state")]
+script = ExtResource("3_i2mjy")
+alarm_state = NodePath("../Alarming")
+metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
+
+[node name="Alarming" type="Node" parent="StateMachine" node_paths=PackedStringArray("scan_state")]
+script = ExtResource("4_vkaxs")
+scan_state = NodePath("../Scanning")
+metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
+
+[node name="ExitTimer" type="Timer" parent="StateMachine/Alarming"]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="body_entered" from="VisionBox" to="StateMachine/Scanning" method="_on_vision_box_body_entered"]
+[connection signal="body_entered" from="VisionBox" to="StateMachine/Alarming" method="_on_vision_box_body_entered"]
+[connection signal="body_exited" from="VisionBox" to="StateMachine/Alarming" method="_on_vision_box_body_exited"]
