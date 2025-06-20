@@ -4,6 +4,7 @@ class_name Spider
 @export var debug: bool = true
 @export var leg_update_rate: float = 0.02
 @export var leg_tween_time: float = 0.05
+@export var linked_light: Node2D
 
 @onready var _state_machine = $StateMachine
 
@@ -91,4 +92,6 @@ func _unhandled_input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	if debug:
 		queue_redraw()
+	if linked_light:
+		linked_light.global_position = %Core/Skeleton2D.global_position
 	_state_machine.process_frame(delta)

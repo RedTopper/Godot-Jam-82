@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlvbpwfl1saos"
-path="res://.godot/imported/near_alpha.png-353b0f378b64bb619d604acae345733c.ctex"
+uid="uid://buvm24vqur3sr"
+path="res://.godot/imported/flashlight.png-94f49550d7559c4fc7d0d7f23658bd10.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/test/assets/near_alpha.png"
-dest_files=["res://.godot/imported/near_alpha.png-353b0f378b64bb619d604acae345733c.ctex"]
+source_file="res://scenes/test/test_spider/flashlight.png"
+dest_files=["res://.godot/imported/flashlight.png-94f49550d7559c4fc7d0d7f23658bd10.ctex"]
 
 [params]
 

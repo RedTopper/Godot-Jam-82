@@ -23,7 +23,7 @@ func _ready() -> void:
 	default_font_size = ThemeDB.fallback_font_size
 	
 	#initialize state machine
-	state_machine.init(self, animations, move_component)
+	state_machine.init(self, animations, move_component, null)
 	$AudioListener2D.make_current()
 
 func _unhandled_input(event: InputEvent) -> void:

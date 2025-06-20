@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvd1iywi0fbam"
-path="res://.godot/imported/near.png-6d155c8bf3fba3c5051edc95733fbf0d.ctex"
+uid="uid://bydu0pcscub3i"
+path="res://.godot/imported/spider_vision.png-519c6f79f1f4144c5f46fd872d66d85a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/test/assets/near.png"
-dest_files=["res://.godot/imported/near.png-6d155c8bf3fba3c5051edc95733fbf0d.ctex"]
+source_file="res://scenes/test/test_spider/spider_vision.png"
+dest_files=["res://.godot/imported/spider_vision.png-519c6f79f1f4144c5f46fd872d66d85a.ctex"]
 
 [params]
 
