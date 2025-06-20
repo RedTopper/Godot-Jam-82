@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://buvm24vqur3sr"
-path="res://.godot/imported/flashlight.png-94f49550d7559c4fc7d0d7f23658bd10.ctex"
+uid="uid://bydu0pcscub3i"
+path="res://.godot/imported/spider_vision.png-be550ce29ca09002633ae8551aaed130.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/test/test_spider/flashlight.png"
-dest_files=["res://.godot/imported/flashlight.png-94f49550d7559c4fc7d0d7f23658bd10.ctex"]
+source_file="res://scenes/test/spider/textures/spider_vision.png"
+dest_files=["res://.godot/imported/spider_vision.png-be550ce29ca09002633ae8551aaed130.ctex"]
 
 [params]
 

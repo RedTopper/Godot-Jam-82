@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dw8aa5fpg86xt" path="res://objects/spider/body/leg_a.png" id="2_bo2gt"]
 [ext_resource type="Texture2D" uid="uid://bsmv04d1l7qjh" path="res://objects/spider/body/045.png" id="3_auvm0"]
 [ext_resource type="Texture2D" uid="uid://dtmerks4mgw66" path="res://objects/spider/body/leg_b.png" id="3_dc06g"]
-[ext_resource type="Texture2D" uid="uid://bydu0pcscub3i" path="res://scenes/test/test_spider/spider_vision.png" id="4_bgy4a"]
+[ext_resource type="Texture2D" uid="uid://bydu0pcscub3i" path="res://scenes/test/spider/spider_vision.png" id="4_bgy4a"]
 [ext_resource type="Texture2D" uid="uid://6qhilj5ix2q4" path="res://objects/spider/body/090.png" id="4_i5f4s"]
 [ext_resource type="Texture2D" uid="uid://vsav4flawcl8" path="res://objects/spider/body/000.png" id="4_mlanb"]
 [ext_resource type="Texture2D" uid="uid://qkvhua645bdq" path="res://objects/spider/body/315.png" id="5_tw7xf"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=4 uid="uid://kfjuw0ecwppk"]
 
-[ext_resource type="Script" uid="uid://b4vw7f2ktu062" path="res://objects/SpatialAudioNode/spatial_audio_node.gd" id="1_u4flc"]
+[ext_resource type="Script" uid="uid://b4vw7f2ktu062" path="res://objects/spatial_audio_node/spatial_audio_node.gd" id="1_u4flc"]
 [ext_resource type="Texture2D" uid="uid://b7ptiyvhtnnhr" path="res://icon.svg" id="3_v3o42"]
 
 [sub_resource type="AudioStreamMP3" id="AudioStreamMP3_u1ecv"]
