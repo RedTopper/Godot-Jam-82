@@ -62,10 +62,21 @@ func _update_legs() -> void:
 		_update_index = 0
 	
 	var leg = _update_order[_update_index]
-	var tween = create_tween()
-	tween.tween_property(_ik_targets[leg], "global_position", _move_targets[leg].global_position, leg_tween_time)
-	await tween.finished
 	
+	if _ik_targets[leg].global_position.distance_to(_move_targets[leg].global_position) > 1.0:
+		var tween = create_tween()
+		tween.tween_property(_ik_targets[leg], "global_position", _move_targets[leg].global_position, leg_tween_time)
+		
+		await tween.finished
+		
+		#var tap = Dialogue.new_dialogue("*tap*", Dialogue.Direction.POINT_DOWN, Color(0.5, 0.5, 0.5))
+		#tap.global_position = _move_targets[leg].global_position
+		#get_parent().add_child(tap)
+		if randf() < 0.2:
+			var tap = Ping.new_ping(5, 15, 2, Color(0.5, 0.5, 0.5))
+			tap.global_position = _move_targets[leg].global_position
+			get_parent().add_child(tap)
+		
 	get_tree().create_timer(leg_update_rate).timeout.connect(_update_legs) 
 
 func _ready() -> void:

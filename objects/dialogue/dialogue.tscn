@@ -1,0 +1,157 @@
+[gd_scene load_steps=7 format=3 uid="uid://ms0rriwcep80"]
+
+[ext_resource type="Script" uid="uid://b256gt07f8wu1" path="res://objects/dialogue/dialogue.gd" id="1_jiegx"]
+[ext_resource type="Material" uid="uid://c0njhshwmkn5l" path="res://objects/dialogue/dialogue_canvas_item.tres" id="2_1lla7"]
+
+[sub_resource type="Animation" id="Animation_1lla7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Root/Direction:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasGroup:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jiegx"]
+resource_name = "popup"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Root/Direction:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(0.482968, 1),
+"update": 0,
+"values": [Vector2(0, -20), Vector2(0, -40)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasGroup:self_modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0666667, 2),
+"transitions": PackedFloat32Array(3.03143, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1lla7"]
+_data = {
+&"RESET": SubResource("Animation_1lla7"),
+&"popup": SubResource("Animation_jiegx")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5h7y5"]
+bg_color = Color(0.08, 0.08, 0.08, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_offset = Vector2(2, 2)
+anti_aliasing = false
+anti_aliasing_size = 0.25
+
+[node name="Dialogue" type="Node2D"]
+script = ExtResource("1_jiegx")
+border = Color(0.87, 0.87, 0.87, 1)
+background = Color(0.09, 0.09, 0.09, 1)
+direction = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1lla7")
+}
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+z_index = 65
+
+[node name="Panel" type="Node2D" parent="CanvasGroup"]
+position = Vector2(0, -49)
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasGroup/Panel"]
+material = ExtResource("2_1lla7")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_5h7y5")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasGroup/Panel/PanelContainer"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasGroup/Panel/PanelContainer/MarginContainer"]
+material = ExtResource("2_1lla7")
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "oh man i am not good with
+computer plz to help"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Arrow" type="Node2D" parent="CanvasGroup"]
+position = Vector2(0, -49)
+
+[node name="DirectionBorder" type="Polygon2D" parent="CanvasGroup/Arrow"]
+material = ExtResource("2_1lla7")
+position = Vector2(0, -1)
+antialiased = true
+polygon = PackedVector2Array(-10, 0, 10, 0, 0, 10)
+
+[node name="DirectionInternal" type="Polygon2D" parent="CanvasGroup/Arrow"]
+material = ExtResource("2_1lla7")
+position = Vector2(0, -1)
+color = Color(0, 0, 0, 1)
+antialiased = true
+polygon = PackedVector2Array(-9, 0, 9, 0, 0, 9)
+
+[node name="Root" type="Node2D" parent="."]
+
+[node name="Direction" type="Node2D" parent="Root"]
+
+[node name="RemoteTransformPanel" type="RemoteTransform2D" parent="Root/Direction"]
+position = Vector2(0, -9)
+remote_path = NodePath("../../../CanvasGroup/Panel")
+update_rotation = false
+
+[node name="RemoteTransformArrow" type="RemoteTransform2D" parent="Root/Direction"]
+position = Vector2(0, -9)
+remote_path = NodePath("../../../CanvasGroup/Arrow")

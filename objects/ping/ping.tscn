@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3 uid="uid://ds44jicsspk7u"]
+
+[ext_resource type="Script" uid="uid://dykr3tvm8qok0" path="res://objects/ping/ping.gd" id="1_p4hbi"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_p4hbi"]
+light_mode = 1
+
+[sub_resource type="Animation" id="Animation_p4hbi"]
+resource_name = "circle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:anim_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:anim_alpha")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(5.09824, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_3tshv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [10.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:alpha")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eacq5"]
+_data = {
+&"RESET": SubResource("Animation_3tshv"),
+&"circle": SubResource("Animation_p4hbi")
+}
+
+[node name="Ping" type="Node2D"]
+material = SubResource("CanvasItemMaterial_p4hbi")
+script = ExtResource("1_p4hbi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_eacq5")
+}
