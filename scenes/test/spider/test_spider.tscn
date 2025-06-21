@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://o8qaxb0atmfh"]
+[gd_scene load_steps=21 format=3 uid="uid://o8qaxb0atmfh"]
 
 [ext_resource type="Shader" uid="uid://bnqk8jccq8t1y" path="res://scenes/test/spider/shaders/shadows.gdshader" id="1_7j0c4"]
 [ext_resource type="PackedScene" uid="uid://cx41sr3oafqr5" path="res://scenes/test/spider/tilemaplayer.tscn" id="2_lf0m3"]
@@ -6,6 +6,12 @@
 [ext_resource type="Script" uid="uid://cuuvercaqi5rk" path="res://scenes/test/spider/screen_resize.gd" id="4_ojdk4"]
 [ext_resource type="Shader" uid="uid://bgsdtddvqhq1s" path="res://scenes/test/spider/shaders/white.gdshader" id="5_cjkt5"]
 [ext_resource type="PackedScene" uid="uid://b0m64u3t060k0" path="res://objects/security_camera/security_camera.tscn" id="6_un8jk"]
+[ext_resource type="PackedScene" uid="uid://5yw4rhabtfqb" path="res://objects/guard/guard.tscn" id="7_hys3y"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_hys3y"]
+vertices = PackedVector2Array(272.82, 276.188, -283.648, 286.789, -268.32, -170.227, -187, -172.242, 182.898, -166, 690.188, 494.063, 683.18, 110.203, 881.32, 114.211, 856.797, 274.328, 861.211, 485.109, 1042.85, 483.109, 1040.13, 674.063, -572.93, 684.93, -83.1016, -947.258, 82.0234, -951.719, 83.0313, -568, -87.1016, -564.938, 559.18, -568, 574.813, 283, 384.094, 283, 390.094, -385.109, 185.102, -382.891, 681.039, -570, 1040.99, -570, 1040.93, -496.109, 857.148, -495.992, 682.953, -103.844, 853.852, -281.109, 874.703, -100.852, 1042.96, -279.102, 1041.03, 268.32, -391.977, 487.938, -565.063, -567.93, -394.023, -387, -184.742, -387, 265.172, -166, -187, -298.742)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8), PackedInt32Array(9, 10, 11, 12, 5), PackedInt32Array(13, 14, 15, 16), PackedInt32Array(17, 18, 19, 20), PackedInt32Array(15, 17, 20, 21), PackedInt32Array(22, 23, 24, 25), PackedInt32Array(26, 22, 25, 27), PackedInt32Array(28, 26, 27, 29), PackedInt32Array(28, 29, 30, 7), PackedInt32Array(7, 30, 8), PackedInt32Array(5, 8, 9), PackedInt32Array(31, 5, 12), PackedInt32Array(31, 12, 32, 33), PackedInt32Array(33, 32, 16, 34), PackedInt32Array(4, 35, 0), PackedInt32Array(15, 21, 4, 3, 36, 34, 16)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-575, -578, -97, -575, -93, -957, 92, -962, 93, -578, 569, -578, 585, 293, 374, 293, 380, -375, 195, -373, 193, -176, 275, -176, 283, 286, -294, 297, -278, -180, -197, -182, -197, -299, -195, -377, -384, -377, -382, 478, 680, 484, 673, 100, 871, 104, 865, -91, 673, -94, 671, -580, 1051, -580, 1050.93, -486.12, 867, -486, 864, -291, 1053, -289, 1051, 278, 867, 284, 871, 475, 1053, 473, 1050, 684, -583, 695)])
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_tryba"]
 viewport_path = NodePath("SubViewportMask")
@@ -63,6 +69,9 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [node name="TestMonster" type="Node2D"]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_hys3y")
 
 [node name="ShadowMask" type="Sprite2D" parent="."]
 z_index = 64
@@ -145,20 +154,23 @@ rotation = 4.71239
 min_angle_deg = 225.0
 max_angle_deg = 315.0
 
-[node name="SecurityCamer5" parent="." instance=ExtResource("6_un8jk")]
-position = Vector2(-561, 685)
-rotation = 5.49779
-min_angle_deg = 280.0
-max_angle_deg = 350.0
-
 [node name="SecurityCamera4" parent="." instance=ExtResource("6_un8jk")]
 position = Vector2(556, -649)
 rotation = 2.35619
 min_angle_deg = 100.0
 max_angle_deg = 170.0
 
-[node name="SecurityCamera" parent="." instance=ExtResource("6_un8jk")]
+[node name="SecurityCamera5" parent="." instance=ExtResource("6_un8jk")]
+position = Vector2(-561, 685)
+rotation = 5.49779
+min_angle_deg = 280.0
+max_angle_deg = 350.0
+
+[node name="SecurityCamera6" parent="." instance=ExtResource("6_un8jk")]
 position = Vector2(692, 27)
 rotation = 0.785398
 min_angle_deg = 10.0
 max_angle_deg = 80.0
+
+[node name="Guard" parent="." instance=ExtResource("7_hys3y")]
+position = Vector2(0, -882)

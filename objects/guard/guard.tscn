@@ -1,8 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://5yw4rhabtfqb"]
+[gd_scene load_steps=20 format=3 uid="uid://5yw4rhabtfqb"]
 
 [ext_resource type="Script" uid="uid://4gi7pyxr862w" path="res://objects/guard/guard.gd" id="1_8r01v"]
 [ext_resource type="Script" uid="uid://jihwj7nslsfl" path="res://objects/state_machine.gd" id="2_70b43"]
-[ext_resource type="Script" uid="uid://c0lhfaavm4i0o" path="res://objects/state.gd" id="3_kw8pv"]
 [ext_resource type="Texture2D" uid="uid://5uft66bycrml" path="res://objects/guard/idle/000.png" id="4_24usv"]
 [ext_resource type="Texture2D" uid="uid://dgg8tp73vn5dk" path="res://objects/guard/move/000.png" id="5_mmlhk"]
 [ext_resource type="Texture2D" uid="uid://ceh7hgu1s00cf" path="res://objects/guard/idle/090.png" id="6_iuiji"]
@@ -10,10 +9,16 @@
 [ext_resource type="Texture2D" uid="uid://dpxwbl6d5cwqd" path="res://objects/guard/idle/180.png" id="8_v5vvr"]
 [ext_resource type="Texture2D" uid="uid://bfwfypkqip12f" path="res://objects/guard/move/180.png" id="9_ewst3"]
 [ext_resource type="Texture2D" uid="uid://b6cfafxxxiths" path="res://objects/guard/idle/270.png" id="10_ssn1m"]
+[ext_resource type="Texture2D" uid="uid://buvm24vqur3sr" path="res://scenes/test/spider/textures/flashlight.png" id="10_v5vvr"]
+[ext_resource type="Script" uid="uid://byuni62y1wxix" path="res://objects/guard/states/sleeping.gd" id="11_mmlhk"]
 [ext_resource type="Texture2D" uid="uid://2sepf80m4xwa" path="res://objects/guard/move/270.png" id="11_nk5ml"]
+[ext_resource type="Script" uid="uid://fpl3s0lg4w2x" path="res://objects/guard/states/bored.gd" id="12_iuiji"]
+[ext_resource type="Script" uid="uid://cavg4mwbnwg3u" path="res://objects/guard/states/alert.gd" id="13_eh7ry"]
+[ext_resource type="Script" uid="uid://bj11iysjxtd2y" path="res://objects/guard/states/navigating.gd" id="15_ewst3"]
+[ext_resource type="Script" uid="uid://bkswajt0qpwvd" path="res://objects/guard/states/pursuing.gd" id="15_v5vvr"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nx2sx"]
-size = Vector2(11.2, 23.4)
+[sub_resource type="CircleShape2D" id="CircleShape2D_ewst3"]
+radius = 6.20081
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gmovp"]
 animations = [{
@@ -22,15 +27,7 @@ animations = [{
 "texture": ExtResource("4_24usv")
 }],
 "loop": true,
-"name": &"000_idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_mmlhk")
-}],
-"loop": true,
-"name": &"000_move",
+"name": &"idle_000_deg",
 "speed": 5.0
 }, {
 "frames": [{
@@ -38,15 +35,7 @@ animations = [{
 "texture": ExtResource("6_iuiji")
 }],
 "loop": true,
-"name": &"090_idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7_eh7ry")
-}],
-"loop": true,
-"name": &"090_move",
+"name": &"idle_090_deg",
 "speed": 5.0
 }, {
 "frames": [{
@@ -54,15 +43,7 @@ animations = [{
 "texture": ExtResource("8_v5vvr")
 }],
 "loop": true,
-"name": &"180_idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("9_ewst3")
-}],
-"loop": true,
-"name": &"180_move",
+"name": &"idle_180_deg",
 "speed": 5.0
 }, {
 "frames": [{
@@ -70,7 +51,31 @@ animations = [{
 "texture": ExtResource("10_ssn1m")
 }],
 "loop": true,
-"name": &"270_idle",
+"name": &"idle_270_deg",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_mmlhk")
+}],
+"loop": true,
+"name": &"move_000_deg",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_eh7ry")
+}],
+"loop": true,
+"name": &"move_090_deg",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_ewst3")
+}],
+"loop": true,
+"name": &"move_180_deg",
 "speed": 5.0
 }, {
 "frames": [{
@@ -78,7 +83,7 @@ animations = [{
 "texture": ExtResource("11_nk5ml")
 }],
 "loop": true,
-"name": &"270_move",
+"name": &"move_270_deg",
 "speed": 5.0
 }]
 
@@ -87,51 +92,106 @@ radius = 273.529
 
 [node name="Guard" type="CharacterBody2D"]
 script = ExtResource("1_8r01v")
+debug = true
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
-script = ExtResource("2_70b43")
-starting_state = NodePath("Bored")
-
-[node name="Sleeping" type="Node" parent="StateMachine"]
-script = ExtResource("3_kw8pv")
-metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
-
-[node name="Bored" type="Node" parent="StateMachine"]
-script = ExtResource("3_kw8pv")
-metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
-
-[node name="Alert" type="Node" parent="StateMachine"]
-script = ExtResource("3_kw8pv")
-metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
-
-[node name="Investigating" type="Node" parent="StateMachine"]
-script = ExtResource("3_kw8pv")
-metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
-
-[node name="Pursueing" type="Node" parent="StateMachine"]
-script = ExtResource("3_kw8pv")
-metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
+[node name="NavigationAgent" type="NavigationAgent2D" parent="."]
+unique_name_in_owner = true
 
 [node name="GuardCollisionBox" type="CollisionShape2D" parent="."]
 position = Vector2(2, -0.5)
 scale = Vector2(5, 5)
-shape = SubResource("RectangleShape2D_nx2sx")
+shape = SubResource("CircleShape2D_ewst3")
 
 [node name="Images" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_gmovp")
-animation = &"000_idle"
+animation = &"move_270_deg"
+
+[node name="VisionLight" type="PointLight2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(177, 0)
+scale = Vector2(1.36719, 0.398438)
+energy = 1.4
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 0.5
+texture = ExtResource("10_v5vvr")
+texture_scale = 0.25
 
 [node name="CentralVision" type="Area2D" parent="."]
+unique_name_in_owner = true
 
 [node name="SightBox" type="CollisionPolygon2D" parent="CentralVision"]
 polygon = PackedVector2Array(0, 0, 350, -50, 350, 50)
 
 [node name="PeripheralVision" type="Area2D" parent="."]
+unique_name_in_owner = true
 
 [node name="SightBox" type="CollisionPolygon2D" parent="PeripheralVision"]
-polygon = PackedVector2Array(0, 0, 0, 150, 106, 106, 150, 0, 106, -106, 0, -150)
+scale = Vector2(1.5, 1.5)
+polygon = PackedVector2Array(0, 0, 24, 146, 56, 135, 106, 106, 134, 62, 150, 0, 134, -58, 106, -106, 57, -135, 21, -144)
 
 [node name="Hearing" type="Area2D" parent="."]
+unique_name_in_owner = true
 
 [node name="HearingArea" type="CollisionShape2D" parent="Hearing"]
 shape = SubResource("CircleShape2D_eknkk")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("2_70b43")
+starting_state = NodePath("Bored")
+
+[node name="Sleeping" type="Node" parent="StateMachine" node_paths=PackedStringArray("bored_state", "alert_state")]
+script = ExtResource("11_mmlhk")
+bored_state = NodePath("../Bored")
+alert_state = NodePath("../Alert")
+metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
+
+[node name="Timer" type="Timer" parent="StateMachine/Sleeping"]
+one_shot = true
+
+[node name="Bored" type="Node" parent="StateMachine" node_paths=PackedStringArray("alert_state", "sleep_state", "navigate_state")]
+script = ExtResource("12_iuiji")
+alert_state = NodePath("../Alert")
+sleep_state = NodePath("../Sleeping")
+navigate_state = NodePath("../Navigating")
+metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
+
+[node name="Timer" type="Timer" parent="StateMachine/Bored"]
+one_shot = true
+
+[node name="Alert" type="Node" parent="StateMachine" node_paths=PackedStringArray("bored_state", "pursuit_state")]
+script = ExtResource("13_eh7ry")
+bored_state = NodePath("../Bored")
+pursuit_state = NodePath("../Pursuing")
+metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
+
+[node name="Timer" type="Timer" parent="StateMachine/Alert"]
+one_shot = true
+
+[node name="Navigating" type="Node" parent="StateMachine" node_paths=PackedStringArray("bored_state", "alert_state")]
+script = ExtResource("15_ewst3")
+bored_state = NodePath("../Bored")
+alert_state = NodePath("../Alert")
+metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
+
+[node name="Pursuing" type="Node" parent="StateMachine" node_paths=PackedStringArray("alert_state")]
+script = ExtResource("15_v5vvr")
+alert_state = NodePath("../Alert")
+metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
+
+[node name="Timer" type="Timer" parent="StateMachine/Pursuing"]
+one_shot = true
+
+[connection signal="body_entered" from="CentralVision" to="StateMachine/Alert" method="_on_central_vision_body_entered"]
+[connection signal="body_entered" from="CentralVision" to="StateMachine/Navigating" method="_on_central_vision_body_entered"]
+[connection signal="body_entered" from="CentralVision" to="StateMachine/Pursuing" method="_on_central_vision_body_entered"]
+[connection signal="body_exited" from="CentralVision" to="StateMachine/Pursuing" method="_on_central_vision_body_exited"]
+[connection signal="body_entered" from="PeripheralVision" to="StateMachine/Bored" method="_on_peripheral_vision_body_entered"]
+[connection signal="body_entered" from="PeripheralVision" to="StateMachine/Navigating" method="_on_peripheral_vision_body_entered"]
+[connection signal="body_entered" from="PeripheralVision" to="StateMachine/Pursuing" method="_on_peripheral_vision_body_entered"]
+[connection signal="body_exited" from="PeripheralVision" to="StateMachine/Pursuing" method="_on_peripheral_vision_body_exited"]
+[connection signal="body_entered" from="Hearing" to="StateMachine/Sleeping" method="_on_hearing_body_entered"]
+[connection signal="body_entered" from="Hearing" to="StateMachine/Bored" method="_on_hearing_body_entered"]
+[connection signal="body_entered" from="Hearing" to="StateMachine/Navigating" method="_on_hearing_body_entered"]
+[connection signal="body_entered" from="Hearing" to="StateMachine/Pursuing" method="_on_hearing_body_entered"]
+[connection signal="body_exited" from="Hearing" to="StateMachine/Pursuing" method="_on_hearing_body_exited"]

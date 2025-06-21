@@ -10,9 +10,9 @@ func init(parent: CharacterBody2D, animations: AnimatedSprite2D, move_component,
 		child.animations = animations
 		child.move_component = move_component
 		child.animation_tree = animation_tree
-		
-		#initialize default state
-		change_state(starting_state)
+	
+	#initialize default state
+	change_state(starting_state)
 
 #change to the new state
 func change_state(new_state: State) -> void:

@@ -6,6 +6,9 @@ class_name Spider
 @export var leg_tween_time: float = 0.05
 @export var linked_light: Node2D
 
+var is_moving : bool = false
+var is_hiding : bool = false
+
 @onready var _state_machine = $StateMachine
 
 @onready var _ik_targets: Array[Node2D] = [

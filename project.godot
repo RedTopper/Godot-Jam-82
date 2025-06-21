@@ -24,6 +24,7 @@ ProjectUISoundController="*res://addons/maaacks_game_template/base/scenes/autolo
 AudioBusManager="*res://objects/audio_bus_manager/audio_bus_manager.gd"
 Utilities="*res://objects/utilities.gd"
 Globals="*res://objects/globals.gd"
+SignalBus="*res://objects/signal_bus.gd"
 
 [display]
 

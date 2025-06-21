@@ -11,6 +11,7 @@ func enter() -> void:
 	_camera = parent
 	
 	%VisionLight.color = Color.AQUA
+	super()
 	
 func exit() -> void:
 	pass
@@ -33,3 +34,4 @@ func process_physics(delta: float) -> State:
 func _on_vision_box_body_entered(body: Node2D) -> void:
 	if body.name == "Spider":
 		_spider_detected = true
+		SignalBus.camera_alert.emit(_camera.zone, _camera.global_position + Vector2.from_angle(_camera.rotation) * _camera.alert_signal_offset)
