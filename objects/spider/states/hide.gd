@@ -27,12 +27,12 @@ func process_input(_event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
-	var angle = _spider.get_angle()
+	var angle = _spider.spider_angle
 	
 	_tank_rotation = get_input_rotation()
-	_spider.set_angle(angle + _tank_rotation * player_rotation_rate * delta)
+	_spider.spider_angle = angle + _tank_rotation * player_rotation_rate * delta
 	
-	animation_name = Utilities.get_direction_name_deg(_spider.get_angle())
+	animation_name = Utilities.get_direction_name_deg(_spider.spider_angle)
 	animations.play(animation_name)
 	
 	parent.move_and_slide()

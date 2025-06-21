@@ -13,10 +13,10 @@ var _spider: Spider
 func enter() -> void:
 	_spider = parent
 	
-	animation_name = Utilities.get_direction_name_deg(_spider.get_angle())
+	animation_name = Utilities.get_direction_name_deg(_spider.body.spider_angle)
 	
 	_spider.velocity = Vector2.ZERO
-	%Targets.position = Vector2.ZERO
+	_spider.body.set_leg_prediction_offset(SpiderBody.Direction.NONE)
 	
 	animation_tree.active = true
 	animation_tree["parameters/conditions/idle"] = true

@@ -5,20 +5,17 @@ extends State
 @export var hide_state: State
 
 var _spider: Spider
-var _start_position: Vector2
-
 var _timer: Timer
 
 func enter() -> void:
 	_spider = parent
 	
-	animation_name = Utilities.get_direction_name_deg(_spider.get_angle())
+	animation_name = Utilities.get_direction_name_deg(_spider.body.spider_angle)
 	
 	_timer = Timer.new()
 	
-	_start_position = %Core.position
 	_spider.velocity = Vector2.ZERO
-	%Targets.position = Vector2.ZERO
+	_spider.body.set_leg_prediction_offset(SpiderBody.Direction.NONE)
 	
 	super()
 
@@ -30,11 +27,6 @@ func process_input(_event: InputEvent) -> State:
 	if get_input_hide():
 		animation_tree["parameters/conditions/hide"] = true
 		return hide_state
-	
-	return null
-
-func process_physics(_delta: float) -> State:
-	animations.position = %Core.position
 	
 	return null
 

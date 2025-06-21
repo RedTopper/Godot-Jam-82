@@ -1,0 +1,736 @@
+[gd_scene load_steps=51 format=3 uid="uid://gyc0wxdnr7cp"]
+
+[ext_resource type="Script" uid="uid://b1ckl52dq83le" path="res://objects/spider/spider_body.gd" id="1_m0665"]
+[ext_resource type="Texture2D" uid="uid://dw8aa5fpg86xt" path="res://objects/spider/body/leg_a.png" id="2_jgxg0"]
+[ext_resource type="Texture2D" uid="uid://dtmerks4mgw66" path="res://objects/spider/body/leg_b.png" id="3_wi608"]
+[ext_resource type="Texture2D" uid="uid://vsav4flawcl8" path="res://objects/spider/body/000.png" id="11_qpihr"]
+[ext_resource type="Texture2D" uid="uid://bsmv04d1l7qjh" path="res://objects/spider/body/045.png" id="12_qktei"]
+[ext_resource type="Texture2D" uid="uid://6qhilj5ix2q4" path="res://objects/spider/body/090.png" id="13_umkmb"]
+[ext_resource type="Texture2D" uid="uid://xyiy0m2qutuy" path="res://objects/spider/body/135.png" id="14_a283s"]
+[ext_resource type="Texture2D" uid="uid://d0j34138gniqm" path="res://objects/spider/body/180.png" id="15_24cae"]
+[ext_resource type="Texture2D" uid="uid://cwkfaik3h1ftw" path="res://objects/spider/body/235.png" id="16_6layf"]
+[ext_resource type="Texture2D" uid="uid://bo5bmf3ggegfq" path="res://objects/spider/body/270.png" id="17_s8brh"]
+[ext_resource type="Texture2D" uid="uid://qkvhua645bdq" path="res://objects/spider/body/315.png" id="18_d2gkr"]
+
+[sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_i5f4s"]
+target_nodepath = NodePath("../../Floor/IK/LegFrontLeftIK")
+fabrik_data_chain_length = 2
+joint_data/0/bone_index = 1
+joint_data/0/bone2d_node = NodePath("LegFrontLeft")
+joint_data/1/bone_index = 2
+joint_data/1/bone2d_node = NodePath("LegFrontLeft/LegFrontLeftTip")
+joint_data/1/magnet_position = Vector2(0, -50)
+joint_data/1/use_target_rotation = false
+
+[sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_tdndc"]
+target_nodepath = NodePath("../../Floor/IK/LegRearLeftIK")
+fabrik_data_chain_length = 2
+joint_data/0/bone_index = 4
+joint_data/0/bone2d_node = NodePath("LegRearLeft")
+joint_data/1/bone_index = 5
+joint_data/1/bone2d_node = NodePath("LegRearLeft/LegRearLeftTip")
+joint_data/1/magnet_position = Vector2(0, -50)
+joint_data/1/use_target_rotation = false
+
+[sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_dc06g"]
+target_nodepath = NodePath("../../Floor/IK/LegRearIK")
+fabrik_data_chain_length = 2
+joint_data/0/bone_index = 7
+joint_data/0/bone2d_node = NodePath("LegRear")
+joint_data/1/bone_index = 8
+joint_data/1/bone2d_node = NodePath("LegRear/LegRearTip")
+joint_data/1/magnet_position = Vector2(0, -50)
+joint_data/1/use_target_rotation = false
+
+[sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_bo2gt"]
+target_nodepath = NodePath("../../Floor/IK/LegRearRightIK")
+fabrik_data_chain_length = 2
+joint_data/0/bone_index = 10
+joint_data/0/bone2d_node = NodePath("LegRearRight")
+joint_data/1/bone_index = 11
+joint_data/1/bone2d_node = NodePath("LegRearRight/LegRearRightTip")
+joint_data/1/magnet_position = Vector2(0, -50)
+joint_data/1/use_target_rotation = false
+
+[sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_nn63r"]
+target_nodepath = NodePath("../../Floor/IK/LegFrontRightIK")
+fabrik_data_chain_length = 2
+joint_data/0/bone_index = 13
+joint_data/0/bone2d_node = NodePath("LegFrontRight")
+joint_data/1/bone_index = 14
+joint_data/1/bone2d_node = NodePath("LegFrontRight/LegFrontRightTip")
+joint_data/1/magnet_position = Vector2(0, -50)
+joint_data/1/use_target_rotation = false
+
+[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_mlanb"]
+enabled = true
+modification_count = 5
+modifications/0 = SubResource("SkeletonModification2DFABRIK_i5f4s")
+modifications/1 = SubResource("SkeletonModification2DFABRIK_tdndc")
+modifications/2 = SubResource("SkeletonModification2DFABRIK_dc06g")
+modifications/3 = SubResource("SkeletonModification2DFABRIK_bo2gt")
+modifications/4 = SubResource("SkeletonModification2DFABRIK_nn63r")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8owol"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_qpihr")
+}],
+"loop": true,
+"name": &"000_deg",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_qktei")
+}],
+"loop": true,
+"name": &"045_deg",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_umkmb")
+}],
+"loop": true,
+"name": &"090_deg",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_a283s")
+}],
+"loop": true,
+"name": &"135_deg",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_24cae")
+}],
+"loop": true,
+"name": &"180_deg",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_6layf")
+}],
+"loop": true,
+"name": &"225_deg",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_s8brh")
+}],
+"loop": true,
+"name": &"270_deg",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_d2gkr")
+}],
+"loop": true,
+"name": &"315_deg",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_8owol"]
+resource_name = "shimmy"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Core:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -70)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Core/Skeleton2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Floor/Targets:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8716e"]
+resource_name = "bob"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Core:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 0.9),
+"update": 0,
+"values": [Vector2(0, -70), Vector2(0, -50)]
+}
+
+[sub_resource type="Animation" id="Animation_bgy4a"]
+resource_name = "enter_stickbug"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Core/Skeleton2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.2, 0.2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -50)]
+}
+
+[sub_resource type="Animation" id="Animation_j6vtf"]
+resource_name = "exit_hide"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Core:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -20), Vector2(0, -70)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Floor/Targets:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.6, 0.6), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_i5sae"]
+resource_name = "exit_stickbug"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Core/Skeleton2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.2, 0.2),
+"update": 0,
+"values": [Vector2(0, -50), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_o5kt5"]
+resource_name = "hide"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Core:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -70), Vector2(0, -20)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Floor/Targets:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.25, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.6, 0.6)]
+}
+
+[sub_resource type="Animation" id="Animation_ktoqi"]
+resource_name = "move"
+
+[sub_resource type="Animation" id="Animation_d8ynp"]
+resource_name = "stickbug"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Core/Skeleton2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.2, 0.2),
+"update": 0,
+"values": [Vector2(0, -50), Vector2(0, 50)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bgy4a"]
+_data = {
+&"RESET": SubResource("Animation_8owol"),
+&"bob": SubResource("Animation_8716e"),
+&"enter_stickbug": SubResource("Animation_bgy4a"),
+&"exit_hide": SubResource("Animation_j6vtf"),
+&"exit_stickbug": SubResource("Animation_i5sae"),
+&"hide": SubResource("Animation_o5kt5"),
+&"move": SubResource("Animation_ktoqi"),
+&"stickbug": SubResource("Animation_d8ynp")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ktoqi"]
+animation = &"bob"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pnw8s"]
+animation = &"enter_stickbug"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i5sae"]
+animation = &"exit_hide"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d8ynp"]
+animation = &"exit_hide"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rbnge"]
+animation = &"exit_stickbug"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pam55"]
+animation = &"exit_stickbug"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7xv0h"]
+animation = &"hide"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qd6n0"]
+animation = &"move"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c7t4s"]
+animation = &"stickbug"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qd6n0"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mn8o7"]
+xfade_time = 0.5
+switch_mode = 1
+advance_mode = 2
+advance_condition = &"stickbug"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ysllp"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x51vd"]
+xfade_time = 0.5
+switch_mode = 1
+advance_mode = 2
+advance_condition = &"move"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_voc20"]
+switch_mode = 1
+advance_mode = 2
+advance_condition = &"hide"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0nc0h"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7m6dh"]
+xfade_time = 0.4
+switch_mode = 1
+advance_mode = 2
+advance_condition = &"hide"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o5kt5"]
+xfade_time = 0.5
+switch_mode = 1
+advance_mode = 2
+advance_condition = &"move"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j6vtf"]
+switch_mode = 1
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ktoqi"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_efl2a"]
+switch_mode = 1
+advance_mode = 2
+advance_condition = &"move"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vf3ad"]
+xfade_time = 0.5
+switch_mode = 1
+advance_mode = 2
+advance_condition = &"move"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_khqd0"]
+switch_mode = 1
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vf3ad"]
+states/End/position = Vector2(979, 274)
+states/Start/position = Vector2(279, 274)
+states/bob/node = SubResource("AnimationNodeAnimation_ktoqi")
+states/bob/position = Vector2(593, 213)
+states/enter_stickbug/node = SubResource("AnimationNodeAnimation_pnw8s")
+states/enter_stickbug/position = Vector2(432, 406)
+states/exit_hide/node = SubResource("AnimationNodeAnimation_i5sae")
+states/exit_hide/position = Vector2(704, 150)
+states/exit_hide2/node = SubResource("AnimationNodeAnimation_d8ynp")
+states/exit_hide2/position = Vector2(792, 74)
+states/exit_stickbug/node = SubResource("AnimationNodeAnimation_pam55")
+states/exit_stickbug/position = Vector2(746, 406)
+"states/exit_stickbug 2/node" = SubResource("AnimationNodeAnimation_rbnge")
+"states/exit_stickbug 2/position" = Vector2(682, 306)
+states/hide/node = SubResource("AnimationNodeAnimation_7xv0h")
+states/hide/position = Vector2(593, 70)
+states/move/node = SubResource("AnimationNodeAnimation_qd6n0")
+states/move/position = Vector2(840, 235)
+states/stickbug/node = SubResource("AnimationNodeAnimation_c7t4s")
+states/stickbug/position = Vector2(593, 406)
+transitions = ["Start", "bob", SubResource("AnimationNodeStateMachineTransition_qd6n0"), "bob", "enter_stickbug", SubResource("AnimationNodeStateMachineTransition_mn8o7"), "enter_stickbug", "stickbug", SubResource("AnimationNodeStateMachineTransition_ysllp"), "stickbug", "exit_stickbug", SubResource("AnimationNodeStateMachineTransition_x51vd"), "stickbug", "exit_stickbug 2", SubResource("AnimationNodeStateMachineTransition_voc20"), "exit_stickbug 2", "bob", SubResource("AnimationNodeStateMachineTransition_0nc0h"), "bob", "hide", SubResource("AnimationNodeStateMachineTransition_7m6dh"), "hide", "exit_hide2", SubResource("AnimationNodeStateMachineTransition_o5kt5"), "hide", "exit_hide", SubResource("AnimationNodeStateMachineTransition_j6vtf"), "exit_hide", "bob", SubResource("AnimationNodeStateMachineTransition_ktoqi"), "exit_hide2", "move", SubResource("AnimationNodeStateMachineTransition_efl2a"), "exit_stickbug", "move", SubResource("AnimationNodeStateMachineTransition_vf3ad"), "move", "bob", SubResource("AnimationNodeStateMachineTransition_khqd0")]
+graph_offset = Vector2(162, 21)
+
+[node name="SpiderCore" type="Node2D"]
+script = ExtResource("1_m0665")
+
+[node name="Core" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -70)
+rotation = 1.5708
+
+[node name="Legs" type="Node2D" parent="Core"]
+
+[node name="LegFrontLeft" type="Sprite2D" parent="Core/Legs"]
+position = Vector2(16, -29.0001)
+rotation = -0.986914
+scale = Vector2(0.999997, 0.999997)
+texture = ExtResource("2_jgxg0")
+offset = Vector2(46.811, 0.149733)
+
+[node name="LegFrontLeftTip" type="Sprite2D" parent="Core/Legs"]
+position = Vector2(65.2418, -101.168)
+rotation = 0.396454
+scale = Vector2(0.999998, 0.999998)
+texture = ExtResource("3_wi608")
+offset = Vector2(50.8895, -1.12513)
+
+[node name="LegRearLeft" type="Sprite2D" parent="Core/Legs"]
+position = Vector2(-21, -25)
+rotation = -2.07858
+scale = Vector2(0.999999, 0.999999)
+texture = ExtResource("2_jgxg0")
+offset = Vector2(46.381, 0.738304)
+
+[node name="LegRearLeftTip" type="Sprite2D" parent="Core/Legs"]
+position = Vector2(-60.9983, -102.525)
+rotation = 0.0100499
+scale = Vector2(1, 1)
+texture = ExtResource("3_wi608")
+offset = Vector2(48.3324, -0.384361)
+
+[node name="LegRear" type="Sprite2D" parent="Core/Legs"]
+position = Vector2(-33.9997, -1)
+rotation = 2.94827
+scale = Vector2(0.999997, 0.999997)
+texture = ExtResource("2_jgxg0")
+offset = Vector2(47.0226, 1.55007)
+
+[node name="LegRearTip" type="Sprite2D" parent="Core/Legs"]
+position = Vector2(-121.621, 11.9004)
+rotation = 0.0381317
+scale = Vector2(0.999999, 0.999999)
+texture = ExtResource("3_wi608")
+offset = Vector2(49.075, -1.42671)
+
+[node name="LegRearRight" type="Sprite2D" parent="Core/Legs"]
+position = Vector2(-19, 26)
+rotation = 1.97596
+scale = Vector2(0.999999, 0.999999)
+texture = ExtResource("2_jgxg0")
+offset = Vector2(45.6698, 0.856277)
+
+[node name="LegRearRightTip" type="Sprite2D" parent="Core/Legs"]
+position = Vector2(-55.1737, 105.041)
+rotation = 0.0190683
+scale = Vector2(0.999999, 0.999999)
+texture = ExtResource("3_wi608")
+offset = Vector2(48.2565, -1.70259)
+
+[node name="LegFrontRight" type="Sprite2D" parent="Core/Legs"]
+position = Vector2(16, 23.9999)
+rotation = 0.978062
+scale = Vector2(0.999998, 0.999998)
+texture = ExtResource("2_jgxg0")
+offset = Vector2(46.8127, 2.33227)
+
+[node name="LegFrontRightTip" type="Sprite2D" parent="Core/Legs"]
+position = Vector2(62.8521, 98.4704)
+rotation = -0.305545
+texture = ExtResource("3_wi608")
+offset = Vector2(48.0453, -1.18069)
+
+[node name="Skeleton2D" type="Skeleton2D" parent="Core"]
+modification_stack = SubResource("SkeletonModificationStack2D_mlanb")
+
+[node name="Body" type="Bone2D" parent="Core/Skeleton2D"]
+rotation = -1.5492
+rest = Transform2D(0.0215946, -0.999767, 0.999767, 0.0215946, 0, 0)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Core/Skeleton2D/Body"]
+remote_path = NodePath("../../../../Animations")
+update_rotation = false
+
+[node name="LegFrontLeft" type="Bone2D" parent="Core/Skeleton2D"]
+position = Vector2(16, -29)
+rotation = -3.00297
+scale = Vector2(0.999997, 0.999997)
+rest = Transform2D(-0.990404, -0.138179, 0.138179, -0.990404, 16, -29)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Core/Skeleton2D/LegFrontLeft"]
+rotation = 1.99895
+remote_path = NodePath("../../../Legs/LegFrontLeft")
+
+[node name="LegFrontLeftTip" type="Bone2D" parent="Core/Skeleton2D/LegFrontLeft"]
+position = Vector2(-37.4527, 78.9325)
+rotation = -0.0997998
+rest = Transform2D(0.995024, -0.0996343, 0.0996343, 0.995024, -37.4527, 78.9325)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Core/Skeleton2D/LegFrontLeft/LegFrontLeftTip"]
+rotation = -2.79075
+remote_path = NodePath("../../../../Legs/LegFrontLeftTip")
+
+[node name="LegFrontLeftEnd" type="Bone2D" parent="Core/Skeleton2D/LegFrontLeft/LegFrontLeftTip"]
+position = Vector2(-87.3324, -32.6344)
+rest = Transform2D(1, 0, 0, 1, -87.3324, -32.6344)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="LegRearLeft" type="Bone2D" parent="Core/Skeleton2D"]
+position = Vector2(-21, -25)
+rotation = -1.29688
+scale = Vector2(0.999999, 0.999999)
+rest = Transform2D(0.270504, -0.962718, 0.962718, 0.270504, -21, -25)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Core/Skeleton2D/LegRearLeft"]
+rotation = -0.74339
+remote_path = NodePath("../../../Legs/LegRearLeft")
+
+[node name="LegRearLeftTip" type="Bone2D" parent="Core/Skeleton2D/LegRearLeft"]
+position = Vector2(66.0462, -56.9905)
+rotation = 0.107191
+rest = Transform2D(0.99426, 0.106986, -0.106986, 0.99426, 66.0462, -56.9905)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Core/Skeleton2D/LegRearLeft/LegRearLeftTip"]
+rotation = 1.20488
+remote_path = NodePath("../../../../Legs/LegRearLeftTip")
+
+[node name="LegRearLeftEnd" type="Bone2D" parent="Core/Skeleton2D/LegRearLeft/LegRearLeftTip"]
+position = Vector2(32.3661, 91.5281)
+rest = Transform2D(1, 0, 0, 1, 32.3661, 91.5281)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="LegRear" type="Bone2D" parent="Core/Skeleton2D"]
+position = Vector2(-34, -1)
+rotation = -1.69097
+scale = Vector2(0.999997, 0.999997)
+rest = Transform2D(-0.119884, -0.992785, 0.992785, -0.119884, -34, -1)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Core/Skeleton2D/LegRear"]
+rotation = -1.61092
+remote_path = NodePath("../../../Legs/LegRear")
+
+[node name="LegRearTip" type="Bone2D" parent="Core/Skeleton2D/LegRear"]
+position = Vector2(0.622235, -88.5644)
+rotation = 0.135297
+scale = Vector2(1, 1)
+rest = Transform2D(0.990861, 0.134885, -0.134885, 0.990861, 0.622235, -88.5644)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Core/Skeleton2D/LegRear/LegRearTip"]
+rotation = 1.61679
+remote_path = NodePath("../../../../Legs/LegRearTip")
+
+[node name="LegRearEnd" type="Bone2D" parent="Core/Skeleton2D/LegRear/LegRearTip"]
+position = Vector2(-1.77512, 81.0364)
+rest = Transform2D(1, 0, 0, 1, -1.77512, 81.0364)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="LegRearRight" type="Bone2D" parent="Core/Skeleton2D"]
+position = Vector2(-19, 26)
+rotation = -1.82072
+scale = Vector2(0.999999, 0.999999)
+rest = Transform2D(-0.24733, -0.96893, 0.96893, -0.24733, -19, 26)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Core/Skeleton2D/LegRearRight"]
+rotation = -2.51384
+remote_path = NodePath("../../../Legs/LegRearRight")
+
+[node name="LegRearRightTip" type="Bone2D" parent="Core/Skeleton2D/LegRearRight"]
+position = Vector2(-69.1054, -52.7301)
+rotation = -0.138543
+rest = Transform2D(0.990418, -0.138101, 0.138101, 0.990418, -69.1054, -52.7301)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Core/Skeleton2D/LegRearRight/LegRearRightTip"]
+rotation = 1.95791
+remote_path = NodePath("../../../../Legs/LegRearRightTip")
+
+[node name="LegRearRightEnd" type="Bone2D" parent="Core/Skeleton2D/LegRearRight/LegRearRightTip"]
+position = Vector2(-35.4364, 89.2264)
+rest = Transform2D(1, 0, 0, 1, -35.4364, 89.2264)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="LegFrontRight" type="Bone2D" parent="Core/Skeleton2D"]
+position = Vector2(16, 24)
+rotation = -1.63994
+rest = Transform2D(-0.0690886, -0.997611, 0.997611, -0.0690886, 16, 24)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Core/Skeleton2D/LegFrontRight"]
+rotation = 2.6294
+remote_path = NodePath("../../../Legs/LegFrontRight")
+
+[node name="LegFrontRightTip" type="Bone2D" parent="Core/Skeleton2D/LegFrontRight"]
+position = Vector2(-77.9987, 40.7088)
+rotation = 0.130197
+rest = Transform2D(0.991536, 0.129829, -0.129829, 0.991536, -77.9987, 40.7088)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Core/Skeleton2D/LegFrontRight/LegFrontRightTip"]
+rotation = 1.20897
+remote_path = NodePath("../../../../Legs/LegFrontRightTip")
+
+[node name="LegFrontRightEnd" type="Bone2D" parent="Core/Skeleton2D/LegFrontRight/LegFrontRightTip"]
+position = Vector2(32.3194, 86.1885)
+rest = Transform2D(1, 0, 0, 1, 32.3194, 86.1885)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="Polygon2D" type="Polygon2D" parent="Core/Skeleton2D"]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(70, -5, 90, 0, 70, 5)
+
+[node name="Floor" type="Node2D" parent="."]
+rotation = 1.5708
+
+[node name="IK" type="Node2D" parent="Floor"]
+
+[node name="LegFrontLeftIK" type="Node2D" parent="Floor/IK"]
+unique_name_in_owner = true
+position = Vector2(80, -66)
+
+[node name="LegRearLeftIK" type="Node2D" parent="Floor/IK"]
+unique_name_in_owner = true
+position = Vector2(-31, -99)
+
+[node name="LegRearIK" type="Node2D" parent="Floor/IK"]
+unique_name_in_owner = true
+position = Vector2(-111, 13)
+
+[node name="LegRearRightIK" type="Node2D" parent="Floor/IK"]
+unique_name_in_owner = true
+position = Vector2(-27, 106)
+
+[node name="LegFrontRightIK" type="Node2D" parent="Floor/IK"]
+unique_name_in_owner = true
+position = Vector2(80, 72)
+
+[node name="Targets" type="Node2D" parent="Floor"]
+unique_name_in_owner = true
+
+[node name="LegFrontLeftTarget" type="Node2D" parent="Floor/Targets"]
+unique_name_in_owner = true
+position = Vector2(81, -65)
+
+[node name="LegRearLeftTarget" type="Node2D" parent="Floor/Targets"]
+unique_name_in_owner = true
+position = Vector2(-31, -99)
+
+[node name="LegRearTarget" type="Node2D" parent="Floor/Targets"]
+unique_name_in_owner = true
+position = Vector2(-111, 13)
+
+[node name="LegRearRightTarget" type="Node2D" parent="Floor/Targets"]
+unique_name_in_owner = true
+position = Vector2(-27, 106)
+
+[node name="LegFrontRightTarget" type="Node2D" parent="Floor/Targets"]
+unique_name_in_owner = true
+position = Vector2(80, 72)
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -67.5445)
+sprite_frames = SubResource("SpriteFrames_8owol")
+animation = &"090_deg"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_bgy4a")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_vf3ad")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/hide = false
+parameters/conditions/idle = false
+parameters/conditions/move = false
+parameters/conditions/stickbug = false
