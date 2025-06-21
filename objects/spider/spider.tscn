@@ -329,16 +329,15 @@ rotation = 1.5708
 [node name="Legs" type="Node2D" parent="Core"]
 
 [node name="LegFrontLeft" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(16, -29.0031)
-rotation = -0.9563
+position = Vector2(16, -29.0194)
+rotation = -0.956222
 scale = Vector2(0.999995, 0.999995)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(46.811, 0.149733)
 
 [node name="LegFrontLeftTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(67.4276, -99.6301)
-rotation = 0.379993
-scale = Vector2(0.999997, 0.999997)
+position = Vector2(67.4331, -99.6423)
+rotation = 0.380143
 texture = ExtResource("3_dc06g")
 offset = Vector2(50.8895, -1.12513)
 
@@ -385,16 +384,16 @@ texture = ExtResource("3_dc06g")
 offset = Vector2(48.2565, -1.70259)
 
 [node name="LegFrontRight" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(16, 23.9969)
-rotation = 0.948455
+position = Vector2(16, 23.9806)
+rotation = 0.948521
 scale = Vector2(0.999995, 0.999995)
 texture = ExtResource("2_bo2gt")
 offset = Vector2(46.8127, 2.33227)
 
 [node name="LegFrontRightTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(65.0359, 97.0476)
-rotation = -0.289753
-scale = Vector2(0.999994, 0.999994)
+position = Vector2(65.0311, 97.0345)
+rotation = -0.289596
+scale = Vector2(0.99999, 0.99999)
 texture = ExtResource("3_dc06g")
 offset = Vector2(48.0453, -1.18069)
 
@@ -559,13 +558,14 @@ polygon = PackedVector2Array(70, -5, 90, 0, 70, 5)
 
 [node name="LightVision" type="PointLight2D" parent="Core"]
 position = Vector2(-4.76837e-06, -1)
-energy = 1.4
+energy = 2.0
 shadow_enabled = true
 shadow_filter = 2
 shadow_filter_smooth = 0.5
 texture = ExtResource("4_8owol")
 offset = Vector2(700, 0)
 texture_scale = 1.5
+height = 40.0
 
 [node name="Floor" type="Node2D" parent="."]
 rotation = 1.5708

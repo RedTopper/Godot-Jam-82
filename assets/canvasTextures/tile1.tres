@@ -1,0 +1,11 @@
+[gd_resource type="CanvasTexture" load_steps=4 format=3 uid="uid://6rkpvsy32q0l"]
+
+[ext_resource type="Texture2D" uid="uid://c2npl7056piun" path="res://assets/spritesheets/floor1.png" id="1_sjmsy"]
+[ext_resource type="Texture2D" uid="uid://d1osnuchdg8v4" path="res://assets/spritesheets/cleanFloor_n.png" id="2_vr8nt"]
+[ext_resource type="Texture2D" uid="uid://dpwudn85e6k3e" path="res://assets/spritesheets/cleanFloor_s.png" id="3_wce01"]
+
+[resource]
+diffuse_texture = ExtResource("1_sjmsy")
+normal_texture = ExtResource("2_vr8nt")
+specular_texture = ExtResource("3_wce01")
+specular_shininess = 0.8
