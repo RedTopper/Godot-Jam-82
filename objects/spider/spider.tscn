@@ -490,27 +490,16 @@ rotation = 1.5708
 [node name="Legs" type="Node2D" parent="Core"]
 
 [node name="LegFrontLeft" type="Sprite2D" parent="Core/Legs"]
-<<<<<<< HEAD
-position = Vector2(16, -29.0194)
-rotation = -0.956222
-scale = Vector2(0.999995, 0.999995)
-=======
 position = Vector2(16, -29)
 rotation = -1.05555
 scale = Vector2(0.999997, 0.999997)
->>>>>>> 81d9b85d424f46c9921a9f05b5048bd52f9dae0d
 texture = ExtResource("2_bo2gt")
 offset = Vector2(46.811, 0.149733)
 
 [node name="LegFrontLeftTip" type="Sprite2D" parent="Core/Legs"]
-<<<<<<< HEAD
-position = Vector2(67.4331, -99.6423)
-rotation = 0.380143
-=======
 position = Vector2(60.1767, -104.375)
 rotation = 0.429672
 scale = Vector2(0.999998, 0.999998)
->>>>>>> 81d9b85d424f46c9921a9f05b5048bd52f9dae0d
 texture = ExtResource("3_dc06g")
 offset = Vector2(50.8895, -1.12513)
 
@@ -557,28 +546,16 @@ texture = ExtResource("3_dc06g")
 offset = Vector2(48.2565, -1.70259)
 
 [node name="LegFrontRight" type="Sprite2D" parent="Core/Legs"]
-<<<<<<< HEAD
-position = Vector2(16, 23.9806)
-rotation = 0.948521
-scale = Vector2(0.999995, 0.999995)
-=======
 position = Vector2(16, 24)
 rotation = 1.0446
 scale = Vector2(0.999999, 0.999999)
->>>>>>> 81d9b85d424f46c9921a9f05b5048bd52f9dae0d
 texture = ExtResource("2_bo2gt")
 offset = Vector2(46.8127, 2.33227)
 
 [node name="LegFrontRightTip" type="Sprite2D" parent="Core/Legs"]
-<<<<<<< HEAD
-position = Vector2(65.0311, 97.0345)
-rotation = -0.289596
-scale = Vector2(0.99999, 0.99999)
-=======
 position = Vector2(57.7969, 101.421)
 rotation = -0.337564
 scale = Vector2(1, 1)
->>>>>>> 81d9b85d424f46c9921a9f05b5048bd52f9dae0d
 texture = ExtResource("3_dc06g")
 offset = Vector2(48.0453, -1.18069)
 
@@ -740,18 +717,6 @@ bone_angle = 0.0
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(70, -5, 90, 0, 70, 5)
 
-<<<<<<< HEAD
-[node name="LightVision" type="PointLight2D" parent="Core"]
-position = Vector2(-4.76837e-06, -1)
-energy = 2.0
-shadow_enabled = true
-shadow_filter = 2
-shadow_filter_smooth = 0.5
-texture = ExtResource("4_8owol")
-offset = Vector2(700, 0)
-texture_scale = 1.5
-height = 40.0
-=======
 [node name="LightVisionCone" type="PointLight2D" parent="Core"]
 position = Vector2(10.856, -3.92986e-05)
 energy = 0.2
@@ -761,7 +726,6 @@ shadow_filter_smooth = 0.5
 texture = ExtResource("4_bgy4a")
 offset = Vector2(409.6, 0)
 texture_scale = 0.8
->>>>>>> 81d9b85d424f46c9921a9f05b5048bd52f9dae0d
 
 [node name="Floor" type="Node2D" parent="."]
 rotation = 1.5708

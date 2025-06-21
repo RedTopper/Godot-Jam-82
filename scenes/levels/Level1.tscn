@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://db5xnyqyfufgs" path="res://assets/spritesheets/floor1_s.png" id="8_nkeig"]
 [ext_resource type="Texture2D" uid="uid://dsrf8j8sydbw0" path="res://assets/spritesheets/floor1_n.png" id="9_5ntmo"]
 [ext_resource type="Texture2D" uid="uid://c4ducup4x7y51" path="res://assets/spritesheets/FloorSheet1.png" id="9_ldmar"]
-[ext_resource type="Texture2D" uid="uid://buvm24vqur3sr" path="res://scenes/test/assets/flashlight_alpha.png" id="11_nkeig"]
+[ext_resource type="Texture2D" path="res://scenes/test/assets/flashlight_alpha.png" id="11_nkeig"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2r1tl"]
 texture = ExtResource("4_1seuy")
@@ -133,7 +133,6 @@ tile_map_data = PackedByteArray("AAD2//v/AQAAAAAAAAD2//z/AQAAAAAAAAD2//3/AQAAAAA
 tile_set = SubResource("TileSet_nfihu")
 
 [node name="Spider" parent="." instance=ExtResource("7_2r1tl")]
-visible = false
 scale = Vector2(0.5, 0.5)
 debug = false
 
