@@ -12,9 +12,7 @@ var _tank_rotation: float
 
 func enter() -> void:
 	_spider = parent
-	
-	animation_name = Utilities.get_direction_name_deg(_spider.body.spider_angle)
-	
+		
 	_tank_motion = get_input_forward_movement()
 	_tank_rotation = get_input_rotation()
 	
@@ -37,9 +35,6 @@ func process_physics(delta: float) -> State:
 	var angle = _spider.body.spider_angle
 	_spider.velocity = Vector2.RIGHT.rotated(deg_to_rad(angle)) * -_tank_motion * player_linear_rate * _spider.scale.x
 	_spider.body.spider_angle = angle + _tank_rotation * player_rotation_rate * delta
-	
-	animation_name = Utilities.get_direction_name_deg(_spider.body.spider_angle)
-	animations.play(animation_name)
 	
 	# leg movement ahead of spider
 	if _tank_motion > 0:

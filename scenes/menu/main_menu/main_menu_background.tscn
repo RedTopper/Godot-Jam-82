@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://blklt0csojnd5"]
+
+[ext_resource type="PackedScene" uid="uid://bwo1h0dai4hi2" path="res://objects/spider/spider.tscn" id="1_8qo85"]
+
+[sub_resource type="Gradient" id="Gradient_8qo85"]
+offsets = PackedFloat32Array(0.582317)
+colors = PackedColorArray(0.0605303, 0.0605303, 0.0605303, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wsi0a"]
+gradient = SubResource("Gradient_8qo85")
+width = 1000
+height = 1000
+
+[sub_resource type="TileSet" id="TileSet_wsi0a"]
+tile_size = Vector2i(128, 128)
+
+[node name="MainMenuBackground" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_wsi0a")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(919, 468)
+scale = Vector2(4, 4)
+tile_set = SubResource("TileSet_wsi0a")
+
+[node name="Spider" parent="." instance=ExtResource("1_8qo85")]
+z_index = 2
+scale = Vector2(2, 2)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

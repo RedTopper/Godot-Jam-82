@@ -32,9 +32,6 @@ func process_physics(delta: float) -> State:
 	_tank_rotation = get_input_rotation()
 	_spider.spider_angle = angle + _tank_rotation * player_rotation_rate * delta
 	
-	animation_name = Utilities.get_direction_name_deg(_spider.spider_angle)
-	animations.play(animation_name)
-	
 	parent.move_and_slide()
 	
 	return null

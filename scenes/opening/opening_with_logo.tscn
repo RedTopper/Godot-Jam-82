@@ -10,10 +10,10 @@
 [node name="Opening" instance=ExtResource("1_w60c0")]
 script = ExtResource("2_ynkyy")
 time_between_frames = 0.6
-next_scene = "uid://dm2wge58qfkid"
+next_scene = "uid://cenplja04svt2"
 images = Array[Texture2D]([ExtResource("3_ynkyy"), ExtResource("3_kt5v3"), ExtResource("4_u58oj"), ExtResource("5_qie0p")])
-fade_in_time = 0.0
-fade_out_time = 0.6
+fade_in_time = 0.1
+fade_out_time = 0.1
 visible_time = 1.5
 
 [node name="ColorRect" type="ColorRect" parent="." index="0"]
@@ -25,11 +25,8 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="BackgroundMusicPlayer" parent="." index="1"]
-bus = &"Master"
-
 [node name="ImagesContainer" parent="." index="2"]
-offset_left = 20.0
-offset_top = 20.0
-offset_right = -20.0
-offset_bottom = -20.0
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100

@@ -442,71 +442,72 @@ rotation = 1.5708
 [node name="Legs" type="Node2D" parent="Core"]
 
 [node name="LegFrontLeft" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(16, -29.0001)
-rotation = -0.986914
-scale = Vector2(0.999997, 0.999997)
+position = Vector2(15.9999, -29.0001)
+rotation = -1.2117
+scale = Vector2(0.999993, 0.999993)
 texture = ExtResource("2_jgxg0")
 offset = Vector2(46.811, 0.149733)
 
 [node name="LegFrontLeftTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(65.2418, -101.168)
-rotation = 0.396454
-scale = Vector2(0.999998, 0.999998)
+position = Vector2(47.9163, -110.328)
+rotation = 0.485652
+scale = Vector2(0.999995, 0.999995)
 texture = ExtResource("3_wi608")
 offset = Vector2(50.8895, -1.12513)
 
 [node name="LegRearLeft" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-21, -25)
-rotation = -2.07858
-scale = Vector2(0.999999, 0.999999)
+position = Vector2(-21.0001, -25)
+rotation = -2.28159
+scale = Vector2(0.999995, 0.999995)
 texture = ExtResource("2_jgxg0")
 offset = Vector2(46.381, 0.738304)
 
 [node name="LegRearLeftTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-60.9983, -102.525)
-rotation = 0.0100499
-scale = Vector2(1, 1)
+position = Vector2(-75.8079, -92.8679)
+rotation = -0.0902471
+scale = Vector2(0.999996, 0.999996)
 texture = ExtResource("3_wi608")
 offset = Vector2(48.3324, -0.384361)
 
 [node name="LegRear" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-33.9997, -1)
-rotation = 2.94827
-scale = Vector2(0.999997, 0.999997)
+position = Vector2(-33.9996, -1)
+rotation = 3.00591
+scale = Vector2(0.999994, 0.999994)
 texture = ExtResource("2_jgxg0")
 offset = Vector2(47.0226, 1.55007)
 
 [node name="LegRearTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-121.621, 11.9004)
-rotation = 0.0381317
-scale = Vector2(0.999999, 0.999999)
+position = Vector2(-122.219, 6.83054)
+rotation = 0.123654
+scale = Vector2(0.999996, 0.999996)
 texture = ExtResource("3_wi608")
 offset = Vector2(49.075, -1.42671)
 
 [node name="LegRearRight" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-19, 26)
-rotation = 1.97596
-scale = Vector2(0.999999, 0.999999)
+position = Vector2(-19.0001, 26)
+rotation = 2.17304
+scale = Vector2(0.999995, 0.999995)
 texture = ExtResource("2_jgxg0")
 offset = Vector2(45.6698, 0.856277)
 
 [node name="LegRearRightTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-55.1737, 105.041)
-rotation = 0.0190683
-scale = Vector2(0.999999, 0.999999)
+position = Vector2(-69.9501, 96.4276)
+rotation = 0.111097
+scale = Vector2(0.999996, 0.999996)
 texture = ExtResource("3_wi608")
 offset = Vector2(48.2565, -1.70259)
 
 [node name="LegFrontRight" type="Sprite2D" parent="Core/Legs"]
 position = Vector2(16, 23.9999)
-rotation = 0.978062
+rotation = 1.19595
 scale = Vector2(0.999998, 0.999998)
 texture = ExtResource("2_jgxg0")
 offset = Vector2(46.8127, 2.33227)
 
 [node name="LegFrontRightTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(62.8521, 98.4704)
-rotation = -0.305545
+position = Vector2(45.6461, 106.838)
+rotation = -0.39248
+scale = Vector2(0.999998, 0.999998)
 texture = ExtResource("3_wi608")
 offset = Vector2(48.0453, -1.18069)
 
@@ -665,6 +666,7 @@ length = 16.0
 bone_angle = 0.0
 
 [node name="Polygon2D" type="Polygon2D" parent="Core/Skeleton2D"]
+visible = false
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(70, -5, 90, 0, 70, 5)
 
@@ -717,7 +719,7 @@ unique_name_in_owner = true
 position = Vector2(80, 72)
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -67.5445)
+position = Vector2(0, -50.4694)
 sprite_frames = SubResource("SpriteFrames_8owol")
 animation = &"090_deg"
 

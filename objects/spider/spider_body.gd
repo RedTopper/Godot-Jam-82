@@ -21,6 +21,9 @@ class_name SpiderBody
 		if value < 0.0: value += 360.0
 		value = fmod(value, 360.0)
 		
+		if animations:
+			animations.play(Utilities.get_direction_name_deg(value))
+		
 		spider_angle = value
 
 @onready var _ik_targets: Array[Node2D] = [
@@ -104,13 +107,18 @@ func _ready() -> void:
 	
 	$AnimationTree.active = true
 	
-	_update_legs()
+	await get_tree().process_frame
 	
 	var index = 0
 	for node in _ik_targets:
 		node.top_level = true
 		node.global_position = _move_targets[index].global_position
 		index += 1
+	
+	# Call the set function to update the angle (I promise this does something)
+	spider_angle = spider_angle
+	
+	_update_legs()
 
 func _process(delta: float) -> void:
 	if debug:
