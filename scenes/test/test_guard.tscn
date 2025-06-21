@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://dbd1oyqvpmlxa"]
-
-[ext_resource type="Script" uid="uid://dpxo0djdke33" path="res://scenes/test/test_guard.gd" id="1_vfvjl"]
-[ext_resource type="PackedScene" uid="uid://5yw4rhabtfqb" path="res://objects/monster/monster.tscn" id="1_xhwp5"]
-
-[node name="TestGuard" type="Node2D"]
-script = ExtResource("1_vfvjl")
-
-[node name="Monster" parent="." instance=ExtResource("1_xhwp5")]

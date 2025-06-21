@@ -1,0 +1,137 @@
+[gd_scene load_steps=15 format=3 uid="uid://5yw4rhabtfqb"]
+
+[ext_resource type="Script" uid="uid://4gi7pyxr862w" path="res://objects/guard/guard.gd" id="1_8r01v"]
+[ext_resource type="Script" uid="uid://jihwj7nslsfl" path="res://objects/state_machine.gd" id="2_70b43"]
+[ext_resource type="Script" uid="uid://c0lhfaavm4i0o" path="res://objects/state.gd" id="3_kw8pv"]
+[ext_resource type="Texture2D" uid="uid://5uft66bycrml" path="res://objects/guard/idle/000.png" id="4_24usv"]
+[ext_resource type="Texture2D" uid="uid://dgg8tp73vn5dk" path="res://objects/guard/move/000.png" id="5_mmlhk"]
+[ext_resource type="Texture2D" uid="uid://ceh7hgu1s00cf" path="res://objects/guard/idle/090.png" id="6_iuiji"]
+[ext_resource type="Texture2D" uid="uid://qvo0254mr4wk" path="res://objects/guard/move/090.png" id="7_eh7ry"]
+[ext_resource type="Texture2D" uid="uid://dpxwbl6d5cwqd" path="res://objects/guard/idle/180.png" id="8_v5vvr"]
+[ext_resource type="Texture2D" uid="uid://bfwfypkqip12f" path="res://objects/guard/move/180.png" id="9_ewst3"]
+[ext_resource type="Texture2D" uid="uid://b6cfafxxxiths" path="res://objects/guard/idle/270.png" id="10_ssn1m"]
+[ext_resource type="Texture2D" uid="uid://2sepf80m4xwa" path="res://objects/guard/move/270.png" id="11_nk5ml"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nx2sx"]
+size = Vector2(11.2, 23.4)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gmovp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_24usv")
+}],
+"loop": true,
+"name": &"000_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_mmlhk")
+}],
+"loop": true,
+"name": &"000_move",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_iuiji")
+}],
+"loop": true,
+"name": &"090_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_eh7ry")
+}],
+"loop": true,
+"name": &"090_move",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_v5vvr")
+}],
+"loop": true,
+"name": &"180_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_ewst3")
+}],
+"loop": true,
+"name": &"180_move",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_ssn1m")
+}],
+"loop": true,
+"name": &"270_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_nk5ml")
+}],
+"loop": true,
+"name": &"270_move",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eknkk"]
+radius = 273.529
+
+[node name="Guard" type="CharacterBody2D"]
+script = ExtResource("1_8r01v")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("2_70b43")
+starting_state = NodePath("Bored")
+
+[node name="Sleeping" type="Node" parent="StateMachine"]
+script = ExtResource("3_kw8pv")
+metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
+
+[node name="Bored" type="Node" parent="StateMachine"]
+script = ExtResource("3_kw8pv")
+metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
+
+[node name="Alert" type="Node" parent="StateMachine"]
+script = ExtResource("3_kw8pv")
+metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
+
+[node name="Investigating" type="Node" parent="StateMachine"]
+script = ExtResource("3_kw8pv")
+metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
+
+[node name="Pursueing" type="Node" parent="StateMachine"]
+script = ExtResource("3_kw8pv")
+metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
+
+[node name="GuardCollisionBox" type="CollisionShape2D" parent="."]
+position = Vector2(2, -0.5)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_nx2sx")
+
+[node name="Images" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gmovp")
+animation = &"000_idle"
+
+[node name="CentralVision" type="Area2D" parent="."]
+
+[node name="SightBox" type="CollisionPolygon2D" parent="CentralVision"]
+polygon = PackedVector2Array(0, 0, 350, -50, 350, 50)
+
+[node name="PeripheralVision" type="Area2D" parent="."]
+
+[node name="SightBox" type="CollisionPolygon2D" parent="PeripheralVision"]
+polygon = PackedVector2Array(0, 0, 0, 150, 106, 106, 150, 0, 106, -106, 0, -150)
+
+[node name="Hearing" type="Area2D" parent="."]
+
+[node name="HearingArea" type="CollisionShape2D" parent="Hearing"]
+shape = SubResource("CircleShape2D_eknkk")

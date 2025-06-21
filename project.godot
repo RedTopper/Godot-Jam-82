@@ -21,7 +21,7 @@ AppConfig="*res://addons/maaacks_game_template/base/scenes/autoloads/app_config.
 SceneLoader="*res://addons/maaacks_game_template/base/scenes/autoloads/scene_loader.tscn"
 ProjectMusicController="*res://addons/maaacks_game_template/base/scenes/autoloads/project_music_controller.tscn"
 ProjectUISoundController="*res://addons/maaacks_game_template/base/scenes/autoloads/project_ui_sound_controller.tscn"
-AudioBusManager="*res://objects/AudioBusManager/audio_bus_manager.gd"
+AudioBusManager="*res://objects/audio_bus_manager/audio_bus_manager.gd"
 Utilities="*res://objects/utilities.gd"
 Globals="*res://objects/globals.gd"
 

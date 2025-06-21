@@ -2,9 +2,9 @@ extends State
 
 @export var move_state: State
 @export var idle_state: State
+@export var hide_state: State
 
 var _spider: Spider
-var _time : float = 0.0
 var _start_position: Vector2
 
 var _timer: Timer
@@ -20,23 +20,23 @@ func enter() -> void:
 	_spider.velocity = Vector2.ZERO
 	%Targets.position = Vector2.ZERO
 	
-	%AnimationPlayer.play("enter_stickbug")
-	%AnimationPlayer.get_animation("stickbug").loop_mode = Animation.LoopMode.LOOP_LINEAR
-	%AnimationPlayer.queue("stickbug")
-	
 	super()
 
-func process_input(event: InputEvent) -> State:
+func process_input(_event: InputEvent) -> State:
 	if get_input_forward_movement() or get_input_rotation():
+		animation_tree["parameters/conditions/move"] = true
 		return move_state
+	
+	if get_input_hide():
+		animation_tree["parameters/conditions/hide"] = true
+		return hide_state
 	
 	return null
 
-func process_physics(delta: float) -> State:
+func process_physics(_delta: float) -> State:
 	animations.position = %Core.position
 	
 	return null
 
 func exit() -> void:
-	%AnimationPlayer.queue("exit_stickbug")
-	%AnimationPlayer.get_animation("stickbug").loop_mode = Animation.LoopMode.LOOP_NONE
+	animation_tree["parameters/conditions/stickbug"] = false

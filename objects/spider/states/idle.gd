@@ -18,8 +18,11 @@ func enter() -> void:
 	_spider.velocity = Vector2.ZERO
 	%Targets.position = Vector2.ZERO
 	
-	%AnimationPlayer.get_animation("bob").loop_mode = Animation.LoopMode.LOOP_LINEAR
-	%AnimationPlayer.play("bob")
+	animation_tree.active = true
+	animation_tree["parameters/conditions/idle"] = true
+	
+	#%AnimationPlayer.get_animation("bob").loop_mode = Animation.LoopMode.LOOP_LINEAR
+	#%AnimationPlayer.play("bob")
 	
 	add_child(_timer)
 	_timer.one_shot = true
@@ -27,20 +30,21 @@ func enter() -> void:
 	
 	super()
 
-func process_input(event: InputEvent) -> State:
+func process_input(_event: InputEvent) -> State:
 	if get_input_forward_movement() or get_input_rotation():
+		animation_tree["parameters/conditions/move"] = true
 		return move_state
 	
 	if _timer.is_stopped():
+		animation_tree["parameters/conditions/stickbug"] = true
 		return stickbug_state
 	
 	if get_input_hide():
+		animation_tree["parameters/conditions/hide"] = true
 		return hide_state
 	
 	return null
 
 func exit() -> void:
-	%AnimationPlayer.queue("RESET")
-	%AnimationPlayer.get_animation("bob").loop_mode = Animation.LoopMode.LOOP_NONE
-	
 	remove_child(_timer)
+	animation_tree["parameters/conditions/idle"] = false

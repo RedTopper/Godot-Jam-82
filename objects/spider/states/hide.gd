@@ -1,6 +1,7 @@
 extends State
 
 @export var idle_state : State
+@export var move_state : State
 
 @export var player_rotation_rate: float = 100.0
 
@@ -10,13 +11,18 @@ var _spider: Spider
 func enter() -> void:
 	_spider = parent
 	
-	%AnimationPlayer.play("hide")
+	#%AnimationPlayer.play("hide")
 	
 	super()
 
-func process_input(event: InputEvent) -> State:	
+func process_input(_event: InputEvent) -> State:	
 	if get_input_hide():
+		animation_tree["parameters/conditions/idle"] = true
 		return idle_state
+	
+	if get_input_forward_movement():
+		animation_tree["parameters/conditions/move"] = true
+		return move_state
 	
 	return null
 
@@ -34,5 +40,4 @@ func process_physics(delta: float) -> State:
 	return null
 
 func exit() -> void:
-	%AnimationPlayer.queue("RESET")
-	
+	animation_tree["parameters/conditions/hide"] = false
