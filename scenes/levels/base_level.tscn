@@ -1,0 +1,90 @@
+[gd_scene load_steps=12 format=3 uid="uid://bnwew7gd13fvh"]
+
+[ext_resource type="Shader" uid="uid://bnqk8jccq8t1y" path="res://scenes/test/spider/shaders/shadows.gdshader" id="1_3rriw"]
+[ext_resource type="PackedScene" uid="uid://bwo1h0dai4hi2" path="res://objects/spider/spider.tscn" id="2_h4ce7"]
+[ext_resource type="Script" uid="uid://cuuvercaqi5rk" path="res://scenes/test/spider/screen_resize.gd" id="3_53c65"]
+[ext_resource type="PackedScene" uid="uid://c2i7lnlmeyl4t" path="res://objects/camera_with_shake/camera.tscn" id="6_qhwlw"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_tryba"]
+viewport_path = NodePath("SubViewportMask")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0caop"]
+resource_local_to_scene = true
+shader = ExtResource("1_3rriw")
+shader_parameter/mask_texture = SubResource("ViewportTexture_tryba")
+shader_parameter/mask_color = Vector3(0, 0, 0)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_bd4s6"]
+viewport_path = NodePath("SubViewportMask")
+
+[sub_resource type="Gradient" id="Gradient_qqrwg"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1vfnp"]
+gradient = SubResource("Gradient_qqrwg")
+
+[sub_resource type="Gradient" id="Gradient_tryba"]
+offsets = PackedFloat32Array(0.651568, 0.699208)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i5apv"]
+gradient = SubResource("Gradient_tryba")
+width = 2048
+height = 2048
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="BaseLevel" type="Node2D"]
+
+[node name="ShadowMask" type="Sprite2D" parent="."]
+z_index = 64
+material = SubResource("ShaderMaterial_0caop")
+texture = SubResource("ViewportTexture_bd4s6")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.111197, 0.111197, 0.111197, 1)
+
+[node name="PlacePointLightsHere" type="Node" parent="."]
+
+[node name="PlaceTileMapHere" type="Node" parent="."]
+
+[node name="Spider" parent="." instance=ExtResource("2_h4ce7")]
+z_index = 1
+scale = Vector2(0.5, 0.5)
+debug = false
+
+[node name="Camera2D" type="Camera2D" parent="Spider"]
+process_callback = 0
+position_smoothing_enabled = true
+
+[node name="RemoteTransformMaskRoot" type="RemoteTransform2D" parent="Spider"]
+remote_path = NodePath("../../SubViewportMask/MaskRoot")
+
+[node name="RemoteTransformShadowMask" type="RemoteTransform2D" parent="Spider"]
+remote_path = NodePath("../../ShadowMask")
+update_scale = false
+
+[node name="SubViewportMask" type="SubViewport" parent="."]
+size = Vector2i(256, 256)
+render_target_update_mode = 4
+script = ExtResource("3_53c65")
+
+[node name="ClearColor" type="Sprite2D" parent="SubViewportMask"]
+scale = Vector2(100, 100)
+texture = SubResource("GradientTexture2D_1vfnp")
+
+[node name="PlaceTileMapCopyHere" type="Node" parent="SubViewportMask"]
+
+[node name="MaskRoot" type="Node2D" parent="SubViewportMask"]
+scale = Vector2(0.5, 0.5)
+
+[node name="CameraWithShake" parent="SubViewportMask/MaskRoot" instance=ExtResource("6_qhwlw")]
+
+[node name="MaskLight" type="PointLight2D" parent="SubViewportMask/MaskRoot"]
+scale = Vector2(2, 2)
+energy = 4.0
+blend_mode = 1
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 0.9
+texture = SubResource("GradientTexture2D_i5apv")

@@ -21,7 +21,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 80)]
+"values": [Vector2(-500, 80)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -163,7 +163,7 @@ tile_set = SubResource("TileSet_rrd23")
 
 [node name="SpiderBody" parent="Background/Control" index="1" instance=ExtResource("5_ww8d4")]
 z_index = 1
-position = Vector2(0, 80)
+position = Vector2(-500, 80)
 scale = Vector2(1.5, 1.5)
 debug = false
 debug_effective_scale = Vector2(1.5, 1.5)

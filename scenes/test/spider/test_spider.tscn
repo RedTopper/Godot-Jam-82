@@ -1,10 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://o8qaxb0atmfh"]
+[gd_scene load_steps=22 format=3 uid="uid://o8qaxb0atmfh"]
 
 [ext_resource type="Shader" uid="uid://bnqk8jccq8t1y" path="res://scenes/test/spider/shaders/shadows.gdshader" id="1_7j0c4"]
 [ext_resource type="PackedScene" uid="uid://cx41sr3oafqr5" path="res://scenes/test/spider/tile_map_layer.tscn" id="2_lf0m3"]
 [ext_resource type="PackedScene" uid="uid://bwo1h0dai4hi2" path="res://objects/spider/spider.tscn" id="3_cou3d"]
 [ext_resource type="Script" uid="uid://cuuvercaqi5rk" path="res://scenes/test/spider/screen_resize.gd" id="4_ojdk4"]
 [ext_resource type="Shader" uid="uid://bgsdtddvqhq1s" path="res://scenes/test/spider/shaders/white.gdshader" id="5_cjkt5"]
+[ext_resource type="PackedScene" uid="uid://c2i7lnlmeyl4t" path="res://objects/camera_with_shake/camera.tscn" id="6_15e6e"]
 [ext_resource type="PackedScene" uid="uid://b0m64u3t060k0" path="res://objects/security_camera/security_camera.tscn" id="6_un8jk"]
 [ext_resource type="PackedScene" uid="uid://5yw4rhabtfqb" path="res://objects/guard/guard.tscn" id="7_hys3y"]
 
@@ -14,13 +15,13 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32
 outlines = Array[PackedVector2Array]([PackedVector2Array(-575, -578, -97, -575, -93, -957, 92, -962, 93, -578, 569, -578, 585, 293, 374, 293, 380, -375, 195, -373, 193, -176, 275, -176, 283, 286, -294, 297, -278, -180, -197, -182, -197, -299, -195, -377, -384, -377, -382, 478, 680, 484, 673, 100, 871, 104, 865, -91, 673, -94, 671, -580, 1051, -580, 1050.93, -486.12, 867, -486, 864, -291, 1053, -289, 1051, 278, 867, 284, 871, 475, 1053, 473, 1050, 684, -583, 695)])
 sample_partition_type = 1
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_tryba"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_15e6e"]
 viewport_path = NodePath("SubViewportMask")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tryba"]
 resource_local_to_scene = true
 shader = ExtResource("1_7j0c4")
-shader_parameter/mask_texture = SubResource("ViewportTexture_tryba")
+shader_parameter/mask_texture = SubResource("ViewportTexture_15e6e")
 shader_parameter/mask_color = Vector3(0, 0, 0)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_qqrwg"]
@@ -49,21 +50,21 @@ height = 2048
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="Gradient" id="Gradient_qqrwg"]
+[sub_resource type="Gradient" id="Gradient_rx2v5"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_1cjsu"]
-gradient = SubResource("Gradient_qqrwg")
+gradient = SubResource("Gradient_rx2v5")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qqrwg"]
 shader = ExtResource("5_cjkt5")
 
-[sub_resource type="Gradient" id="Gradient_tryba"]
+[sub_resource type="Gradient" id="Gradient_aik6k"]
 offsets = PackedFloat32Array(0.651568, 0.699208)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_fd1vx"]
-gradient = SubResource("Gradient_tryba")
+gradient = SubResource("Gradient_aik6k")
 width = 2048
 height = 2048
 fill = 1
@@ -126,7 +127,8 @@ material = SubResource("ShaderMaterial_qqrwg")
 [node name="MaskRoot" type="Node2D" parent="SubViewportMask"]
 scale = Vector2(0.5, 0.5)
 
-[node name="Camera2D" type="Camera2D" parent="SubViewportMask/MaskRoot"]
+[node name="CameraWithShake" parent="SubViewportMask/MaskRoot" node_paths=PackedStringArray("attached_camera") instance=ExtResource("6_15e6e")]
+attached_camera = NodePath("../../../Spider/Camera2D")
 
 [node name="MaskLight" type="PointLight2D" parent="SubViewportMask/MaskRoot"]
 scale = Vector2(2, 2)
@@ -175,3 +177,9 @@ max_angle_deg = 80.0
 
 [node name="Guard" parent="." instance=ExtResource("7_hys3y")]
 position = Vector2(0, -882)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="SubViewportMask/MaskRoot/CameraWithShake" method="_on_test_shake"]
