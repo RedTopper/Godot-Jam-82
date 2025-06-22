@@ -1,6 +1,6 @@
 extends Control
 
-@export_file("*.tscn") var next_scene : String
+@export var next_scene: PackedScene
 
-func _on_gui_input(event: InputEvent) -> void:
-	pass # Replace with function body.
+func _on_win_button_pressed() -> void:
+	get_tree().change_scene_to_packed(next_scene)

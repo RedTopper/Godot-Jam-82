@@ -9,7 +9,7 @@ class_name Spider
 
 var is_moving: bool = false
 var is_hiding: bool = false
-var has_keycard: bool = true
+var has_keycard: bool = false
 
 @onready var _state_machine = $StateMachine
 

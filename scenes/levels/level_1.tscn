@@ -23,13 +23,16 @@ tracks/0/path = NodePath("Spider")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.7, 3.3),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.7, 2.73333, 4.9),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": ["Huh, I'm awake?"],
 "method": &"say"
 }, {
 "args": ["Maybe I can escape?"],
+"method": &"say"
+}, {
+"args": ["Perhaps they'll investigate if I move..."],
 "method": &"say"
 }]
 }
@@ -52,9 +55,9 @@ shader_parameter/mask_color = Vector3(0, 0, 0)
 viewport_path = NodePath("SubViewportMask")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_oc4kc"]
-vertices = PackedVector2Array(974, 370, 1870, 370, 1870, 910, 818, 910, 818, -114, 974, -334, 434, -334, 590, -114, 434, 690, 590, 910, -718, 910, -114, 690, -718, 690, -270, 690, -270, 398, -114, 398, -590, 398, -590, -270, 206, -270, 206, 398)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(0, 3, 4, 5), PackedInt32Array(6, 5, 4, 7), PackedInt32Array(8, 6, 7, 9), PackedInt32Array(8, 9, 10, 11), PackedInt32Array(10, 12, 13), PackedInt32Array(11, 10, 13), PackedInt32Array(11, 13, 14, 15), PackedInt32Array(14, 16, 17, 18), PackedInt32Array(15, 14, 18), PackedInt32Array(15, 18, 19)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-640, -320, -640, 448, -320, 448, -320, 640, -768, 640, -768, 960, 640, 960, 640, -64, 768, -64, 768, 960, 1920, 960, 1920, 320, 1024, 320, 1024, -384, 384, -384, 384, 640, -64, 640, -64, 448, 256, 448, 256, -320)])
+vertices = PackedVector2Array(206, -270, 206, 398, -114, 398, -590, -270, 974, 370, 1870, 370, 1870, 910, 818, 910, 818, -50, 974, -270, 434, -270, 590, -50, 434, 690, 590, 910, -718, 910, -114, 690, -718, 690, -270, 690, -270, 398, -590, 398)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(4, 7, 8, 9), PackedInt32Array(10, 9, 8, 11), PackedInt32Array(12, 10, 11, 13), PackedInt32Array(12, 13, 14, 15), PackedInt32Array(14, 16, 17), PackedInt32Array(15, 14, 17), PackedInt32Array(2, 15, 17, 18), PackedInt32Array(3, 2, 18), PackedInt32Array(3, 18, 19)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-640, -320, -640, 448, -320, 448, -320, 640, -768, 640, -768, 960, 640, 960, 640, 0, 768, 0, 768, 960, 1920, 960, 1920, 320, 1024, 320, 1024, -320, 384, -320, 384, 640, -64, 640, -64, 448, 256, 448, 256, -320)])
 agent_radius = 50.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s8va5"]
@@ -76,6 +79,9 @@ bus = &"Master"
 material = SubResource("ShaderMaterial_rka8t")
 position = Vector2(-192, 0)
 texture = SubResource("ViewportTexture_5hph3")
+
+[node name="CanvasModulate" parent="." index="3"]
+visible = false
 
 [node name="TileMapLayer" parent="." index="6" instance=ExtResource("3_sk5k4")]
 
@@ -150,20 +156,29 @@ min_angle_deg = 280.0
 max_angle_deg = 350.0
 zone = "main_room"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MainRoomStuff" index="5"]
-offset_left = -344.0
+[node name="UnseenContainment" type="RichTextLabel" parent="MainRoomStuff" index="5"]
+offset_left = -320.0
 offset_top = -424.0
-offset_right = -89.0
+offset_right = -65.0
 offset_bottom = -384.0
 text = "The Unseen Containment Facility"
 fit_content = true
 autowrap_mode = 0
 
-[node name="Guard1" parent="MainRoomStuff" index="6" instance=ExtResource("8_dga24")]
+[node name="ContainmentRoom" type="RichTextLabel" parent="MainRoomStuff" index="6"]
+offset_left = -488.0
+offset_top = 544.0
+offset_right = -336.0
+offset_bottom = 584.0
+text = "Containment Room"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Guard1" parent="MainRoomStuff" index="7" instance=ExtResource("8_dga24")]
 position = Vector2(-360, 720)
 zone = "main_room"
 
-[node name="Guard2" parent="MainRoomStuff" index="7" instance=ExtResource("8_dga24")]
+[node name="Guard2" parent="MainRoomStuff" index="8" instance=ExtResource("8_dga24")]
 position = Vector2(-40, 720)
 zone = "main_room"
 

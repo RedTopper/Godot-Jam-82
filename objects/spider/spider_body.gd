@@ -47,6 +47,7 @@ class_name SpiderBody
 var _pointing: bool = false
 var _pointing_update_request: bool = false
 var _point_leg_original_pos: Vector2
+var _legs_fixed: bool = false
 
 enum Direction {
 	NONE,
@@ -95,6 +96,14 @@ func _draw() -> void:
 		draw_circle((node.global_position - global_position) / debug_effective_scale, 10.0, Color.BLUE)
 
 func _on_leg_update_timer_timeout() -> void:
+	if not _legs_fixed:
+		_legs_fixed = true
+		var index = 0
+		for node in _ik_targets:
+			node.top_level = true
+			node.global_position = _move_targets[index].global_position
+			index += 1
+	
 	_update_index = _update_index + 1
 	if _update_index == _update_order.size():
 		_update_index = 0
@@ -128,12 +137,6 @@ func _ready() -> void:
 	
 	$LegUpdateTimer.start(leg_update_rate)
 	$AnimationTree.active = true
-	
-	var index = 0
-	for node in _ik_targets:
-		node.top_level = true
-		node.global_position = _move_targets[index].global_position
-		index += 1
 	
 	# Call the set function to update the angle (I promise this does something)
 	spider_angle = spider_angle

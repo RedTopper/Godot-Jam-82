@@ -10,4 +10,6 @@ func _on_timer_timeout() -> void:
 	queue_free()
 
 func _ready() -> void:
-	SignalBus.camera_shake.emit(Vector2(10, 10), 1.5)
+	SignalBus.camera_shake.emit(Vector2(5, 5), 1.5)
+	emitting = true
+	one_shot = true

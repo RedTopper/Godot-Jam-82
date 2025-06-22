@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://5yw4rhabtfqb"]
+[gd_scene load_steps=23 format=3 uid="uid://5yw4rhabtfqb"]
 
 [ext_resource type="Script" uid="uid://4gi7pyxr862w" path="res://objects/guard/guard.gd" id="1_8r01v"]
 [ext_resource type="Script" uid="uid://jihwj7nslsfl" path="res://objects/state_machine.gd" id="2_70b43"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://cavg4mwbnwg3u" path="res://objects/guard/states/alert.gd" id="13_eh7ry"]
 [ext_resource type="Script" uid="uid://bj11iysjxtd2y" path="res://objects/guard/states/navigating.gd" id="15_ewst3"]
 [ext_resource type="Script" uid="uid://bkswajt0qpwvd" path="res://objects/guard/states/pursuing.gd" id="15_v5vvr"]
+[ext_resource type="PackedScene" uid="uid://b25uh2tbfyjq1" path="res://scenes/menu/lose_menu/lose_menu.tscn" id="16_nk5ml"]
 [ext_resource type="AudioStream" uid="uid://dqurxjdgyp71s" path="res://assets/sounds/Horror Violin.wav" id="17_ssn1m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ewst3"]
@@ -91,6 +92,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_eknkk"]
 radius = 273.529
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ssn1m"]
+radius = 43.23
+
 [node name="Guard" type="CharacterBody2D"]
 script = ExtResource("1_8r01v")
 debug = true
@@ -138,6 +142,12 @@ unique_name_in_owner = true
 [node name="HearingArea" type="CollisionShape2D" parent="Hearing"]
 shape = SubResource("CircleShape2D_eknkk")
 
+[node name="CaptureRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CaptureRange"]
+shape = SubResource("CircleShape2D_ssn1m")
+debug_color = Color(0.129885, 0.646642, 0, 0.42)
+
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("2_70b43")
 starting_state = NodePath("Bored")
@@ -172,6 +182,7 @@ one_shot = true
 
 [node name="Navigating" type="Node" parent="StateMachine" node_paths=PackedStringArray("bored_state", "alert_state")]
 script = ExtResource("15_ewst3")
+game_over_scene = ExtResource("16_nk5ml")
 bored_state = NodePath("../Bored")
 alert_state = NodePath("../Alert")
 metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
@@ -203,3 +214,4 @@ pitch_scale = 1.48
 [connection signal="body_entered" from="Hearing" to="StateMachine/Navigating" method="_on_hearing_body_entered"]
 [connection signal="body_entered" from="Hearing" to="StateMachine/Pursuing" method="_on_hearing_body_entered"]
 [connection signal="body_exited" from="Hearing" to="StateMachine/Pursuing" method="_on_hearing_body_exited"]
+[connection signal="body_entered" from="CaptureRange" to="StateMachine/Navigating" method="_on_capture_range_body_entered"]

@@ -5,10 +5,11 @@
 
 [sub_resource type="Gradient" id="Gradient_71ggt"]
 offsets = PackedFloat32Array(0.485261, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+colors = PackedColorArray(2, 2, 2, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_cctdt"]
 gradient = SubResource("Gradient_71ggt")
+use_hdr = true
 
 [sub_resource type="Curve" id="Curve_fwboa"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -35,13 +36,13 @@ self_modulate = Color(1, 0.787333, 0.42, 1)
 emitting = false
 amount = 50
 one_shot = true
-speed_scale = 1.5
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_wws3s")
 script = ExtResource("1_cctdt")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 5.0
+one_shot = true
 autostart = true
 
 [node name="Dialogue" parent="." instance=ExtResource("2_fwboa")]

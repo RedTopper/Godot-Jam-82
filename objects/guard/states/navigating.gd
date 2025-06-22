@@ -1,5 +1,7 @@
 extends State
 
+@export var game_over_scene : PackedScene
+
 @export var bored_state: State
 @export var alert_state: State
 
@@ -8,7 +10,6 @@ var _guard : Guard
 @onready var _heard_something : bool = false
 @onready var _saw_peripheral : bool = false
 @onready var _saw_central : bool = false
-
 
 func enter() -> void:
 	_guard = parent
@@ -62,3 +63,7 @@ func _on_peripheral_vision_body_entered(body: Node2D) -> void:
 func _on_hearing_body_entered(body: Node2D) -> void:
 	if body is Spider:
 		_heard_something = true
+
+func _on_capture_range_body_entered(body: Node2D) -> void:
+	if body is Spider:
+		get_tree().change_scene_to_packed(game_over_scene)
