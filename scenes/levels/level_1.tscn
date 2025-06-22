@@ -34,15 +34,15 @@ visible = false
 
 [node name="TileMapLayer" parent="." index="4" instance=ExtResource("3_sk5k4")]
 
-[node name="Door" parent="." index="5" node_paths=PackedStringArray("_linked_blocker") instance=ExtResource("13_7o3do")]
-position = Vector2(-319, 501)
-_linked_blocker = NodePath("../SubViewportMask/DoorLightBlocker")
+[node name="MainRoomDoor" parent="." index="5" node_paths=PackedStringArray("_linked_blocker") instance=ExtResource("13_7o3do")]
+position = Vector2(-320, 448)
+_linked_blocker = NodePath("../SubViewportMask/MainRoomDoorLightBlocker")
 
 [node name="TileMapLayer" parent="SubViewportMask" index="2" instance=ExtResource("3_sk5k4")]
 material = SubResource("ShaderMaterial_s8va5")
 
-[node name="DoorLightBlocker" parent="SubViewportMask" index="3" instance=ExtResource("5_sk5k4")]
-position = Vector2(-319, 501)
+[node name="MainRoomDoorLightBlocker" parent="SubViewportMask" index="3" instance=ExtResource("5_sk5k4")]
+position = Vector2(-320, 448)
 
 [node name="UI" type="CanvasLayer" parent="." index="9"]
 
