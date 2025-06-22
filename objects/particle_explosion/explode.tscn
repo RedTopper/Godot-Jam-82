@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bo0mbaj8qhxfv"]
+
+[sub_resource type="Gradient" id="Gradient_71ggt"]
+offsets = PackedFloat32Array(0.485261, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cctdt"]
+gradient = SubResource("Gradient_71ggt")
+
+[sub_resource type="Curve" id="Curve_fwboa"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_65ngv"]
+curve = SubResource("Curve_fwboa")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wws3s"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+angle_min = -180.0
+angle_max = 180.0
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 500.0
+gravity = Vector3(0, 0, 0)
+scale_max = 20.0
+scale_curve = SubResource("CurveTexture_65ngv")
+color_ramp = SubResource("GradientTexture1D_cctdt")
+
+[node name="Explode" type="GPUParticles2D"]
+self_modulate = Color(1, 0.787333, 0.42, 1)
+amount = 50
+speed_scale = 1.5
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_wws3s")

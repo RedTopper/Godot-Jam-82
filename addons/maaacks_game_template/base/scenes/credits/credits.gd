@@ -90,14 +90,14 @@ func _scroll_container(amount : float) -> void:
 	$ScrollContainer.scroll_vertical = round(_current_scroll_position)
 	_check_end_reached()
 
-func _process(_delta : float) -> void:
+func _process(delta : float) -> void:
 	if Engine.is_editor_hint():
 		return
 	var input_axis = Input.get_axis("ui_up", "ui_down")
 	if input_axis != 0:
-		_scroll_container(10 * input_axis)
+		_scroll_container(10 * input_axis * delta * 60.0)
 	else:
-		_scroll_container(current_speed)
+		_scroll_container(current_speed * delta * 60.0)
 
 func _on_scroll_container_gui_input(event : InputEvent) -> void:
 	# Capture the mouse scroll wheel input event
