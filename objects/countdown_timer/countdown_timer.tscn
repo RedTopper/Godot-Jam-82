@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://c5d4w60evnr0i"]
+
+[ext_resource type="Script" uid="uid://d1whu7mhsd2hb" path="res://objects/countdown_timer/countdown_timer.gd" id="1_cn56k"]
+[ext_resource type="Texture2D" uid="uid://bisiu787a5h8h" path="res://objects/countdown_timer/Wall1Display.png" id="2_it2gg"]
+[ext_resource type="FontFile" uid="uid://fc61yyfm2l7q" path="res://objects/countdown_timer/RobotoMono-Regular.ttf" id="3_e32rh"]
+
+[sub_resource type="FontVariation" id="FontVariation_til8y"]
+base_font = ExtResource("3_e32rh")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cn56k"]
+size = Vector2(128, 127.5)
+
+[sub_resource type="Gradient" id="Gradient_cn56k"]
+offsets = PackedFloat32Array(0, 0.778675)
+colors = PackedColorArray(0.230106, 0.636932, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_it2gg"]
+gradient = SubResource("Gradient_cn56k")
+width = 128
+height = 80
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="CountdownTimer" type="StaticBody2D"]
+script = ExtResource("1_cn56k")
+
+[node name="Wall1Display" type="Sprite2D" parent="."]
+position = Vector2(64, 64)
+texture = ExtResource("2_it2gg")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 4.0
+offset_top = 15.0
+offset_right = 124.0
+offset_bottom = 51.0
+theme_override_colors/font_color = Color(3.1285e-06, 0.646691, 0.206366, 1)
+theme_override_fonts/font = SubResource("FontVariation_til8y")
+theme_override_font_sizes/font_size = 22
+text = "00:00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(64, 64.25)
+shape = SubResource("RectangleShape2D_cn56k")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(64, 35)
+texture = SubResource("GradientTexture2D_it2gg")

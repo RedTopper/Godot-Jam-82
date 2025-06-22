@@ -1,19 +1,31 @@
 extends Node
 
-func _ready():
-	await get_tree().process_frame
-	print("READY CALLED after frame")
-	_update_all_tilemap_shader_params()
-	get_viewport().connect("size_changed", Callable(self, "_viewport_changed"))
+signal level_won
+signal level_lost
 
-func _viewport_changed():
-	_update_all_tilemap_shader_params()
+var level_state : LevelState
 
-func _update_all_tilemap_shader_params():
-	var size := get_viewport().get_visible_rect().size
-	print("Viewport size being set to: ", size)
+func _on_lose_button_pressed() -> void:
+	level_lost.emit()
 
-	for tilemap in get_tree().get_nodes_in_group("tilemap_shader_users"):
-		if tilemap.material is ShaderMaterial:
-			tilemap.material.set_shader_parameter("viewport_size", size)
-			print("Set on: ", tilemap.name, " → ", tilemap.material.get_shader_parameter("viewport_size"))
+func _on_win_button_pressed() -> void:
+	level_won.emit()
+
+func open_tutorials() -> void:
+	%TutorialManager.open_tutorials()
+	level_state.tutorial_read = true
+
+func _ready() -> void:
+	level_state = GameState.get_level_state(scene_file_path)
+	%ColorPickerButton.color = level_state.color
+	%BackgroundColor.color = level_state.color
+	if not level_state.tutorial_read:
+		open_tutorials()
+
+func _on_color_picker_button_color_changed(color : Color) -> void:
+	%BackgroundColor.color = color
+	level_state.color = color
+	GlobalState.save()
+
+func _on_tutorial_button_pressed() -> void:
+	open_tutorials()

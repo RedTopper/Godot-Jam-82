@@ -17,6 +17,9 @@ func enter() -> void:
 	_spider.velocity = Vector2.ZERO
 	_spider.body.set_leg_prediction_offset(SpiderBody.Direction.NONE)
 	
+	_spider.is_hiding = false
+	_spider.is_moving = false
+	
 	super()
 
 func process_input(_event: InputEvent) -> State:

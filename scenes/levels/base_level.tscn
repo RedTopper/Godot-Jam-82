@@ -88,3 +88,5 @@ shadow_enabled = true
 shadow_filter = 1
 shadow_filter_smooth = 0.9
 texture = SubResource("GradientTexture2D_i5apv")
+
+[node name="Timer" type="Timer" parent="."]

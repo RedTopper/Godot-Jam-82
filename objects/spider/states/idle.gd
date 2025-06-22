@@ -28,6 +28,9 @@ func enter() -> void:
 	_timer.one_shot = true
 	_timer.start(stickbug_time)
 	
+	_spider.is_hiding = false
+	_spider.is_moving = false
+	
 	super()
 
 func process_input(_event: InputEvent) -> State:

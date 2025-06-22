@@ -40,6 +40,9 @@ func process_physics(_delta: float) -> State:
 			_guard.spider_pursue_location = _body.global_position
 		%NavigationAgent.target_position = _guard.spider_pursue_location
 	
+	if %NavigationAgent.is_navigation_finished():
+		return alert_state
+	
 	if $Timer.is_stopped():
 		return alert_state
 	
@@ -51,7 +54,7 @@ func process_physics(_delta: float) -> State:
 	
 	var direction_vector = current_guard_position.direction_to(next_path_position)
 	
-	_guard.velocity = direction_vector * _guard.navigation_speed
+	_guard.velocity = direction_vector * _guard.pursue_speed
 	
 	_guard.rotation = direction_vector.angle()
 	

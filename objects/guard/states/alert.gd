@@ -26,6 +26,8 @@ func enter() -> void:
 	%VisionLight.enabled = true
 	_saw_central = false
 	
+	_initial_angle = _guard.rotation_degrees
+	
 	super()
 
 func exit() -> void:
