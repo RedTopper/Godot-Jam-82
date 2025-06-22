@@ -1,8 +1,10 @@
 extends Node
 
+@export var next_scene: PackedScene
+
 func _ready() -> void:
 	$DialogueAnimations.play("intro")
 
 func _on_win_button_pressed():
-	print("Button Pressed!")
-	get_tree().change_scene("res://scenes/menu/lose_menu/lose_menu.tscn")
+	if next_scene:
+		get_tree().change_scene_to_packed(next_scene)

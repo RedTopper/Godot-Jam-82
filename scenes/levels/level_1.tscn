@@ -1,12 +1,12 @@
-[gd_scene load_steps=20 format=3 uid="uid://cijrs813yfr8h"]
+[gd_scene load_steps=22 format=3 uid="uid://cijrs813yfr8h"]
 
 [ext_resource type="Script" uid="uid://bociyr5ddvuhj" path="res://scenes/levels/level_1.gd" id="1_dnkej"]
 [ext_resource type="PackedScene" uid="uid://bnwew7gd13fvh" path="res://scenes/levels/base_level.tscn" id="1_x42e6"]
 [ext_resource type="Shader" uid="uid://bnqk8jccq8t1y" path="res://scenes/test/spider/shaders/shadows.gdshader" id="2_6761a"]
 [ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="2_dga24"]
 [ext_resource type="AudioStream" uid="uid://b1me5n6pb74aq" path="res://assets/sounds/SCP-x2x.ogg" id="3_dga24"]
+[ext_resource type="PackedScene" uid="uid://dcy8t55n77kiq" path="res://scenes/menu/win_menu/win_menu.tscn" id="3_iav0o"]
 [ext_resource type="PackedScene" uid="uid://cswbiknslt7lc" path="res://scenes/levels/level_1_tile_map_layer.tscn" id="3_sk5k4"]
-[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="3_wtwp4"]
 [ext_resource type="Shader" uid="uid://bgsdtddvqhq1s" path="res://scenes/test/spider/shaders/white.gdshader" id="5_oc4kc"]
 [ext_resource type="PackedScene" uid="uid://dp17f4k33aq83" path="res://objects/door/door_light_blocker.tscn" id="5_sk5k4"]
 [ext_resource type="PackedScene" uid="uid://5yw4rhabtfqb" path="res://objects/guard/guard.tscn" id="8_dga24"]
@@ -55,16 +55,28 @@ shader_parameter/mask_color = Vector3(0, 0, 0)
 viewport_path = NodePath("SubViewportMask")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_oc4kc"]
-vertices = PackedVector2Array(206, -270, 206, 398, -114, 398, -590, -270, 974, 370, 1870, 370, 1870, 910, 818, 910, 818, -50, 974, -270, 434, -270, 590, -50, 434, 690, 590, 910, -718, 910, -114, 690, -718, 690, -270, 690, -270, 398, -590, 398)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(4, 7, 8, 9), PackedInt32Array(10, 9, 8, 11), PackedInt32Array(12, 10, 11, 13), PackedInt32Array(12, 13, 14, 15), PackedInt32Array(14, 16, 17), PackedInt32Array(15, 14, 17), PackedInt32Array(2, 15, 17, 18), PackedInt32Array(3, 2, 18), PackedInt32Array(3, 18, 19)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-640, -320, -640, 448, -320, 448, -320, 640, -768, 640, -768, 960, 640, 960, 640, 0, 768, 0, 768, 960, 1920, 960, 1920, 320, 1024, 320, 1024, -320, 384, -320, 384, 640, -64, 640, -64, 448, 256, 448, 256, -320)])
+vertices = PackedVector2Array(5070, 50, 5837.61, 50, 5830.39, 974, 4430, 974, 590, 910, -718, 910, -718, 690, -270, 690, -270, 398, -590, 398, -590, -270, 206, -270, 206, 398, -114, 398, -114, 690, 434, 690, 590, -50, 434, -270, 974, -270, 818, -50, 974, 370, 818, 910, 1455.84, 910, 1458, 370, 1458, 78, 1202, 78, 1202, -590, 2510, -590, 2126, -306, 2510, 1330, 2354, 1330, 2354, -306, 2126, 78, 1614, 78, 1614, 370, 1870, 370, 1870, 910, 1614, 910, 4274, 974, 4146, 974, 4146, 50, 4915.33, 50, 4913.87, -498, 3250, -498, 3250, -654, 4914, -654, 4914, -1422, 5070, -1422, 4430, 1550, 4274, 1330, 1457.84, 1550, 1614, 1330)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 10, 11), PackedInt32Array(11, 12, 13), PackedInt32Array(8, 11, 13, 7), PackedInt32Array(7, 13, 14), PackedInt32Array(4, 7, 14), PackedInt32Array(4, 14, 15), PackedInt32Array(16, 4, 15, 17), PackedInt32Array(16, 17, 18, 19), PackedInt32Array(19, 18, 20, 21), PackedInt32Array(22, 21, 20, 23), PackedInt32Array(24, 25, 26, 27, 28), PackedInt32Array(27, 29, 30, 31), PackedInt32Array(28, 32, 33), PackedInt32Array(34, 35, 36, 37), PackedInt32Array(38, 39, 40, 41), PackedInt32Array(42, 43, 44, 45), PackedInt32Array(45, 46, 47, 0), PackedInt32Array(42, 45, 0, 41), PackedInt32Array(41, 0, 3, 38), PackedInt32Array(38, 3, 48, 49), PackedInt32Array(49, 48, 50, 29), PackedInt32Array(30, 29, 50), PackedInt32Array(51, 30, 50), PackedInt32Array(37, 51, 50, 22, 23), PackedInt32Array(34, 37, 23, 24), PackedInt32Array(33, 34, 24), PackedInt32Array(27, 31, 28), PackedInt32Array(33, 24, 28)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-640, -320, -640, 448, -320, 448, -320, 640, -768, 640, -768, 960, 640, 960, 640, 0, 768, 0, 768, 960, 1406, 960, 1408, 1600, 2752, 1600, 4480, 1600, 4480, 1024, 5880, 1024, 5888, 0, 5120, 0, 5120, -448, 5120, -1472, 4864, -1472, 4864, -704, 3200, -704, 3200, -448, 4864, -448, 4865.2, 0, 4096, 0, 4096, 1024, 4224, 1024, 4224, 1280, 2752, 1280, 1664, 1280, 1664, 960, 1920, 960, 1920, 320, 1664, 320, 1664, 128, 2176, 128, 2176, -256, 2304, -256, 2304, 1280, 2560, 1280, 2560, -640, 1152, -640, 1152, 128, 1408, 128, 1408, 320, 1024, 320, 1024, -320, 384, -320, 384, 640, -64, 640, -64, 448, 256, 448, 256, -320)])
 agent_radius = 50.0
+
+[sub_resource type="Gradient" id="Gradient_fd1vx"]
+offsets = PackedFloat32Array(0.424802, 0.725594)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_excbq"]
+gradient = SubResource("Gradient_fd1vx")
+width = 1024
+height = 1024
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s8va5"]
 shader = ExtResource("5_oc4kc")
 
 [node name="BaseLevel" instance=ExtResource("1_x42e6")]
 script = ExtResource("1_dnkej")
+next_scene = ExtResource("3_iav0o")
 
 [node name="DialogueAnimations" type="AnimationPlayer" parent="." index="0"]
 libraries = {
@@ -91,37 +103,11 @@ navigation_polygon = SubResource("NavigationPolygon_oc4kc")
 [node name="Spider" parent="." index="8"]
 position = Vector2(-192, 0)
 
-[node name="UI" type="CanvasLayer" parent="." index="9"]
-
-[node name="MarginContainer" type="MarginContainer" parent="UI" index="0"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer" index="0"]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer/VBoxContainer" index="0"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 32
-script = ExtResource("3_wtwp4")
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="UI/MarginContainer/VBoxContainer" index="1"]
-layout_mode = 2
-
-[node name="MainRoomStuff" type="Node2D" parent="." index="10"]
+[node name="MainRoomStuff" type="Node2D" parent="." index="9"]
 
 [node name="Door" parent="MainRoomStuff" index="0" node_paths=PackedStringArray("linked_blocker") instance=ExtResource("13_7o3do")]
 position = Vector2(-320, 448)
-linked_blocker = NodePath("../../SubViewportMask/MainRoomStuff/DoorLightBlocker")
+linked_blocker = NodePath("../../SubViewportMask/DoorLightBlockerMainRoom")
 explode_on_close = true
 
 [node name="SecurityCamera1" parent="MainRoomStuff" index="1" instance=ExtResource("9_qxy0u")]
@@ -182,23 +168,222 @@ zone = "main_room"
 position = Vector2(-40, 720)
 zone = "main_room"
 
+[node name="PointLight2D1" type="PointLight2D" parent="MainRoomStuff" index="9"]
+position = Vector2(512, 768)
+energy = 2.0
+blend_mode = 2
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 1.0
+texture = SubResource("GradientTexture2D_excbq")
+height = 256.0
+
+[node name="PointLight2D2" type="PointLight2D" parent="MainRoomStuff" index="10"]
+position = Vector2(-640, 768)
+energy = 2.0
+blend_mode = 2
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 1.0
+texture = SubResource("GradientTexture2D_excbq")
+height = 256.0
+
+[node name="ExteriorRoom1" type="Node2D" parent="." index="10"]
+
+[node name="Door1" parent="ExteriorRoom1" index="0" node_paths=PackedStringArray("linked_blocker") instance=ExtResource("13_7o3do")]
+position = Vector2(1408, 120)
+linked_blocker = NodePath("../../SubViewportMask/DoorLightBlockerExterior1_1")
+explode_on_close = true
+
+[node name="Door2" parent="ExteriorRoom1" index="1" node_paths=PackedStringArray("linked_blocker") instance=ExtResource("13_7o3do")]
+position = Vector2(1424, 952)
+linked_blocker = NodePath("../../SubViewportMask/DoorLightBlockerExterior1_2")
+explode_on_close = true
+
+[node name="SecurityCamera2" parent="ExteriorRoom1" index="2" instance=ExtResource("9_qxy0u")]
+position = Vector2(1912, 208)
+rotation = 2.32587
+scale = Vector2(1.5, 1.5)
+min_angle_deg = 100.0
+max_angle_deg = 170.0
+zone = "exterior_1"
+
+[node name="SecurityCamera3" parent="ExteriorRoom1" index="3" instance=ExtResource("9_qxy0u")]
+position = Vector2(1920, 904)
+rotation = 3.89732
+scale = Vector2(1.5, 1.5)
+min_angle_deg = 190.0
+max_angle_deg = 260.0
+zone = "exterior_1"
+
+[node name="SecurityCamera4" parent="ExteriorRoom1" index="4" instance=ExtResource("9_qxy0u")]
+position = Vector2(768, 896)
+rotation = 5.46812
+scale = Vector2(1.5, 1.5)
+min_angle_deg = 280.0
+max_angle_deg = 350.0
+zone = "exterior_1"
+
+[node name="UnseenContainment" type="RichTextLabel" parent="ExteriorRoom1" index="5"]
+offset_left = 1760.0
+offset_top = -744.0
+offset_right = 2015.0
+offset_bottom = -704.0
+text = "The Unseen Containment Facility"
+fit_content = true
+autowrap_mode = 0
+
+[node name="SecurityHallway" type="RichTextLabel" parent="ExteriorRoom1" index="6"]
+offset_left = 1240.0
+offset_top = 224.0
+offset_right = 1392.0
+offset_bottom = 264.0
+text = "Security Hallway"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Guard1" parent="ExteriorRoom1" index="7" instance=ExtResource("8_dga24")]
+position = Vector2(1208, -8)
+zone = "exterior_1"
+
+[node name="Guard2" parent="ExteriorRoom1" index="8" instance=ExtResource("8_dga24")]
+position = Vector2(1736, -32)
+zone = "exterior_1"
+
+[node name="Guard3" parent="ExteriorRoom1" index="9" instance=ExtResource("8_dga24")]
+position = Vector2(1456, 1208)
+zone = "exterior_1"
+
+[node name="Guard4" parent="ExteriorRoom1" index="10" instance=ExtResource("8_dga24")]
+position = Vector2(1608, 1208)
+zone = "exterior_1"
+
+[node name="PointLight2D1" type="PointLight2D" parent="ExteriorRoom1" index="11"]
+position = Vector2(1408, 640)
+energy = 2.0
+blend_mode = 2
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 1.0
+texture = SubResource("GradientTexture2D_excbq")
+height = 256.0
+
+[node name="ExteriorRoom2" type="Node2D" parent="." index="11"]
+
+[node name="Door1" parent="ExteriorRoom2" index="0" node_paths=PackedStringArray("linked_blocker") instance=ExtResource("13_7o3do")]
+position = Vector2(4864, -144)
+linked_blocker = NodePath("../../SubViewportMask/DoorLightBlockerExterior2_1")
+explode_on_close = true
+
+[node name="SecurityCamera1" parent="ExteriorRoom2" index="1" instance=ExtResource("9_qxy0u")]
+position = Vector2(4088, -128)
+rotation = 0.785398
+scale = Vector2(1.5, 1.5)
+min_angle_deg = 10.0
+max_angle_deg = 80.0
+zone = "exterior_2"
+
+[node name="SecurityCamera2" parent="ExteriorRoom2" index="2" instance=ExtResource("9_qxy0u")]
+position = Vector2(5896, -128)
+rotation = 2.32587
+scale = Vector2(1.5, 1.5)
+min_angle_deg = 100.0
+max_angle_deg = 170.0
+zone = "exterior_2"
+
+[node name="SecurityCamera3" parent="ExteriorRoom2" index="3" instance=ExtResource("9_qxy0u")]
+position = Vector2(5888, 968)
+rotation = 3.89732
+scale = Vector2(1.5, 1.5)
+min_angle_deg = 190.0
+max_angle_deg = 260.0
+zone = "exterior_2"
+
+[node name="SecurityCamera4" parent="ExteriorRoom2" index="4" instance=ExtResource("9_qxy0u")]
+position = Vector2(4104, 960)
+rotation = 5.46812
+scale = Vector2(1.5, 1.5)
+min_angle_deg = 280.0
+max_angle_deg = 350.0
+zone = "exterior_2"
+
+[node name="UnseenContainment" type="RichTextLabel" parent="ExteriorRoom2" index="5"]
+offset_left = 5240.0
+offset_top = -96.0
+offset_right = 5495.0
+offset_bottom = -56.0
+text = "Boss room or something?"
+fit_content = true
+autowrap_mode = 0
+
+[node name="SecurityHallway" type="RichTextLabel" parent="ExteriorRoom2" index="6"]
+offset_left = 4688.0
+offset_top = -96.0
+offset_right = 4840.0
+offset_bottom = -56.0
+text = "Sample Text"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Guard1" parent="ExteriorRoom2" index="7" instance=ExtResource("8_dga24")]
+position = Vector2(4960, -344)
+zone = "exterior_2"
+
+[node name="Guard2" parent="ExteriorRoom2" index="8" instance=ExtResource("8_dga24")]
+position = Vector2(4488, -568)
+zone = "exterior_2"
+
+[node name="Guard3" parent="ExteriorRoom2" index="9" instance=ExtResource("8_dga24")]
+position = Vector2(4960, -768)
+zone = "exterior_2"
+
+[node name="Guard4" parent="ExteriorRoom2" index="10" instance=ExtResource("8_dga24")]
+position = Vector2(5008, -440)
+zone = "exterior_2"
+
+[node name="Guard5" parent="ExteriorRoom2" index="11" instance=ExtResource("8_dga24")]
+position = Vector2(5024, -672)
+zone = "exterior_2"
+
+[node name="Guard6" parent="ExteriorRoom2" index="12" instance=ExtResource("8_dga24")]
+position = Vector2(4984, -576)
+zone = "exterior_2"
+
+[node name="PointLight2D1" type="PointLight2D" parent="ExteriorRoom2" index="13"]
+position = Vector2(4912, 520)
+energy = 2.0
+blend_mode = 2
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 1.0
+texture = SubResource("GradientTexture2D_excbq")
+height = 256.0
+
 [node name="TileMapLayer" parent="SubViewportMask" index="2" instance=ExtResource("3_sk5k4")]
 material = SubResource("ShaderMaterial_s8va5")
 
-[node name="MainRoomStuff" type="Node2D" parent="SubViewportMask" index="3"]
-
-[node name="DoorLightBlocker" parent="SubViewportMask/MainRoomStuff" index="0" instance=ExtResource("5_sk5k4")]
+[node name="DoorLightBlockerMainRoom" parent="SubViewportMask" index="3" instance=ExtResource("5_sk5k4")]
 position = Vector2(-320, 448)
 
-[node name="MaskRoot" parent="SubViewportMask" index="4"]
+[node name="DoorLightBlockerExterior1_1" parent="SubViewportMask" index="4" instance=ExtResource("5_sk5k4")]
+position = Vector2(1408, 120)
+
+[node name="DoorLightBlockerExterior1_2" parent="SubViewportMask" index="5" instance=ExtResource("5_sk5k4")]
+position = Vector2(1424, 952)
+
+[node name="DoorLightBlockerExterior2_1" parent="SubViewportMask" index="6" instance=ExtResource("5_sk5k4")]
+position = Vector2(4864, -144)
+
+[node name="MaskRoot" parent="SubViewportMask" index="7"]
 position = Vector2(-192, 0)
 
-[node name="WinButton" type="Button" parent="." index="13"]
-z_index = 10
-offset_left = -136.0
-offset_top = -139.0
-offset_right = -98.0
-offset_bottom = -108.0
+[node name="WinButton" type="Button" parent="." index="14"]
+z_index = 63
+custom_minimum_size = Vector2(500, 300)
+offset_left = -448.0
+offset_top = -880.0
+offset_right = 52.0
+offset_bottom = -580.0
 text = "Win"
 
 [connection signal="pressed" from="WinButton" to="." method="_on_win_button_pressed"]

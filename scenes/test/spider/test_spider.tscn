@@ -43,12 +43,12 @@ void light() {
 render_priority = 0
 shader = SubResource("Shader_qqrwg")
 
-[sub_resource type="Gradient" id="Gradient_fd1vx"]
+[sub_resource type="Gradient" id="Gradient_1m8wn"]
 offsets = PackedFloat32Array(0.424802, 0.725594)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_qqrwg"]
-gradient = SubResource("Gradient_fd1vx")
+gradient = SubResource("Gradient_1m8wn")
 width = 2048
 height = 2048
 fill = 1
