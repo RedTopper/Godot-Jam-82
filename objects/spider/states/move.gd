@@ -17,6 +17,10 @@ func enter() -> void:
 	_tank_rotation = get_input_rotation()
 	
 	move_sound_stream.play()
+	
+	_spider.is_moving = true
+	_spider.is_hiding = false
+	
 	super()
 
 func process_input(_event: InputEvent) -> State:

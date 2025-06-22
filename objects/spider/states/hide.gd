@@ -11,6 +11,9 @@ var _spider: Spider
 func enter() -> void:
 	_spider = parent
 	
+	_spider.is_hiding = true
+	_spider.is_moving = false
+	
 	#%AnimationPlayer.play("hide")
 	
 	super()
