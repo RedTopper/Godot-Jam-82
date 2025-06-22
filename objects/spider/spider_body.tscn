@@ -433,6 +433,10 @@ graph_offset = Vector2(162, 21)
 
 [node name="SpiderCore" type="Node2D"]
 script = ExtResource("1_m0665")
+leg_update_rate = 0.075
+
+[node name="LegUpdateTimer" type="Timer" parent="."]
+autostart = true
 
 [node name="Core" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -442,72 +446,72 @@ rotation = 1.5708
 [node name="Legs" type="Node2D" parent="Core"]
 
 [node name="LegFrontLeft" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(15.9932, -29.0042)
-rotation = -1.20195
-scale = Vector2(0.99992, 0.99992)
+position = Vector2(15.9994, -29.0004)
+rotation = -1.07042
+scale = Vector2(0.999987, 0.999987)
 texture = ExtResource("2_jgxg0")
 offset = Vector2(46.811, 0.149733)
 
 [node name="LegFrontLeftTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(48.6986, -110.012)
-rotation = 0.482969
-scale = Vector2(0.999917, 0.999917)
+position = Vector2(59.0492, -105.024)
+rotation = 0.436178
+scale = Vector2(0.999992, 0.999992)
 texture = ExtResource("3_wi608")
 offset = Vector2(50.8895, -1.12513)
 
 [node name="LegRearLeft" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-21.0068, -25.0014)
-rotation = -2.27315
-scale = Vector2(0.999919, 0.999919)
+position = Vector2(-21.0006, -25.0001)
+rotation = -2.15526
+scale = Vector2(0.999988, 0.999988)
 texture = ExtResource("2_jgxg0")
 offset = Vector2(46.381, 0.738304)
 
 [node name="LegRearLeftTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-75.2354, -93.3245)
-rotation = -0.085383
-scale = Vector2(0.999913, 0.999913)
+position = Vector2(-66.8197, -99.2325)
+rotation = -0.0236295
+scale = Vector2(0.999989, 0.999989)
 texture = ExtResource("3_wi608")
 offset = Vector2(48.3324, -0.384361)
 
 [node name="LegRear" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-33.9777, -1)
-rotation = 3.00391
-scale = Vector2(0.99994, 0.99994)
+position = Vector2(-33.9979, -1)
+rotation = 2.97231
+scale = Vector2(0.999995, 0.999995)
 texture = ExtResource("2_jgxg0")
 offset = Vector2(47.0226, 1.55007)
 
 [node name="LegRearTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-122.176, 7.0067)
-rotation = 0.119782
-scale = Vector2(0.999938, 0.999938)
+position = Vector2(-121.904, 9.78991)
+rotation = 0.0685117
+scale = Vector2(0.999994, 0.999994)
 texture = ExtResource("3_wi608")
 offset = Vector2(49.075, -1.42671)
 
 [node name="LegRearRight" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-19.0068, 26.0006)
-rotation = 2.1648
-scale = Vector2(0.999912, 0.999912)
+position = Vector2(-19.0006, 26.0001)
+rotation = 2.05023
+scale = Vector2(0.999988, 0.999988)
 texture = ExtResource("2_jgxg0")
 offset = Vector2(45.6698, 0.856277)
 
 [node name="LegRearRightTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(-69.3705, 96.8398)
-rotation = 0.106583
-scale = Vector2(0.999909, 0.999909)
+position = Vector2(-60.9392, 102.138)
+rotation = 0.0495856
+scale = Vector2(0.999993, 0.999993)
 texture = ExtResource("3_wi608")
 offset = Vector2(48.2565, -1.70259)
 
 [node name="LegFrontRight" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(16, 23.9958)
-rotation = 1.18662
-scale = Vector2(0.999922, 0.999922)
+position = Vector2(16, 23.9996)
+rotation = 1.05904
+scale = Vector2(0.99999, 0.99999)
 texture = ExtResource("2_jgxg0")
 offset = Vector2(46.8127, 2.33227)
 
 [node name="LegFrontRightTip" type="Sprite2D" parent="Core/Legs"]
-position = Vector2(46.4151, 106.547)
-rotation = -0.389737
-scale = Vector2(0.999904, 0.999904)
+position = Vector2(56.6741, 102.015)
+rotation = -0.343874
+scale = Vector2(0.99999, 0.99999)
 texture = ExtResource("3_wi608")
 offset = Vector2(48.0453, -1.18069)
 
@@ -736,3 +740,5 @@ parameters/conditions/hide = false
 parameters/conditions/idle = false
 parameters/conditions/move = false
 parameters/conditions/stickbug = false
+
+[connection signal="timeout" from="LegUpdateTimer" to="." method="_on_leg_update_timer_timeout"]

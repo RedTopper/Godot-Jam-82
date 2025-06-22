@@ -13,13 +13,13 @@ extends Node2D
 
 const scene = preload("res://objects/ping/ping.tscn")
 
-static func new_ping(radius_min: float = 10.0, radius_max: float = 50.0, width: float = 5.0, color: Color = Color("white")) -> Ping:
-	var new_ping: Ping = scene.instantiate()
-	new_ping.radius_min = radius_min
-	new_ping.radius_max = radius_max
-	new_ping.width = width
-	new_ping.color = color
-	return new_ping
+static func new_ping(radius_min_p: float = 10.0, radius_max_p: float = 50.0, width_p: float = 5.0, color_p: Color = Color("white")) -> Ping:
+	var ping: Ping = scene.instantiate()
+	ping.radius_min = radius_min_p
+	ping.radius_max = radius_max_p
+	ping.width = width_p
+	ping.color = color_p
+	return ping
 
 func _ready() -> void:
 	_anim.play("circle")
@@ -29,5 +29,5 @@ func _ready() -> void:
 func _draw() -> void:
 	draw_circle(Vector2(), anim_radius * radius_max + radius_min, Color(color, anim_alpha), false, width, true)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	queue_redraw()

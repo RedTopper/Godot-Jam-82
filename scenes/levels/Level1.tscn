@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://bp0ggixgd3f1b"]
+[gd_scene load_steps=22 format=4 uid="uid://bp0ggixgd3f1b"]
 
 [ext_resource type="Script" uid="uid://dascyfbydab0c" path="res://examples/scenes/game_scene/levels/level.gd" id="1_d5dhk"]
 [ext_resource type="Texture2D" uid="uid://bt43cs3b0nfjr" path="res://assets/spritesheets/FloorWallSheet.png" id="4_1seuy"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://db5xnyqyfufgs" path="res://assets/spritesheets/floor1_s.png" id="8_nkeig"]
 [ext_resource type="Texture2D" uid="uid://dsrf8j8sydbw0" path="res://assets/spritesheets/floor1_n.png" id="9_5ntmo"]
 [ext_resource type="Texture2D" uid="uid://c4ducup4x7y51" path="res://assets/spritesheets/FloorSheet1.png" id="9_ldmar"]
-[ext_resource type="Texture2D" path="res://scenes/test/assets/flashlight_alpha.png" id="11_nkeig"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2r1tl"]
 texture = ExtResource("4_1seuy")
@@ -150,7 +149,6 @@ energy = 0.56
 shadow_enabled = true
 shadow_filter = 2
 shadow_filter_smooth = 0.5
-texture = ExtResource("11_nkeig")
 offset = Vector2(344, 3)
 texture_scale = 0.75
 height = 707.0
@@ -162,7 +160,6 @@ energy = 0.35
 shadow_enabled = true
 shadow_filter = 2
 shadow_filter_smooth = 0.5
-texture = ExtResource("11_nkeig")
 offset = Vector2(467, -1)
 texture_scale = 1.5
 height = 258.0
@@ -174,7 +171,6 @@ energy = 0.35
 shadow_enabled = true
 shadow_filter = 2
 shadow_filter_smooth = 0.5
-texture = ExtResource("11_nkeig")
 offset = Vector2(167, -6)
 texture_scale = 1.5
 height = 258.0

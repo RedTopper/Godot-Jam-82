@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://2djxv63ojr8u"]
+
+[ext_resource type="PackedScene" uid="uid://bvwl11s2p0hd" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/master_options_menu.tscn" id="1_2pyxh"]
+[ext_resource type="Script" uid="uid://c3ka32vbs7n3g" path="res://scenes/menu/options_menu/master_options_menu.gd" id="2_j2srv"]
+[ext_resource type="PackedScene" uid="uid://cu1smlkuska5b" path="res://scenes/menu/options_menu/input/input_options_menu.tscn" id="3_2il4x"]
+[ext_resource type="PackedScene" uid="uid://cc30rhoj1f3tu" path="res://scenes/menu/options_menu/audio/audio_options_menu.tscn" id="5_b0fve"]
+[ext_resource type="PackedScene" uid="uid://b02iyhk6vhio4" path="res://scenes/menu/options_menu/video/video_options_menu_with_extras.tscn" id="6_i3bop"]
+
+[sub_resource type="Gradient" id="Gradient_o6ptv"]
+offsets = PackedFloat32Array(0.424879, 0.699515)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y5tfu"]
+gradient = SubResource("Gradient_o6ptv")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y5tfu"]
+
+[node name="MasterOptionsMenu" instance=ExtResource("1_2pyxh")]
+script = ExtResource("2_j2srv")
+
+[node name="CenterContainer" type="CenterContainer" parent="." index="0"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="Control" type="Control" parent="CenterContainer" index="0"]
+layout_mode = 2
+
+[node name="PointLight2D" type="PointLight2D" parent="CenterContainer/Control" index="0"]
+texture = SubResource("GradientTexture2D_y5tfu")
+height = 425.0
+
+[node name="TabContainer" parent="." index="1"]
+theme_override_styles/panel = SubResource("StyleBoxEmpty_y5tfu")
+current_tab = 0
+
+[node name="Controls" parent="TabContainer" index="1" instance=ExtResource("3_2il4x")]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Audio" parent="TabContainer" index="2" instance=ExtResource("5_b0fve")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Video" parent="TabContainer" index="3" instance=ExtResource("6_i3bop")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
