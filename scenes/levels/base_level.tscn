@@ -53,9 +53,9 @@ z_index = 1
 scale = Vector2(0.5, 0.5)
 debug = false
 
-[node name="Camera2D" type="Camera2D" parent="Spider"]
-process_callback = 0
+[node name="CameraWithShake" parent="Spider" node_paths=PackedStringArray("attached_camera") instance=ExtResource("6_qhwlw")]
 position_smoothing_enabled = true
+attached_camera = NodePath("../../SubViewportMask/MaskRoot/Camera2D")
 
 [node name="RemoteTransformMaskRoot" type="RemoteTransform2D" parent="Spider"]
 remote_path = NodePath("../../SubViewportMask/MaskRoot")
@@ -78,7 +78,8 @@ texture = SubResource("GradientTexture2D_1vfnp")
 [node name="MaskRoot" type="Node2D" parent="SubViewportMask"]
 scale = Vector2(0.5, 0.5)
 
-[node name="CameraWithShake" parent="SubViewportMask/MaskRoot" instance=ExtResource("6_qhwlw")]
+[node name="Camera2D" type="Camera2D" parent="SubViewportMask/MaskRoot"]
+process_callback = 0
 
 [node name="MaskLight" type="PointLight2D" parent="SubViewportMask/MaskRoot"]
 scale = Vector2(2, 2)
