@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://dp17f4k33aq83"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_58wfd"]
-polygon = PackedVector2Array(256, 0, 256, 16, 0, 16, 0, 0)
+polygon = PackedVector2Array(280, 0, 280, 16, -24, 16, -24, 0)
 
 [node name="DoorLightBlocker" type="LightOccluder2D"]
 occluder = SubResource("OccluderPolygon2D_58wfd")

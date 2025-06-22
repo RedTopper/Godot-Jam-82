@@ -1,4 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bo0mbaj8qhxfv"]
+[gd_scene load_steps=8 format=3 uid="uid://bo0mbaj8qhxfv"]
+
+[ext_resource type="Script" uid="uid://vfeanvb1x4rm" path="res://objects/particle_explosion/explode.gd" id="1_cctdt"]
+[ext_resource type="PackedScene" uid="uid://ms0rriwcep80" path="res://objects/dialogue/dialogue.tscn" id="2_fwboa"]
 
 [sub_resource type="Gradient" id="Gradient_71ggt"]
 offsets = PackedFloat32Array(0.485261, 1)
@@ -29,7 +32,19 @@ color_ramp = SubResource("GradientTexture1D_cctdt")
 
 [node name="Explode" type="GPUParticles2D"]
 self_modulate = Color(1, 0.787333, 0.42, 1)
+emitting = false
 amount = 50
+one_shot = true
 speed_scale = 1.5
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_wws3s")
+script = ExtResource("1_cctdt")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Dialogue" parent="." instance=ExtResource("2_fwboa")]
+text = "*Kaboom!*"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

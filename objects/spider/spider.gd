@@ -13,6 +13,11 @@ var has_keycard: bool = true
 
 @onready var _state_machine = $StateMachine
 
+func say(text: String) -> void:
+	var dialog = Dialogue.new_dialogue(text, Dialogue.Direction.POINT_DOWN)
+	dialog.global_position = global_position
+	get_parent().add_child(dialog)
+
 func _ready() -> void:
 	body.debug = debug
 	_state_machine.init(self, body.animations, $MoveComponent, body.animation_tree)

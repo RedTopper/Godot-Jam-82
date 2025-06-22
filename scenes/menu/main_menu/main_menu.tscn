@@ -108,7 +108,7 @@ fill_from = Vector2(0.5, 0.5)
 script = ExtResource("2_ww8d4")
 tween_time = 0.5
 spider_ui_offset = 350.0
-game_scene_path = "res://examples/scenes/game_scene/game_ui.tscn"
+game_scene_path = "uid://cijrs813yfr8h"
 options_packed_scene = ExtResource("3_wd51l")
 credits_packed_scene = ExtResource("4_3tda0")
 
@@ -191,6 +191,9 @@ text = "Godot Wild Jam 82"
 
 [node name="MenuButtonsMargin" parent="MenuContainer" index="2"]
 theme_override_constants/margin_top = 8
+
+[node name="NewGameButton" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="0"]
+text = "Play"
 
 [node name="OptionsContainer" parent="." index="10"]
 theme_override_constants/margin_left = 70

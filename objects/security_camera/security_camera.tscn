@@ -44,6 +44,7 @@ shadow_filter = 2
 shadow_filter_smooth = 0.5
 texture = ExtResource("7_i2mjy")
 texture_scale = 0.25
+height = 50.0
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("2_1lh6r")
