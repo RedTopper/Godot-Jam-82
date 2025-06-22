@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://o8qaxb0atmfh"]
+[gd_scene load_steps=24 format=3 uid="uid://o8qaxb0atmfh"]
 
 [ext_resource type="Shader" uid="uid://bnqk8jccq8t1y" path="res://scenes/test/spider/shaders/shadows.gdshader" id="1_7j0c4"]
 [ext_resource type="PackedScene" uid="uid://cx41sr3oafqr5" path="res://scenes/test/spider/tile_map_layer.tscn" id="2_lf0m3"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://c2i7lnlmeyl4t" path="res://objects/camera_with_shake/camera.tscn" id="6_15e6e"]
 [ext_resource type="PackedScene" uid="uid://b0m64u3t060k0" path="res://objects/security_camera/security_camera.tscn" id="6_un8jk"]
 [ext_resource type="PackedScene" uid="uid://5yw4rhabtfqb" path="res://objects/guard/guard.tscn" id="7_hys3y"]
+[ext_resource type="PackedScene" uid="uid://d1ei27cbefwb3" path="res://objects/countdown_timer/countdown_timer_controller.tscn" id="10_1m8wn"]
+[ext_resource type="PackedScene" uid="uid://c5d4w60evnr0i" path="res://objects/countdown_timer/countdown_timer.tscn" id="11_1irk4"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hys3y"]
 vertices = PackedVector2Array(272.82, 276.188, -283.648, 286.789, -268.32, -170.227, -187, -172.242, 182.898, -166, 690.188, 494.063, 683.18, 110.203, 881.32, 114.211, 856.797, 274.328, 861.211, 485.109, 1042.85, 483.109, 1040.13, 674.063, -572.93, 684.93, -83.1016, -947.258, 82.0234, -951.719, 83.0313, -568, -87.1016, -564.938, 559.18, -568, 574.813, 283, 384.094, 283, 390.094, -385.109, 185.102, -382.891, 681.039, -570, 1040.99, -570, 1040.93, -496.109, 857.148, -495.992, 682.953, -103.844, 853.852, -281.109, 874.703, -100.852, 1042.96, -279.102, 1041.03, 268.32, -391.977, 487.938, -565.063, -567.93, -394.023, -387, -184.742, -387, 265.172, -166, -187, -298.742)
@@ -177,9 +179,15 @@ max_angle_deg = 80.0
 
 [node name="Guard" parent="." instance=ExtResource("7_hys3y")]
 position = Vector2(0, -882)
+debug = false
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
+[node name="CountdownTimerController" parent="." node_paths=PackedStringArray("timers") instance=ExtResource("10_1m8wn")]
+wait_time = 90.0
 autostart = true
+timers = [NodePath("../CountdownTimer"), NodePath("../CountdownTimer2")]
 
-[connection signal="timeout" from="Timer" to="SubViewportMask/MaskRoot/CameraWithShake" method="_on_test_shake"]
+[node name="CountdownTimer" parent="." instance=ExtResource("11_1irk4")]
+position = Vector2(196, -697)
+
+[node name="CountdownTimer2" parent="." instance=ExtResource("11_1irk4")]
+position = Vector2(-322, 367)
