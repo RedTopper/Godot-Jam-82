@@ -108,18 +108,6 @@ size_flags_vertical = 3
 theme_override_constants/separation = 32
 script = ExtResource("3_wtwp4")
 
-[node name="LoseButton" type="Button" parent="UI/MarginContainer/VBoxContainer/HBoxContainer" index="0"]
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 0
-text = "Lose"
-
-[node name="WinButton" type="Button" parent="UI/MarginContainer/VBoxContainer/HBoxContainer" index="1"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "Win"
-
 [node name="HBoxContainer2" type="HBoxContainer" parent="UI/MarginContainer/VBoxContainer" index="1"]
 layout_mode = 2
 
@@ -189,3 +177,13 @@ position = Vector2(-320, 448)
 
 [node name="MaskRoot" parent="SubViewportMask" index="4"]
 position = Vector2(-192, 0)
+
+[node name="WinButton" type="Button" parent="." index="13"]
+z_index = 10
+offset_left = -136.0
+offset_top = -139.0
+offset_right = -98.0
+offset_bottom = -108.0
+text = "Win"
+
+[connection signal="pressed" from="WinButton" to="." method="_on_win_button_pressed"]

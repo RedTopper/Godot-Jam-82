@@ -196,6 +196,5 @@ position = Vector2(196, -697)
 [node name="CountdownTimer2" parent="." instance=ExtResource("11_1irk4")]
 position = Vector2(-322, 367)
 
-[node name="Door" parent="." node_paths=PackedStringArray("_linked_blocker") instance=ExtResource("11_2qd4f")]
+[node name="Door" parent="." instance=ExtResource("11_2qd4f")]
 position = Vector2(-130, -339)
-_linked_blocker = NodePath("../SubViewportMask/DoorLightBlocker")
