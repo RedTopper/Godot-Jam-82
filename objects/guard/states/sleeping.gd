@@ -23,6 +23,7 @@ func enter() -> void:
 func exit() -> void:
 	%CentralVision.monitoring = true
 	%PeripheralVision.monitoring = true
+	_heard_something = false
 
 #func process_input(_event: InputEvent) -> State:
 	#return null

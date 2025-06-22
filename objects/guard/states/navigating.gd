@@ -20,6 +20,9 @@ func enter() -> void:
 
 func exit() -> void:
 	%VisionLight.enabled = false
+	_saw_central = false
+	_saw_peripheral = false
+	_heard_something = false
 
 # _process_physics
 func process_physics(_delta: float) -> State:

@@ -23,13 +23,13 @@ enum Direction {
 	POINT_UP,
 }
 
-static func new_dialogue(text: String, direction: Direction = Direction.POINT_AUTO, border: Color = Color(0.9, 0.9, 0.9), background: Color = Color(0.1, 0.1, 0.1)) -> Dialogue:
-	var new_dialogue: Dialogue = scene.instantiate()
-	new_dialogue.text = text
-	new_dialogue.direction = direction
-	new_dialogue.border = border
-	new_dialogue.background = background
-	return new_dialogue
+static func new_dialogue(text_p: String, direction_p: Direction = Direction.POINT_AUTO, border_p: Color = Color(0.9, 0.9, 0.9), background_p: Color = Color(0.1, 0.1, 0.1)) -> Dialogue:
+	var dialogue: Dialogue = scene.instantiate()
+	dialogue.text = text_p
+	dialogue.direction = direction_p
+	dialogue.border = border_p
+	dialogue.background = background_p
+	return dialogue
 
 func _ready() -> void:
 	var styleBox = _panel.get_theme_stylebox("panel")
@@ -43,7 +43,6 @@ func _ready() -> void:
 	_label.push_color(Color(border))
 	_label.add_text(text)
 	_label.pop()
-	_label.get_theme
 	
 	if direction == Direction.POINT_AUTO:
 		#direction = _calculate_orientation()
@@ -56,13 +55,6 @@ func _ready() -> void:
 	await _anim.animation_finished
 	
 	queue_free()
-	
-func _calculate_orientation() -> Direction:
-	var pos = get_viewport().size - (get_global_transform_with_canvas() / 2)
-	if pos.x < 0.0: return Direction.POINT_RIGHT
-	if pos.x >= 0.0: return Direction.POINT_LEFT
-	if pos.y >= 0.0: return Direction.POINT_UP
-	return Direction.POINT_DOWN
 
 func _set_orientation():
 	match direction:
@@ -70,7 +62,7 @@ func _set_orientation():
 			_root.rotation_degrees = 180
 			_panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
 			_panel.grow_vertical = Control.GROW_DIRECTION_END
-		Direction.POINT_DOWN:
+		Direction.POINT_AUTO, Direction.POINT_DOWN:
 			_root.rotation_degrees = 0
 			_panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
 			_panel.grow_vertical = Control.GROW_DIRECTION_BEGIN

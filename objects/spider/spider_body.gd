@@ -42,6 +42,12 @@ class_name SpiderBody
 	%LegFrontRightTarget,
 ]
 
+@onready var _point_leg: Node2D = %LegFrontLeftTarget
+@onready var _point_leg_ik: Node2D = %LegFrontLeftIK
+var _pointing: bool = false
+var _pointing_update_request: bool = false
+var _point_leg_original_pos: Vector2
+
 enum Direction {
 	NONE,
 	FORWARDS,
@@ -66,6 +72,17 @@ func set_leg_prediction_offset(direction: Direction) -> void:
 func get_core_position() -> Vector2:
 	return $Core.position
 
+func point(global_pos: Vector2):
+	_point_leg.top_level = true
+	_pointing = true
+	_pointing_update_request = true
+	_point_leg.global_position = global_pos
+
+func stop_point():
+	_point_leg.top_level = false
+	_pointing = false
+	_point_leg.position = _point_leg_original_pos
+
 func _draw() -> void:
 	if not debug: return
 	
@@ -77,17 +94,22 @@ func _draw() -> void:
 	for node in _ik_targets:
 		draw_circle((node.global_position - global_position) / debug_effective_scale, 10.0, Color.BLUE)
 
-func _update_legs() -> void:
+func _on_leg_update_timer_timeout() -> void:
 	_update_index = _update_index + 1
 	if _update_index == _update_order.size():
 		_update_index = 0
 	
 	var leg = _update_order[_update_index]
 	
+	if _pointing and _pointing_update_request:
+		var tween = create_tween()
+		tween.tween_property(_point_leg_ik, "global_position", _point_leg.global_position, leg_tween_time)
+		await tween.finished
+		_pointing_update_request = false
+	
 	if _ik_targets[leg].global_position.distance_to(_move_targets[leg].global_position) > 1.0:
 		var tween = create_tween()
 		tween.tween_property(_ik_targets[leg], "global_position", _move_targets[leg].global_position, leg_tween_time)
-		
 		await tween.finished
 		
 		#var tap = Dialogue.new_dialogue("*tap*", Dialogue.Direction.POINT_DOWN, Color(0.5, 0.5, 0.5))
@@ -98,16 +120,14 @@ func _update_legs() -> void:
 			tap.global_position = _move_targets[leg].global_position
 			tap.top_level = true
 			get_parent().add_child(tap)
-		
-	get_tree().create_timer(leg_update_rate).timeout.connect(_update_legs) 
 
 func _ready() -> void:
 	_debug_font = ThemeDB.fallback_font
 	_debug_font_size = ThemeDB.fallback_font_size
+	_point_leg_original_pos = _point_leg.position
 	
+	$LegUpdateTimer.start(leg_update_rate)
 	$AnimationTree.active = true
-	
-	await get_tree().process_frame
 	
 	var index = 0
 	for node in _ik_targets:
@@ -117,9 +137,7 @@ func _ready() -> void:
 	
 	# Call the set function to update the angle (I promise this does something)
 	spider_angle = spider_angle
-	
-	_update_legs()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if debug:
 		queue_redraw()

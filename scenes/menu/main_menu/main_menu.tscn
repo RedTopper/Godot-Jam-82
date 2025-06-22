@@ -1,20 +1,81 @@
-[gd_scene load_steps=14 format=4 uid="uid://cenplja04svt2"]
+[gd_scene load_steps=18 format=4 uid="uid://cenplja04svt2"]
 
 [ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_game_template/base/scenes/menus/main_menu/main_menu.tscn" id="1_dk276"]
-[ext_resource type="Script" uid="uid://clygmp2q2xbc8" path="res://examples/scenes/menus/main_menu/main_menu.gd" id="2_ww8d4"]
-[ext_resource type="PackedScene" uid="uid://7jkdc14hdhi4" path="res://examples/scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="3_wd51l"]
-[ext_resource type="PackedScene" uid="uid://bilc5xioc1itw" path="res://examples/scenes/credits/credits.tscn" id="4_3tda0"]
+[ext_resource type="Script" uid="uid://dh0tjs4qm4kdw" path="res://scenes/menu/main_menu/main_menu.gd" id="2_ww8d4"]
+[ext_resource type="PackedScene" uid="uid://2djxv63ojr8u" path="res://scenes/menu/options_menu/master_options_menu_with_tabs.tscn" id="3_wd51l"]
+[ext_resource type="PackedScene" uid="uid://b6qartwrmqbdq" path="res://scenes/menu/credits/credits.tscn" id="4_3tda0"]
 [ext_resource type="Texture2D" uid="uid://c2npl7056piun" path="res://assets/spritesheets/floor1.png" id="5_pqpva"]
 [ext_resource type="PackedScene" uid="uid://gyc0wxdnr7cp" path="res://objects/spider/spider_body.tscn" id="5_ww8d4"]
 [ext_resource type="Texture2D" uid="uid://d1osnuchdg8v4" path="res://assets/spritesheets/cleanFloor_n.png" id="6_rek8k"]
 [ext_resource type="Texture2D" uid="uid://db5xnyqyfufgs" path="res://assets/spritesheets/floor1_s.png" id="7_cbr2h"]
 
-[sub_resource type="Gradient" id="Gradient_o6ptv"]
+[sub_resource type="Animation" id="Animation_rek8k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/Control/SpiderBody:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 80)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Light/Control/PointLight2D:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_pqpva"]
+resource_name = "walk_in"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/Control/SpiderBody:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.933333, 1.9, 2.36667),
+"transitions": PackedFloat32Array(1e+06, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-500, 80), Vector2(-500, 80), Vector2(150, 80), Vector2(50, 80)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Light/Control/PointLight2D:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.533333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cbr2h"]
+_data = {
+&"RESET": SubResource("Animation_rek8k"),
+&"walk_in": SubResource("Animation_pqpva")
+}
+
+[sub_resource type="Gradient" id="Gradient_rek8k"]
 offsets = PackedFloat32Array(0.179321, 0.699515)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_lbgcy"]
-gradient = SubResource("Gradient_o6ptv")
+gradient = SubResource("Gradient_rek8k")
 width = 1024
 height = 1024
 fill = 1
@@ -35,18 +96,37 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_lpkh5")
 
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pqpva"]
+gradient = SubResource("Gradient_rek8k")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="MainMenu" instance=ExtResource("1_dk276")]
 script = ExtResource("2_ww8d4")
+tween_time = 0.5
+spider_ui_offset = 350.0
 game_scene_path = "res://examples/scenes/game_scene/game_ui.tscn"
 options_packed_scene = ExtResource("3_wd51l")
 credits_packed_scene = ExtResource("4_3tda0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
+libraries = {
+&"": SubResource("AnimationLibrary_cbr2h")
+}
 
 [node name="BackgroundMusicPlayer" parent="." index="2"]
 bus = &"Master"
 
-[node name="CenterContainer" type="CenterContainer" parent="." index="3"]
+[node name="Timer" type="Timer" parent="." index="3"]
+wait_time = 0.1
+autostart = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." index="4"]
+color = Color(0, 0, 0, 1)
+
+[node name="Light" type="CenterContainer" parent="." index="5"]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -56,14 +136,15 @@ offset_left = -953.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="Control" type="Control" parent="CenterContainer" index="0"]
+[node name="Control" type="Control" parent="Light" index="0"]
 layout_mode = 2
 
-[node name="PointLight2D" type="PointLight2D" parent="CenterContainer/Control" index="0"]
+[node name="PointLight2D" type="PointLight2D" parent="Light/Control" index="0"]
+enabled = false
 texture = SubResource("GradientTexture2D_lbgcy")
 height = 425.0
 
-[node name="Background" type="CenterContainer" parent="." index="4"]
+[node name="Background" type="CenterContainer" parent="." index="6"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -75,12 +156,12 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Background/Control" index="0"]
-position = Vector2(0, 20)
+position = Vector2(50, 20)
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray("AAD6//3/AAAAAAAAAAD7//3/AAAAAAAAAAD8//3/AAAAAAAAAAD9//3/AAAAAAAAAAD+//3/AAAAAAAAAAD///3/AAAAAAAAAAAAAP3/AAAAAAAAAAABAP3/AAAAAAAAAAACAP3/AAAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAADAAMAAAAAAAAAAAACAAMAAAAAAAAAAAABAAMAAAAAAAAAAAAAAAMAAAAAAAAAAAD//wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD9/wMAAAAAAAAAAAD8/wMAAAAAAAAAAAD8/wIAAAAAAAAAAAD7/wIAAAAAAAAAAAD6/wIAAAAAAAAAAAD6/wMAAAAAAAAAAAD7/wMAAAAAAAAAAAD6/wEAAAAAAAAAAAD6/wAAAAAAAAAAAAD6////AAAAAAAAAAD6//7/AAAAAAAAAAD7//7/AAAAAAAAAAD8//7/AAAAAAAAAAD9//7/AAAAAAAAAAD+//7/AAAAAAAAAAD///7/AAAAAAAAAAAAAP7/AAAAAAAAAAABAP7/AAAAAAAAAAACAP7/AAAAAAAAAAACAP//AAAAAAAAAAABAP//AAAAAAAAAAAAAP//AAAAAAAAAAD/////AAAAAAAAAAD+////AAAAAAAAAAD7////AAAAAAAAAAD7/wAAAAAAAAAAAAD8////AAAAAAAAAAD9////AAAAAAAAAAD+/wAAAAAAAAAAAAD9/wAAAAAAAAAAAAD8/wAAAAAAAAAAAAD8/wEAAAAAAAAAAAD7/wEAAAAAAAAAAAD9/wIAAAAAAAAAAAD+/wIAAAAAAAAAAAD//wIAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAIAAAAAAAAAAAACAAIAAAAAAAAAAAADAAIAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAEAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAEAAAAAAAAAAAACAAEAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAD//wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD9/wEAAAAAAAAAAAADAP3/AAAAAAAAAAADAP7/AAAAAAAAAAADAP//AAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAFAP//AAAAAAAAAAAFAP7/AAAAAAAAAAAFAP3/AAAAAAAAAAAEAP3/AAAAAAAAAAAEAP7/AAAAAAAAAAAEAP//AAAAAAAAAAAFAPz/AAAAAAAAAAAEAPz/AAAAAAAAAAADAPz/AAAAAAAAAAACAPz/AAAAAAAAAAABAPz/AAAAAAAAAAAAAPz/AAAAAAAAAAD///z/AAAAAAAAAAD+//z/AAAAAAAAAAD9//z/AAAAAAAAAAD8//z/AAAAAAAAAAD7//z/AAAAAAAAAAD6//z/AAAAAAAAAAA=")
 tile_set = SubResource("TileSet_rrd23")
 
-[node name="SpiderCore" parent="Background/Control" index="1" instance=ExtResource("5_ww8d4")]
+[node name="SpiderBody" parent="Background/Control" index="1" instance=ExtResource("5_ww8d4")]
 z_index = 1
 position = Vector2(0, 80)
 scale = Vector2(1.5, 1.5)
@@ -88,10 +169,10 @@ debug = false
 debug_effective_scale = Vector2(1.5, 1.5)
 spider_angle = 0.0
 
-[node name="MenuContainer" parent="." index="7"]
+[node name="MenuContainer" parent="." index="9"]
 anchors_preset = 11
 anchor_left = 1.0
-offset_left = -966.0
+offset_left = -1044.0
 grow_horizontal = 0
 
 [node name="TitleMargin" parent="MenuContainer" index="0"]
@@ -109,5 +190,24 @@ text = "Godot Wild Jam 82"
 [node name="MenuButtonsMargin" parent="MenuContainer" index="2"]
 theme_override_constants/margin_top = 8
 
-[node name="CanvasModulate" type="CanvasModulate" parent="." index="11"]
-color = Color(0, 0, 0, 1)
+[node name="OptionsContainer" parent="." index="10"]
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 70
+theme_override_constants/margin_right = 70
+theme_override_constants/margin_bottom = 70
+
+[node name="CreditsContainer" parent="." index="11"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+offset_left = -991.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="PointLight2D" type="PointLight2D" parent="FlowControlContainer/FlowControl/BackButton" index="0"]
+position = Vector2(27, 15)
+texture = SubResource("GradientTexture2D_pqpva")
+height = 425.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_light_update"]
+[connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed_stop_point"]

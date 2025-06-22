@@ -9,7 +9,7 @@ var _saw_peripheral : bool = false
 var _saw_central : bool = false
 
 var _state_is_active : bool = false
-#var _body : Spider
+var _body : Spider
 
 func enter() -> void:
 	_guard = parent
@@ -36,6 +36,8 @@ func exit() -> void:
 func process_physics(_delta: float) -> State:
 	if _heard_something or _saw_peripheral or _saw_central:
 		$Timer.start(_guard.pursue_time)
+		if _body:
+			_guard.spider_pursue_location = _body.global_position
 		%NavigationAgent.target_position = _guard.spider_pursue_location
 	
 	if $Timer.is_stopped():
@@ -61,6 +63,7 @@ func process_physics(_delta: float) -> State:
 func _on_hearing_body_entered(body: Node2D) -> void:
 	if not _state_is_active: return
 	if body is Spider:
+		_body = body
 		if (body as Spider).is_moving:
 			_heard_something = true
 
@@ -68,6 +71,7 @@ func _on_hearing_body_entered(body: Node2D) -> void:
 func _on_peripheral_vision_body_entered(body: Node2D) -> void:
 	if not _state_is_active: return
 	if body is Spider:
+		_body = body
 		if not (body as Spider).is_hiding:
 			_saw_peripheral = true
 
@@ -75,6 +79,7 @@ func _on_peripheral_vision_body_entered(body: Node2D) -> void:
 func _on_central_vision_body_entered(body: Node2D) -> void:
 	if not _state_is_active: return
 	if body is Spider:
+		_body = body
 		if not (body as Spider).is_hiding:
 			var dialog = Dialogue.new_dialogue("there it is!", Dialogue.Direction.POINT_DOWN, Color(0.5, 0.5, 0.5))
 			dialog.global_position = _guard.global_position
