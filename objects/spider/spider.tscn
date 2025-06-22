@@ -22,13 +22,14 @@ script = ExtResource("1_nn63r")
 
 [node name="LightVisionCone" type="PointLight2D" parent="."]
 position = Vector2(10.856, -3.92986e-05)
-energy = 0.2
+energy = 0.21
 shadow_enabled = true
 shadow_filter = 2
 shadow_filter_smooth = 0.5
 texture = ExtResource("4_bgy4a")
 offset = Vector2(409.6, 0)
 texture_scale = 0.8
+height = 179.0
 
 [node name="SpiderCollisionShape" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
