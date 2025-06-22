@@ -33,6 +33,7 @@ func enter() -> void:
 func exit() -> void:
 	%CentralVision.monitoring = true
 	_heard_something = false
+	_saw_peripheral = false
 
 # _process_physics
 func process_physics(_delta: float) -> State:

@@ -29,7 +29,7 @@ func enter() -> void:
 	super()
 
 func exit() -> void:
-	pass
+	_saw_central = false
 	
 
 # _process_physics
@@ -55,6 +55,6 @@ func process_physics(delta: float) -> State:
 
 func _on_central_vision_body_entered(body: Node2D) -> void:
 	if body is Spider:
-		if not (body as Spider).is_hiding:
+		if not body.is_hiding:
 			_guard.spider_pursue_location = body.global_position
-			_saw_central = true	
+			_saw_central = true
