@@ -1,0 +1,79 @@
+[gd_scene load_steps=10 format=3 uid="uid://pss6p0c07aix"]
+
+[ext_resource type="Script" uid="uid://hnjfeqwnytyf" path="res://objects/door/door.gd" id="1_ln868"]
+[ext_resource type="Texture2D" uid="uid://blrom15fqho30" path="res://objects/door/assets/Door1.tres" id="2_00jqa"]
+[ext_resource type="Texture2D" uid="uid://cyadhluwoswm4" path="res://objects/door/assets/Door3.tres" id="3_sw3ee"]
+[ext_resource type="Texture2D" uid="uid://x8mmysrm6pbx" path="res://objects/door/assets/Door2.tres" id="4_demac"]
+[ext_resource type="PackedScene" uid="uid://dp17f4k33aq83" path="res://objects/door/door_light_blocker.tscn" id="5_00jqa"]
+[ext_resource type="AudioStream" uid="uid://bssu2s23dcvkr" path="res://assets/sounds/door.wav" id="5_58wfd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_demac"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_00jqa")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_sw3ee")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_demac")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_00jqa")
+}],
+"loop": false,
+"name": &"door closing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_00jqa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_demac")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_sw3ee")
+}],
+"loop": false,
+"name": &"door opening",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6hol0"]
+size = Vector2(256, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8g5s7"]
+size = Vector2(256, 301)
+
+[node name="Door" type="StaticBody2D"]
+script = ExtResource("1_ln868")
+
+[node name="DoorAnimation" type="AnimatedSprite2D" parent="."]
+position = Vector2(128, 64)
+sprite_frames = SubResource("SpriteFrames_demac")
+animation = &"closed"
+
+[node name="Physics" type="CollisionShape2D" parent="."]
+position = Vector2(128, 65)
+shape = SubResource("RectangleShape2D_6hol0")
+
+[node name="DoorLightBlocker" parent="." instance=ExtResource("5_00jqa")]
+
+[node name="DoorOpen" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorOpen"]
+position = Vector2(128, 65.5)
+shape = SubResource("RectangleShape2D_8g5s7")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_58wfd")
+
+[connection signal="body_entered" from="DoorOpen" to="." method="_on_door_open_body_entered"]
+[connection signal="body_exited" from="DoorOpen" to="." method="_on_door_open_body_exited"]

@@ -2,14 +2,14 @@ extends CharacterBody2D
 class_name Spider
 
 @export var debug: bool = true
-@export var linked_light: Node2D
 
 @onready var body: SpiderBody = $SpiderBody
 
 @onready var _light_vision_cone = $LightVisionCone
 
-var is_moving : bool = false
-var is_hiding : bool = false
+var is_moving: bool = false
+var is_hiding: bool = false
+var has_keycard: bool = true
 
 @onready var _state_machine = $StateMachine
 
@@ -24,9 +24,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	_state_machine.process_input(event)
 
 func _process(delta: float) -> void:
-	if linked_light:
-		linked_light.position = body.get_core_position()
-	
 	body.debug = debug
 	body.debug_effective_scale = scale
 	_light_vision_cone.position = body.get_core_position()
