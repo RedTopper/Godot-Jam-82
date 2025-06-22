@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://5yw4rhabtfqb"]
+[gd_scene load_steps=21 format=3 uid="uid://5yw4rhabtfqb"]
 
 [ext_resource type="Script" uid="uid://4gi7pyxr862w" path="res://objects/guard/guard.gd" id="1_8r01v"]
 [ext_resource type="Script" uid="uid://jihwj7nslsfl" path="res://objects/state_machine.gd" id="2_70b43"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://cavg4mwbnwg3u" path="res://objects/guard/states/alert.gd" id="13_eh7ry"]
 [ext_resource type="Script" uid="uid://bj11iysjxtd2y" path="res://objects/guard/states/navigating.gd" id="15_ewst3"]
 [ext_resource type="Script" uid="uid://bkswajt0qpwvd" path="res://objects/guard/states/pursuing.gd" id="15_v5vvr"]
+[ext_resource type="AudioStream" uid="uid://dqurxjdgyp71s" path="res://assets/sounds/Horror Violin.wav" id="17_ssn1m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ewst3"]
 radius = 6.20081
@@ -174,13 +175,19 @@ bored_state = NodePath("../Bored")
 alert_state = NodePath("../Alert")
 metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
 
-[node name="Pursuing" type="Node" parent="StateMachine" node_paths=PackedStringArray("alert_state")]
+[node name="Pursuing" type="Node" parent="StateMachine" node_paths=PackedStringArray("pursuit_sound", "alert_state")]
 script = ExtResource("15_v5vvr")
+pursuit_sound = NodePath("../../PursueAudioStreamPlayer")
 alert_state = NodePath("../Alert")
 metadata/_custom_type_script = "uid://c0lhfaavm4i0o"
 
 [node name="Timer" type="Timer" parent="StateMachine/Pursuing"]
 one_shot = true
+
+[node name="PursueAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_ssn1m")
+volume_db = -3.0
+pitch_scale = 1.48
 
 [connection signal="body_entered" from="CentralVision" to="StateMachine/Alert" method="_on_central_vision_body_entered"]
 [connection signal="body_entered" from="CentralVision" to="StateMachine/Navigating" method="_on_central_vision_body_entered"]

@@ -1,0 +1,108 @@
+[gd_scene load_steps=13 format=4 uid="uid://b25uh2tbfyjq1"]
+
+[ext_resource type="Script" uid="uid://do36n1ltapgqq" path="res://scenes/menu/lose_menu/lose_menu.gd" id="1_mnr3r"]
+[ext_resource type="Texture2D" uid="uid://c2npl7056piun" path="res://assets/spritesheets/floor1.png" id="1_nrnv2"]
+[ext_resource type="Texture2D" uid="uid://d1osnuchdg8v4" path="res://assets/spritesheets/cleanFloor_n.png" id="2_mnr3r"]
+[ext_resource type="Texture2D" uid="uid://db5xnyqyfufgs" path="res://assets/spritesheets/floor1_s.png" id="3_4v6eu"]
+[ext_resource type="PackedScene" uid="uid://gyc0wxdnr7cp" path="res://objects/spider/spider_body.tscn" id="4_mibv0"]
+
+[sub_resource type="Gradient" id="Gradient_rek8k"]
+offsets = PackedFloat32Array(0.179321, 0.699515)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pnt5o"]
+gradient = SubResource("Gradient_rek8k")
+width = 1024
+height = 1024
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_kuhe8"]
+diffuse_texture = ExtResource("1_nrnv2")
+normal_texture = ExtResource("2_mnr3r")
+specular_texture = ExtResource("3_4v6eu")
+specular_shininess = 0.5
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g83s6"]
+texture = SubResource("CanvasTexture_kuhe8")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ch2lh"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_g83s6")
+
+[sub_resource type="SystemFont" id="SystemFont_nrnv2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mnr3r"]
+font = SubResource("SystemFont_nrnv2")
+font_size = 48
+
+[node name="LoseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mnr3r")
+next_scene = "uid://cenplja04svt2"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0, 0, 0, 1)
+
+[node name="Light" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -953.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="Light"]
+layout_mode = 2
+
+[node name="PointLight2D" type="PointLight2D" parent="Light/Control"]
+texture = SubResource("GradientTexture2D_pnt5o")
+height = 425.0
+
+[node name="Background" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="Background"]
+layout_mode = 2
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Background/Control"]
+visible = false
+position = Vector2(50, 20)
+scale = Vector2(3, 3)
+tile_map_data = PackedByteArray("AAD6//3/AAAAAAAAAAD7//3/AAAAAAAAAAD8//3/AAAAAAAAAAD9//3/AAAAAAAAAAD+//3/AAAAAAAAAAD///3/AAAAAAAAAAAAAP3/AAAAAAAAAAABAP3/AAAAAAAAAAACAP3/AAAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAADAAMAAAAAAAAAAAACAAMAAAAAAAAAAAABAAMAAAAAAAAAAAAAAAMAAAAAAAAAAAD//wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD9/wMAAAAAAAAAAAD8/wMAAAAAAAAAAAD8/wIAAAAAAAAAAAD7/wIAAAAAAAAAAAD6/wIAAAAAAAAAAAD6/wMAAAAAAAAAAAD7/wMAAAAAAAAAAAD6/wEAAAAAAAAAAAD6/wAAAAAAAAAAAAD6////AAAAAAAAAAD6//7/AAAAAAAAAAD7//7/AAAAAAAAAAD8//7/AAAAAAAAAAD9//7/AAAAAAAAAAD+//7/AAAAAAAAAAD///7/AAAAAAAAAAAAAP7/AAAAAAAAAAABAP7/AAAAAAAAAAACAP7/AAAAAAAAAAACAP//AAAAAAAAAAABAP//AAAAAAAAAAAAAP//AAAAAAAAAAD/////AAAAAAAAAAD+////AAAAAAAAAAD7////AAAAAAAAAAD7/wAAAAAAAAAAAAD8////AAAAAAAAAAD9////AAAAAAAAAAD+/wAAAAAAAAAAAAD9/wAAAAAAAAAAAAD8/wAAAAAAAAAAAAD8/wEAAAAAAAAAAAD7/wEAAAAAAAAAAAD9/wIAAAAAAAAAAAD+/wIAAAAAAAAAAAD//wIAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAIAAAAAAAAAAAACAAIAAAAAAAAAAAADAAIAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAEAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAEAAAAAAAAAAAACAAEAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAD//wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD9/wEAAAAAAAAAAAADAP3/AAAAAAAAAAADAP7/AAAAAAAAAAADAP//AAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAFAP//AAAAAAAAAAAFAP7/AAAAAAAAAAAFAP3/AAAAAAAAAAAEAP3/AAAAAAAAAAAEAP7/AAAAAAAAAAAEAP//AAAAAAAAAAAFAPz/AAAAAAAAAAAEAPz/AAAAAAAAAAADAPz/AAAAAAAAAAACAPz/AAAAAAAAAAABAPz/AAAAAAAAAAAAAPz/AAAAAAAAAAD///z/AAAAAAAAAAD+//z/AAAAAAAAAAD9//z/AAAAAAAAAAD8//z/AAAAAAAAAAD7//z/AAAAAAAAAAD6//z/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_ch2lh")
+
+[node name="SpiderBody" parent="Background/Control" instance=ExtResource("4_mibv0")]
+z_index = 1
+position = Vector2(144, 87)
+scale = Vector2(1.5, 1.5)
+debug = false
+debug_effective_scale = Vector2(1.5, 1.5)
+spider_angle = 0.0
+
+[node name="GameOver" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1261.0
+offset_top = 283.0
+offset_right = 1654.0
+offset_bottom = 353.0
+text = "Game Over"
+label_settings = SubResource("LabelSettings_mnr3r")
+horizontal_alignment = 1
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

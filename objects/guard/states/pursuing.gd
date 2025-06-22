@@ -1,5 +1,6 @@
 extends State
 
+@export var pursuit_sound: AudioStreamPlayer
 @export var alert_state: State
 
 var _guard : Guard
@@ -25,10 +26,14 @@ func enter() -> void:
 	
 	%NavigationAgent.target_position = _guard.spider_pursue_location
 	
+	pursuit_sound.play(0.85)
+	
 	super()
 
 func exit() -> void:
 	%VisionLight.enabled = true
+	
+	pursuit_sound.stop()
 	
 	_state_is_active = false
 
