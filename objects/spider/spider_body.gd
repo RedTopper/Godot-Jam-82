@@ -129,8 +129,6 @@ func _ready() -> void:
 	$LegUpdateTimer.start(leg_update_rate)
 	$AnimationTree.active = true
 	
-	await get_tree().process_frame
-	
 	var index = 0
 	for node in _ik_targets:
 		node.top_level = true

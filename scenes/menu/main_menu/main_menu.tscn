@@ -33,7 +33,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_pqpva"]
@@ -49,7 +49,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.933333, 1.9, 2.36667),
 "transitions": PackedFloat32Array(1e+06, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-500, 80), Vector2(-500, 80), Vector2(100, 80), Vector2(0, 80)]
+"values": [Vector2(-500, 80), Vector2(-500, 80), Vector2(150, 80), Vector2(50, 80)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -140,6 +140,7 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="PointLight2D" type="PointLight2D" parent="Light/Control" index="0"]
+enabled = false
 texture = SubResource("GradientTexture2D_lbgcy")
 height = 425.0
 

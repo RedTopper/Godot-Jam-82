@@ -23,6 +23,7 @@ func _on_tween_finished():
 func _on_animation_finished(_string_name: StringName):
 	_animation_finished = true
 	_tween_finished = true
+	_connect_all_children()
 
 func _on_hover(node: Control):
 	_move(node.global_position + node.size / Vector2(2.0, 2.0))
@@ -39,7 +40,6 @@ func _on_credits_button_pressed_stop_point() -> void:
 
 func _ready() -> void:
 	get_viewport().gui_focus_changed.connect(_on_hover)
-	_connect_all_children()
 	_animation.play("walk_in")
 	_animation.animation_finished.connect(_on_animation_finished)
 	super()
@@ -61,7 +61,6 @@ func _move(pos: Vector2):
 		_has_next_x = true
 
 func _connect_all_children() -> void:
-	await get_tree().process_frame 
 	var waiting = get_children()
 	while waiting.size():
 		var node = waiting.pop_back() as Node
