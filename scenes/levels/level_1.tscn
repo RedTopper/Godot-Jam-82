@@ -92,9 +92,6 @@ material = SubResource("ShaderMaterial_rka8t")
 position = Vector2(-192, 0)
 texture = SubResource("ViewportTexture_5hph3")
 
-[node name="CanvasModulate" parent="." index="3"]
-visible = false
-
 [node name="TileMapLayer" parent="." index="6" instance=ExtResource("3_sk5k4")]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="7"]
