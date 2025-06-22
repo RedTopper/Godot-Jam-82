@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=4 uid="uid://cenplja04svt2"]
+[gd_scene load_steps=19 format=4 uid="uid://cenplja04svt2"]
 
 [ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_game_template/base/scenes/menus/main_menu/main_menu.tscn" id="1_dk276"]
 [ext_resource type="Script" uid="uid://dh0tjs4qm4kdw" path="res://scenes/menu/main_menu/main_menu.gd" id="2_ww8d4"]
 [ext_resource type="PackedScene" uid="uid://2djxv63ojr8u" path="res://scenes/menu/options_menu/master_options_menu_with_tabs.tscn" id="3_wd51l"]
 [ext_resource type="PackedScene" uid="uid://b6qartwrmqbdq" path="res://scenes/menu/credits/credits.tscn" id="4_3tda0"]
 [ext_resource type="Texture2D" uid="uid://c2npl7056piun" path="res://assets/spritesheets/floor1.png" id="5_pqpva"]
+[ext_resource type="AudioStream" uid="uid://dp24qm4jaeji5" path="res://assets/sounds/SCP-x4x.ogg" id="5_rek8k"]
 [ext_resource type="PackedScene" uid="uid://gyc0wxdnr7cp" path="res://objects/spider/spider_body.tscn" id="5_ww8d4"]
 [ext_resource type="Texture2D" uid="uid://d1osnuchdg8v4" path="res://assets/spritesheets/cleanFloor_n.png" id="6_rek8k"]
 [ext_resource type="Texture2D" uid="uid://db5xnyqyfufgs" path="res://assets/spritesheets/floor1_s.png" id="7_cbr2h"]
@@ -117,6 +118,7 @@ libraries = {
 }
 
 [node name="BackgroundMusicPlayer" parent="." index="2"]
+stream = ExtResource("5_rek8k")
 bus = &"Master"
 
 [node name="Timer" type="Timer" parent="." index="3"]

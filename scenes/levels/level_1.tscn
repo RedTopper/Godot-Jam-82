@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://cijrs813yfr8h"]
+[gd_scene load_steps=14 format=3 uid="uid://cijrs813yfr8h"]
 
 [ext_resource type="PackedScene" uid="uid://bnwew7gd13fvh" path="res://scenes/levels/base_level.tscn" id="1_x42e6"]
 [ext_resource type="Shader" uid="uid://bnqk8jccq8t1y" path="res://scenes/test/spider/shaders/shadows.gdshader" id="2_6761a"]
+[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="2_dga24"]
+[ext_resource type="AudioStream" uid="uid://b1me5n6pb74aq" path="res://assets/sounds/SCP-x2x.ogg" id="3_dga24"]
 [ext_resource type="PackedScene" uid="uid://cswbiknslt7lc" path="res://scenes/levels/level_1_tile_map_layer.tscn" id="3_sk5k4"]
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="3_wtwp4"]
 [ext_resource type="Shader" uid="uid://bgsdtddvqhq1s" path="res://scenes/test/spider/shaders/white.gdshader" id="5_oc4kc"]
@@ -25,16 +27,17 @@ shader = ExtResource("5_oc4kc")
 
 [node name="BaseLevel" instance=ExtResource("1_x42e6")]
 
-[node name="ShadowMask" parent="." index="0"]
+[node name="BackgroundMusicPlayer" parent="." index="0" instance=ExtResource("2_dga24")]
+stream = ExtResource("3_dga24")
+bus = &"Master"
+
+[node name="ShadowMask" parent="." index="1"]
 material = SubResource("ShaderMaterial_rka8t")
 texture = SubResource("ViewportTexture_5hph3")
 
-[node name="CanvasModulate" parent="." index="1"]
-visible = false
+[node name="TileMapLayer" parent="." index="5" instance=ExtResource("3_sk5k4")]
 
-[node name="TileMapLayer" parent="." index="4" instance=ExtResource("3_sk5k4")]
-
-[node name="MainRoomDoor" parent="." index="5" node_paths=PackedStringArray("_linked_blocker") instance=ExtResource("13_7o3do")]
+[node name="MainRoomDoor" parent="." index="6" node_paths=PackedStringArray("_linked_blocker") instance=ExtResource("13_7o3do")]
 position = Vector2(-320, 448)
 _linked_blocker = NodePath("../SubViewportMask/MainRoomDoorLightBlocker")
 
@@ -44,7 +47,7 @@ material = SubResource("ShaderMaterial_s8va5")
 [node name="MainRoomDoorLightBlocker" parent="SubViewportMask" index="3" instance=ExtResource("5_sk5k4")]
 position = Vector2(-320, 448)
 
-[node name="UI" type="CanvasLayer" parent="." index="9"]
+[node name="UI" type="CanvasLayer" parent="." index="10"]
 
 [node name="MarginContainer" type="MarginContainer" parent="UI" index="0"]
 anchors_preset = 15
