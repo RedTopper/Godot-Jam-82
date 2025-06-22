@@ -47,6 +47,7 @@ func process_physics(_delta: float) -> State:
 		return sleep_state
 	
 	if _navigate:
+		_navigate = false
 		return navigate_state
 	
 	return null

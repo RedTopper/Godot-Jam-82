@@ -56,5 +56,6 @@ func process_physics(delta: float) -> State:
 func _on_central_vision_body_entered(body: Node2D) -> void:
 	if body is Spider:
 		if not body.is_hiding:
-			_guard.spider_pursue_location = body.global_position
+			if _guard:
+				_guard.spider_pursue_location = body.global_position
 			_saw_central = true
